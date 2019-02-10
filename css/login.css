@@ -1,0 +1,11 @@
+section>.bcg{
+    clip-path: polygon(100% 2%, 100% 57%, 0 100%, 0 29%);
+    background-color:#4834DF;
+    z-index:-1;
+    position: absolute;
+    height:70%;
+    width:100%;
+    margin:0 auto;
+    overflow: hidden;
+
+}

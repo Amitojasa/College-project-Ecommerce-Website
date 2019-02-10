@@ -1,0 +1,11 @@
+.bck{
+    border-left: 5px solid;
+}
+.bckr{
+    border-right: 5px solid;
+}
+
+.bckr>ul>li{
+    font-size: 18px;
+    color:#6c757d!important
+}

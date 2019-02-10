@@ -1,0 +1,29 @@
+.result-sec{
+    min-height: 100vh;
+    width: 100%;
+}
+
+.aside{
+    min-height:100vh;
+}
+.result-count{
+    font-weight: bold;
+}
+.sortbar a{
+    color:black;
+}
+.sortbar a.active{
+    color:#007bff!important;
+}
+.title>a{
+    font-weight: bold;
+
+}
+.title>a{
+    text-decoration: none;
+}
+
+.result-card{
+    border:0;
+
+}

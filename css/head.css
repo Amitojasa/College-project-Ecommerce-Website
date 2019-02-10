@@ -1,0 +1,12 @@
+.nav2-icons{
+    font-size: 20px;
+}
+.cate-but{
+    padding: 0 32px;
+}
+.categories>ul>li>a{
+    color:white;
+}
+.navbar-collapse{
+    flex-grow:0 !important;
+}

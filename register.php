@@ -1,0 +1,81 @@
+<?php include "header.php"; ?>
+<link rel="stylesheet" href="css/register.css">
+<section class="checkout-section ptb-70">
+    <div class="clip"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="row justify-content-center">
+          
+            <div class="col-xl-8 col-lg-8 col-md-8 ">
+            <div class="card m-5">
+          <div class="card-body">
+              <form class="main-form full" method="post">
+                <div class="row">
+                  <div class="col-12 mb-20">
+                    <div class="heading-part heading-bg">
+                      <h2 class="heading text-center text-primary p-3 mt-3">Create your account</h2>
+                    </div>
+                    <hr>
+                  </div>
+                  <div class="col-12">
+                    <div class="heading-part line-bottom ">
+                      <h2 class="form-title  text-secondary"><small>Your Personal Details</small></h2>
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <div class="form-group">
+                      <label for="f-name">First Name</label>
+                      <input class="form-control" type="text" name="fName" id="f-name" required="" placeholder="First Name">
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <div class="form-group">
+                      <label for="l-name">Last Name</label>
+                      <input class="form-control" type="text" name="lName" id="l-name" required="" placeholder="Last Name">
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <div class="form-group">
+                      <label for="login-email">Email address</label>
+                      <input class="form-control" id="login-email" name="eMail" type="email" required="" placeholder="Email Address">
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <div class="form-group">
+                      <label for="telephone">Telephone</label>
+                      <input class="form-control" id="telephone" name="Tele" type="number" required="" placeholder="Telephone">
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <div class="form-group">
+                      <label for="login-pass">Password</label>
+                      <input  class="form-control" id="login-pass" name="pass" type="password" required="" placeholder="Enter your Password">
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <div class="form-group">
+                      <label for="re-enter-pass">Re-enter Password</label>
+                      <input class="form-control" id="re-enter-pass" name="repass" type="password" required="" placeholder="Re-enter your Password">
+                    </div>
+                  </div>
+                  <div class="col-7 offset-5">
+                    <button name="submit" type="submit" class="btn btn-primary text-center">Submit</button>
+                  </div>
+                  <div class="col-12">
+                    <hr>
+                    <div class="new-account text-center mb-4"> <span>Already have an account with us</span> <a class="link" title="Register with GadgetsPick" href="login.php">Login Here</a> </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+<?php include "footer.php"; ?>
