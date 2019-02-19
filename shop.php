@@ -37,6 +37,7 @@
         <div class="card result-card border-bottom">
             <div class="card-body  py-0">
                 <div class="row">
+
                     <div class="img col-3 d-flex">
                         <img class="img-fluid align-self-center" src="images/test.jpeg" alt="">
                     </div>
@@ -62,7 +63,10 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="col-2 d-flex align-items-center">
+                    <div class="col-2 d-flex flex-column align-items-center justify-content-center">
+                        <div class="favorite mb-5">
+                            <a href="#"><span class="fa fa-heart"></span></a>
+                        </div>
                         <div class="price text-center">
                             <h3 class="text-dark"> &#8377; 49500</h3>
                             <strike class="text-danger"><h3 class="text-secondary"><small> &#8377; 49500</small></h3></strike>
@@ -72,10 +76,10 @@
             </div>  
             
         </div>
-
         <div class="card result-card border-bottom">
             <div class="card-body  py-0">
                 <div class="row">
+
                     <div class="img col-3 d-flex">
                         <img class="img-fluid align-self-center" src="images/test.jpeg" alt="">
                     </div>
@@ -101,7 +105,10 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="col-2 d-flex align-items-center">
+                    <div class="col-2 d-flex flex-column align-items-center justify-content-center">
+                        <div class="favorite mb-5">
+                            <a href="#"><span class="fa fa-heart text-danger"></span></a>
+                        </div>
                         <div class="price text-center">
                             <h3 class="text-dark"> &#8377; 49500</h3>
                             <strike class="text-danger"><h3 class="text-secondary"><small> &#8377; 49500</small></h3></strike>
@@ -111,10 +118,10 @@
             </div>  
             
         </div>
-
         <div class="card result-card border-bottom">
             <div class="card-body  py-0">
                 <div class="row">
+
                     <div class="img col-3 d-flex">
                         <img class="img-fluid align-self-center" src="images/test.jpeg" alt="">
                     </div>
@@ -140,7 +147,10 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="col-2 d-flex align-items-center">
+                    <div class="col-2 d-flex flex-column align-items-center justify-content-center">
+                        <div class="favorite mb-5">
+                            <a href="#"><span class="fa fa-heart"></span></a>
+                        </div>
                         <div class="price text-center">
                             <h3 class="text-dark"> &#8377; 49500</h3>
                             <strike class="text-danger"><h3 class="text-secondary"><small> &#8377; 49500</small></h3></strike>
@@ -151,16 +161,17 @@
             
         </div>
 
-
         </div>
-        <div class="mx-auto my-3">
-            <ul class="pagination">
-                <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item"><a class="page-link" href="#">Next</a></li>
-            </ul>
+        <div class="container my-3">
+            <div class="row offset-2 d-flex justify-content-center">
+                <ul class="pagination">
+                    <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                </ul>
+            </div>
         </div>
         </section>
 </div>

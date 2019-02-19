@@ -154,7 +154,6 @@ include 'header.php';
     <h4 class="mb-2">New Launches</h4>
     <div class="card-deck">
     <div class="card">
-    
         <img class="card-img-top" src="images/test.jpeg" alt="Card image">
         <div class="card-body pt-2">
             <h5 class="card-title my-1">Lenovo Ideapad </h5>

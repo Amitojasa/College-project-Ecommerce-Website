@@ -27,3 +27,8 @@
     border:0;
 
 }
+
+.favorite>a>span{
+    color:#A4B0BD;
+    font-size: 22px;
+}
