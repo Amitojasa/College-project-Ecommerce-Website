@@ -45,3 +45,15 @@
 .operations button{
     margin:0 10px;
 }
+
+.table td{
+    padding:1px;
+    margin:0px;
+}
+
+.overall-rating .stars li{
+    font-size: 30px;
+}
+#stars-existing>*{
+    font-size: 25px;
+}

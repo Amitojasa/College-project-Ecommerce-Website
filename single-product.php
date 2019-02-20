@@ -217,16 +217,124 @@
      </tbody>
      </table>
      </div>
-     <div class="col-md-5 offset-1">
-     <div class="section techD">
-         <div class="secHeader">
-           <h5>Warranty &amp; Support</h5>
-         </div>
-         <div class="text-justify">
-            <strong>Warranty Details:</strong> 1 year onsite domestic warranty from HP covering manufacturing defects and not covering physical damage. Register on brand website to activate warranty.For FAQs on warranty, link to check and update warranty start date, see Warranty FAQ PDF under Technical Specifications. Reach HP customer care at the 1800 200 0047(toll free), between 9am - 9pm. This product is eligible for 10 Days Replacement in case of any product damage, defects or different product being shipped.
+    <div class="col-md-5 offset-1">
+        <div class="section techD mb-4">
+            <div class="secHeader">
+            <h5>Warranty &amp; Support</h5>
+            </div>
+            <div class="text-justify">
+                <strong>Warranty Details:</strong> 1 year onsite domestic warranty from HP covering manufacturing defects and not covering physical damage. Register on brand website to activate warranty.For FAQs on warranty, link to check and update warranty start date, see Warranty FAQ PDF under Technical Specifications. Reach HP customer care at the 1800 200 0047(toll free), between 9am - 9pm. This product is eligible for 10 Days Replacement in case of any product damage, defects or different product being shipped.
+            </div>
+        </div>
+        <div class="Reviews">
+            <h5>Customer Reviews</h5>
+                <div class="review mb-4 bg-dark  text-light p-3 rounded">
+                <form action="/action_page.php">
+                    <div class="form-group">
+                    <label for="review">Write a Review:</label>
+                    <textarea class="form-control bg-light" rows="5" id="comment" maxlength="200" name="text" placeholder="Write a review (max length 200 characters.)"></textarea>
+                    </div>
+                    <div class="down d-flex justify-content-between align-items-center">
+                    <div class="form-group">
+                            <label for="star-rating">Rate the product:</label>
+
+                            <div id="stars-existing" class="starrr text-warning" data-rating='4'></div>  
+                    </div>
+                    <script src="js/star-rating.js"></script>
+                        <button type="submit" class="btn btn-warning p-2">Submit Review</button>
+                    </div>
+                </form>
+                </div>
+                <h5>Reviews <small class="text-secondary">20 Reviews</small></h5>
+                <div class="review mb-2">
+                    <div class="card">
+                        <div class="card-header d-flex justify-content-between"><b>UserName</b>
+                            <span class="stars"><li class="fa fa-star"></li>
+                                <li class="fa fa-star"></li>
+                                <li class="fa fa-star"></li>
+                                <li class="fa fa-star"></li>
+                                <li class="fa fa-star-o"></li>
+                            </span>
+                            <small class="text-muted">5th Feb 2019</small>
+                        </div>
+                        <div class="card-body">As per the description its mentioend windown pre install but when i try to open the Microsoft excel its asking for product key, how we can get</div>
+                    </div>
+                </div>
+                <div class="review mb-2">
+                    <div class="card">
+                        <div class="card-header d-flex justify-content-between"><b>UserName</b>
+                            <span class="stars"><li class="fa fa-star"></li>
+                                <li class="fa fa-star"></li>
+                                <li class="fa fa-star"></li>
+                                <li class="fa fa-star"></li>
+                                <li class="fa fa-star-o"></li>
+                            </span>
+                            <small class="text-muted">5th Feb 2019</small>
+                        </div>
+                        <div class="card-body">As per the description its mentioend windown pre install but when i try to open the Microsoft excel its asking for product key, how we can get</div>
+                    </div>
+                </div>  
+                <div class="review mb-2">
+                    <div class="card">
+                        <div class="card-header d-flex justify-content-between"><b>UserName</b>
+                            <span class="stars"><li class="fa fa-star"></li>
+                                <li class="fa fa-star"></li>
+                                <li class="fa fa-star"></li>
+                                <li class="fa fa-star"></li>
+                                <li class="fa fa-star-o"></li>
+                            </span>
+                            <small class="text-muted">5th Feb 2019</small>
+                        </div>
+                        <div class="card-body">As per the description its mentioend windown pre install but when i try to open the Microsoft excel its asking for product key, how we can get</div>
+                    </div>
+                </div>  
+                <div class="review mb-2">
+                    <div class="card">
+                        <div class="card-header d-flex justify-content-between"><b>UserName</b>
+                            <span class="stars"><li class="fa fa-star"></li>
+                                <li class="fa fa-star"></li>
+                                <li class="fa fa-star"></li>
+                                <li class="fa fa-star"></li>
+                                <li class="fa fa-star-o"></li>
+                            </span>
+                            <small class="text-muted">5th Feb 2019</small>
+                        </div>
+                        <div class="card-body">As per the description its mentioend windown pre install but when i try to open the Microsoft excel its asking for product key, how we can get</div>
+                    </div>
+                </div>  
+                <div class="review mb-2">
+                    <div class="card">
+                        <div class="card-header d-flex justify-content-between"><b>UserName</b>
+                            <span class="stars"><li class="fa fa-star"></li>
+                                <li class="fa fa-star"></li>
+                                <li class="fa fa-star"></li>
+                                <li class="fa fa-star"></li>
+                                <li class="fa fa-star-o"></li>
+                            </span>
+                            <small class="text-muted">5th Feb 2019</small>
+                        </div>
+                        <div class="card-body">As per the description its mentioend windown pre install but when i try to open the Microsoft excel its asking for product key, how we can get</div>
+                    </div>
+                </div>  
+                <br>
+                <a href="#"> More Reviews</a>
+
+
+        </div>
+        <div class="overall-rating mt-4">
+            <h5>Overall Rating of Product</h5>
+            <div class="card bg-dark">
+                <div class="card-body text-center">
+                    <span class="stars text-warning"><li class="fa fa-star"></li>
+                                <li class="fa fa-star"></li>
+                                <li class="fa fa-star"></li>
+                                <li class="fa fa-star"></li>
+                                <li class="fa fa-star-o"></li>
+                    </span>
+                </div>
+            </div>
         </div>
     </div>
-      </div>
      </div>
 </section>
 </div>
