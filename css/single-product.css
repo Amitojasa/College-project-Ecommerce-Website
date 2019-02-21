@@ -57,3 +57,7 @@
 #stars-existing>*{
     font-size: 25px;
 }
+
+.qas .card{
+    margin-bottom:10px;
+}

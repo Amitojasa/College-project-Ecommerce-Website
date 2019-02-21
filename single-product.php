@@ -216,6 +216,40 @@
 
      </tbody>
      </table>
+
+
+    <div class="qas">
+    <h5 class="mb-3">Questions & Answers</h5>
+    <div class="qa mb-4 bg-dark  text-light p-3 rounded">
+                <form action="/action_page.php">
+                    <div class="form-group">
+                    <label for="review">Ask a Question:</label>
+                    <textarea class="form-control bg-light" rows="2" id="comment" maxlength="200" name="text" placeholder="Ask a question"></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-warning p-2">Submit Question</button>
+                    
+                </form>
+                </div>
+    <div class="card">
+            <div class="card-header py-1 font-weight-bold">Q. Can you please explain me it's graphic card fesility?</div>
+            <div class="card-body py-1">Very good </div>
+            <div class="card-footer bg-white p-1 text-secondary border-0 text-right">-By seller on 5th Feb 2019</div>
+        </div>
+        <div class="card">
+            <div class="card-header py-1 font-weight-bold">Q. Can you please explain me it's graphic card fesility?</div>
+            <div class="card-body py-1">Very good </div>
+            <div class="card-footer bg-white p-1 text-secondary border-0 text-right">-By seller on 5th Feb 2019</div>
+        </div>
+        <div class="card">
+            <div class="card-header py-1 font-weight-bold">Q. Can you please explain me it's graphic card fesility?</div>
+            <div class="card-body py-1"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit aperiam architecto voluptas recusandae alias doloremque ipsam ea blanditiis provident maxime.  </div>
+            <div class="card-footer bg-white p-1 text-secondary border-0 text-right">-By seller on 5th Feb 2019</div>
+        </div>
+
+        <a href="">See more answered questions</a>
+    </div>
+
      </div>
     <div class="col-md-5 offset-1">
         <div class="section techD mb-4">
