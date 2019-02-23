@@ -1,0 +1,22 @@
+
+#menu li a{
+    padding:5px 10px;
+}
+
+.body2>.row>div{
+    margin-bottom:15px;
+}
+section#cart table img{
+    width:200px
+}
+
+section#cart table td{
+    vertical-align: middle;
+}
+section#cart table td >*{
+    display: flex;
+    justify-content: space-between;
+}
+table ul{
+    list-style-type:none;
+}

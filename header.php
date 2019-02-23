@@ -43,7 +43,7 @@
                         <a href="login.php" class="nav-link"><span class="fa fa-lock"></span> Login</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link"><span class="fa fa-user"></span> My Account</a>
+                        <a href="myaccount.php" class="nav-link"><span class="fa fa-user"></span> My Account</a>
                     </li>
                 </ul>
             </div>  
