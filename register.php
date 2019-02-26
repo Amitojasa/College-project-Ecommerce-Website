@@ -1,4 +1,36 @@
 <?php include "header.php"; ?>
+<?php require "conn.inc.php"; ?>
+<?php
+
+	if(isset($_POST['submit-register'])){
+		$fname=$_POST['fName'];
+		$lname=$_POST['lName'];
+		$email=$_POST['eMail'];
+		$phone=$_POST['phone'];
+		echo $phone;
+		$pass=$_POST['pass'];
+		$repass=$_POST['repass'];
+		echo "yo";
+		if($pass=$repass){
+			echo "working";
+			mysqli_query($conn,"Insert into userdetailstb(firstName,lastName,emailAddress,mobileNo) values('$fname','$lname','$email','$phone')") or die(mysqli_error($conn));
+			
+			$last_id=mysqli_query($conn,"select LAST_INSERT_ID()") or die(mysqli_error($conn));
+			$last_id=mysqli_fetch_array($last_id);
+			$last_id=$last_id[0];
+			echo $last_id;
+			mysqli_query($conn,"Insert into logintb(emailId,password,linkUserId) values('$email','$pass','$last_id')") or die(mysqli_error($conn));
+
+		}else{
+			echo "sorry";
+		}
+
+	}
+  
+
+?>
+
+
 <link rel="stylesheet" href="css/register.css">
 <section class="checkout-section ptb-70">
     <div class="clip"></div>
@@ -26,13 +58,13 @@
                   <div class="col-12">
                     <div class="form-group">
                       <label for="f-name">First Name</label>
-                      <input class="form-control" type="text" name="fName" id="f-name" required="" placeholder="First Name">
+                      <input class="form-control" type="text" name="fName" id="f-name" required="" placeholder="First Name" required>
                     </div>
                   </div>
                   <div class="col-12">
                     <div class="form-group">
                       <label for="l-name">Last Name</label>
-                      <input class="form-control" type="text" name="lName" id="l-name" required="" placeholder="Last Name">
+                      <input class="form-control" type="text" name="lName" id="l-name" required="" placeholder="Last Name" required>
                     </div>
                   </div>
                   <div class="col-12">
@@ -43,24 +75,24 @@
                   </div>
                   <div class="col-12">
                     <div class="form-group">
-                      <label for="telephone">Telephone</label>
-                      <input class="form-control" id="telephone" name="Tele" type="number" required="" placeholder="Telephone">
+                      <label for="telephone">Phone no.</label>
+                      <input class="form-control" id="telephone" name="phone" type="number" required="" placeholder="Phone No." required>
                     </div>
                   </div>
                   <div class="col-12">
                     <div class="form-group">
                       <label for="login-pass">Password</label>
-                      <input  class="form-control" id="login-pass" name="pass" type="password" required="" placeholder="Enter your Password">
+                      <input  class="form-control" id="login-pass" name="pass" type="password" required="" placeholder="Enter your Password" required>
                     </div>
                   </div>
                   <div class="col-12">
                     <div class="form-group">
                       <label for="re-enter-pass">Re-enter Password</label>
-                      <input class="form-control" id="re-enter-pass" name="repass" type="password" required="" placeholder="Re-enter your Password">
+                      <input class="form-control" id="re-enter-pass" name="repass" type="password" required="" placeholder="Re-enter your Password" required>
                     </div>
                   </div>
                   <div class="col-7 offset-5">
-                    <button name="submit" type="submit" class="btn btn-primary text-center">Submit</button>
+                    <button name="submit-register" type="submit" class="btn btn-primary text-center">Submit</button>
                   </div>
                   <div class="col-12">
                     <hr>
