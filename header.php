@@ -1,3 +1,22 @@
+<?php
+	if(!isset($_SESSION)) 
+    { 
+        session_start(); 
+    } 
+?>
+<?php
+    require 'conn.inc.php';
+?>
+<?php
+	if (@$_SESSION['login']==true){
+        $login=true;
+        $uid=$_SESSION['userid'];
+        $r=mysqli_query($conn,"select firstName from userdetailstb where id='$uid'") or die(mysqli_error($conn));
+        $userName=mysqli_fetch_assoc($r)['firstName'];
+	}else{
+        $userName="My Account";
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,10 +59,15 @@
             <div class="collapse navbar-collapse" id="collapsibleNavbar">
                 <ul class="navbar-nav collapsenav">
                     <li class="nav-item">
-                        <a href="login.php" class="nav-link"><span class="fa fa-lock"></span> Login</a>
+
+                    <?php if(@$login){?>
+                            <a href="logout.php" class="nav-link"><span class="fa fa-lock"></span> Logout
+                        <?php }else{ ?>
+                            <a href="login.php" class="nav-link"><span class="fa fa-lock"></span> Login
+                        <?php } ?></a>
                     </li>
                     <li class="nav-item">
-                        <a href="myaccount.php" class="nav-link"><span class="fa fa-user"></span> My Account</a>
+                        <a href="myaccount.php" class="nav-link"><span class="fa fa-user"></span> <?php echo $userName; ?></a>
                     </li>
                 </ul>
             </div>  

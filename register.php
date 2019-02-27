@@ -3,22 +3,19 @@
 <?php
 
 	if(isset($_POST['submit-register'])){
-		$fname=$_POST['fName'];
-		$lname=$_POST['lName'];
-		$email=$_POST['eMail'];
-		$phone=$_POST['phone'];
-		echo $phone;
+		$fname=mysql_real_escape_string($_POST['fName']);
+		$lname=mysql_real_escape_string($_POST['lName']);
+		$email=mysql_real_escape_string($_POST['eMail']);
+		$phone=mysql_real_escape_string($_POST['phone']);
 		$pass=$_POST['pass'];
 		$repass=$_POST['repass'];
-		echo "yo";
+
 		if($pass=$repass){
-			echo "working";
 			mysqli_query($conn,"Insert into userdetailstb(firstName,lastName,emailAddress,mobileNo) values('$fname','$lname','$email','$phone')") or die(mysqli_error($conn));
 			
 			$last_id=mysqli_query($conn,"select LAST_INSERT_ID()") or die(mysqli_error($conn));
 			$last_id=mysqli_fetch_array($last_id);
 			$last_id=$last_id[0];
-			echo $last_id;
 			mysqli_query($conn,"Insert into logintb(emailId,password,linkUserId) values('$email','$pass','$last_id')") or die(mysqli_error($conn));
 
 		}else{
