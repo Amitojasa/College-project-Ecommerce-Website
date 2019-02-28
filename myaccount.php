@@ -1,3 +1,31 @@
+<?php
+	if(!isset($_SESSION)) 
+    { 
+        session_start(); 
+    } 
+?>
+<?php
+    require 'conn.inc.php';
+?>
+<?php
+	if (@$_SESSION['login']==true){
+        $login=true;
+        $uid=$_SESSION['userid'];
+        $r=mysqli_query($conn,"select firstName from userdetailstb where id='$uid'") or die(mysqli_error($conn));
+        $userName=mysqli_fetch_assoc($r)['firstName'];
+	}else{
+        header("Location: login.php");
+        exit;
+    }
+?>
+
+<?php
+
+    if(isset($_POST['subship'])){
+        
+    }
+
+?>
 <?php include 'header.php'?>
 <link rel="stylesheet" href="css/myaccount.css">
 <div class="container m-5">
@@ -30,7 +58,7 @@
                     </div>
                     <div class="body px-5 py-2">
                         <div class="welcome-words">
-                            <div class="hello h5">Hello, Account Name</div>
+                            <div class="hello h5">Hello, <?php echo $userName;?> </div>
                             <p>Thanks, for being the part of GadgetsPick. We welcome you to GadgetsPick and will reach out to you for any problem.</p>
                         </div>
                         <div class="heading">
@@ -67,35 +95,43 @@
                                 </div>
                                 <hr>
                                 </div>
+                                <?php
+                                    $r=mysqli_query($conn,"select * from userdetailstb where id='$uid'") or die(mysqli_error($conn));
+                                    $r=mysqli_fetch_assoc($r);
+                                ?>
                                 <div class="col-md-6">
-                                    <input type="text" required="" placeholder="Full Name" value="" name="fname" class="form-control">
+                                    <input type="text" required placeholder="First Name" value="<?php echo $r['firstName'];?>" name="fname" class="form-control">
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="email" required="" placeholder="Email Address" name="email" value="" class="form-control">
+                                    <input type="text" placeholder="Last Name" value="<?php echo $r['lastName'];?>" name="lname" class="form-control">
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="text" placeholder="Company" name="company" value="" class="form-control">
+                                    <input type="email" required placeholder="Email Address" name="email" value="<?php echo $r['emailAddress'];?>" class="form-control">
                                 </div>
+                                
                                 <div class="col-md-6">
-                                    <input type="text" required="" placeholder="Contact Number" name="phno" value="" class="form-control">
+                                    <input type="text" required placeholder="Contact Number 1" name="phno" value="<?php echo $r['contactNo1'];?>" class="form-control">
                                 </div>
                                 <div class="col-md-12">
-                                    <input type="text" required="" placeholder="Shipping Address 1" name="shipadd" value="" class="form-control">
+                                    <input type="text" placeholder="Contact Number 2" name="phno2" value="<?php echo $r['contactNo2'];?>" class="form-control">
+                                </div>
+                                <div class="col-md-12">
+                                    <input type="text" required="" placeholder="Shipping Address 1" name="shipadd" value="<?php echo $r['shipaddr1'];?>" class="form-control">
                                     <span  class="text-muted">Please provide the number and street.</span> 
                                 </div>
                                 <div class="col-md-12">
-                                    <input type="text" required="" placeholder="Shipping Address 2" name="shipadd2" value="" class="form-control">
+                                    <input type="text" required="" placeholder="Shipping Address 2" name="shipadd2" value="<?php echo $r['shipaddr2'];?>" class="form-control">
                                     <span  class="text-muted">Please provide the Area.</span> 
                                 </div>
                                 <div class="col-md-12">
-                                    <input type="text" required="" placeholder="Shipping Landmark" name="shipland" value="" class="form-control">
+                                    <input type="text" required placeholder="Shipping Landmark" name="shipland" value="<?php echo $r['shiplandmark'];?>" class="form-control">
                                     <span class="text-muted">Please include landmark (e.g : Opposite Bank) as the carrier service may find it easier to locate your address.</span> 
                                 </div>
                                 <div class="col-md-6">
-                                    <input name="shippingCountryId" value="India" id="shippingcountryid" disabled="" class="form-control">
+                                    <input name="shippingCountryId" value="India" id="shippingcountryid" disabled class="form-control">
                                 </div>
                                 <div class="col-md-6">
-                                    <select name="shippingstateId" id="shippingstateid"  class="form-control">
+                                    <select name="shippingstateId" id="shippingstateid"  class="form-control" value="<?php echo $r['state'];?>">
                                         <option value="AP">Andhra Pradesh</option>
                                         <option value="AR">Arunachal Pradesh</option>
                                         <option value="AS">Assam</option>
@@ -138,12 +174,12 @@
                                 </div>
                                 <div class="col-md-6">
                                 <div class="input-box">
-                                    <input type="text" required="" placeholder="City" name="city" value="" class="form-control">
+                                    <input type="text" required placeholder="City" name="city" value="<?php echo $r['city'];?>" class="form-control">
                                 </div>
                                 </div>
                                 <div class="col-md-6">
                                 <div class="input-box">
-                                    <input type="text" required="" placeholder="Postcode/zip" name="zip" value="" class="form-control">
+                                    <input type="text" required placeholder="Postcode/zip" name="zip" value="<?php echo $r['postalcode'];?>" class="form-control">
                                 </div>
                                 </div>
                                 <div class="col-md-3" style="margin:0 auto;">

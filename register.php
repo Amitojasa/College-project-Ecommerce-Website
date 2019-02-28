@@ -1,4 +1,4 @@
-<?php include "header.php"; ?>
+
 <?php require "conn.inc.php"; ?>
 <?php
 
@@ -17,7 +17,8 @@
 			$last_id=mysqli_fetch_array($last_id);
 			$last_id=$last_id[0];
 			mysqli_query($conn,"Insert into logintb(emailId,password,linkUserId) values('$email','$pass','$last_id')") or die(mysqli_error($conn));
-
+      header("Location: login.php");
+    	exit;
 		}else{
 			echo "sorry";
 		}
@@ -26,7 +27,7 @@
   
 
 ?>
-
+<?php include "header.php"; ?>
 
 <link rel="stylesheet" href="css/register.css">
 <section class="checkout-section ptb-70">
