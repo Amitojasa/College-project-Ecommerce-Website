@@ -26,6 +26,43 @@
     }
 
 ?>
+<?php 
+    if(isset($_POST['submitpass'])){
+        $oldpass = $_POST['oldpass'];
+        $newpass = $_POST['newpass'];
+        $newrepass = $_POST['newrepass'];
+    
+
+        if($newpass==$newrepass){
+            $r=mysqli_query($conn,"select password from logintb where linkUserId='$uid'") or die(mysqli_error($conn));
+            $r = mysqli_fetch_assoc($r);
+            if($r['password'] == $oldpass){
+                $q=mysqli_query($conn,"update logintb set password = '$newpass' where linkUserId='$uid'");
+                if($q){
+                    echo "<script>alert('Password Changed Successfully')</script>";        
+                    // echo "<script>
+                    //     var x = document.getElementById('changedpass'); 
+                    //     x.style.diplay = block;
+                    // </script>";
+                }
+            }else{
+                echo "<script>alert('Old Password entered is wrong!!')</script>";
+                // $msg="Wrong Old Password";
+                // echo "<script>
+                //     var x = document.getElementById('wrong'); 
+                //     x.style.diplay = block;
+                // </script>"; 
+            }
+        }else{
+            echo "<script>alert('New Password does not match with Re-type Password!!')</script>"  ; 
+            // $msg = "New password and Re-enter password doesnt match";
+            // echo "<script>
+            //     var x = document.getElementById('wrong'); 
+            //     x.style.diplay = block;
+            // </script>"; 
+        }
+    }
+?>
 <?php include 'header.php'?>
 <link rel="stylesheet" href="css/myaccount.css">
 <div class="container m-5">
@@ -281,6 +318,13 @@
             </section>
 
             <section id="change-pass" class="row tab-pane fade">
+
+                <div class="alert alert-success" id="changedpass">
+                    <strong>Success!</strong> Password changed.
+                </div>
+                <div class="alert alert-danger" id="wrong">
+                    <?php echo $msg;?>
+                </div>
                 <div class="row">
                     <div class="col-12">
                         <div class="heading">
@@ -294,24 +338,24 @@
                             <div class="col-12">
                                 <div class="form-group">
                                     <label for="old-pass">Old-Password</label>
-                                    <input type="password" placeholder="Old Password" required="" id="old-pass" name="oldpass" class="form-control">
+                                    <input type="password" placeholder="Old Password" required id="old-pass" name="oldpass" class="form-control">
                                 </div>
                             </div>
                             
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="login-pass">Password</label>
-                                    <input type="password" placeholder="Enter your Password" required="" id="login-pass" name="newpass" class="form-control">
+                                    <input type="password" placeholder="Enter your Password" required id="login-pass" name="newpass" class="form-control">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="re-enter-pass">Re-enter Password</label>
-                                    <input type="password" placeholder="Re-enter your Password" required="" id="re-enter-pass" name="newrepass" class="form-control">
+                                    <input type="password" placeholder="Re-enter your Password" required id="re-enter-pass" name="newrepass" class="form-control">
                                 </div>
                             </div>
                             <div class="col-12 text-center mt-3">
-                                <button class="btn btn-primary" type="submit" name="submit">Change Password</button>
+                                <button class="btn btn-primary" type="submit" name="submitpass">Change Password</button>
                             </div>
                         </div>
                     </form>
