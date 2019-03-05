@@ -319,12 +319,12 @@
 
             <section id="change-pass" class="row tab-pane fade">
 
-                <div class="alert alert-success" id="changedpass">
+                <!-- <div class="alert alert-success" id="changedpass">
                     <strong>Success!</strong> Password changed.
                 </div>
                 <div class="alert alert-danger" id="wrong">
-                    <?php echo $msg;?>
-                </div>
+                    <?php //echo $msg;?>
+                </div> -->
                 <div class="row">
                     <div class="col-12">
                         <div class="heading">
