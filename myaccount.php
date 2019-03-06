@@ -22,7 +22,21 @@
 <?php
 
     if(isset($_POST['subship'])){
-        
+        $fname=$_POST['fname'];
+        $lname=$_POST['lname'];
+        $email=$_POST['email'];
+        $phone=$_POST['phno'];
+        $phone2=$_POST['phno2'];
+        $shipadd=$_POST['shipadd'];
+        $shipadd2=$_POST['shipadd2'];
+        $shipland=$_POST['shipland'];
+        $shipstate=$_POST['shippingstateId'];
+        $q=mysqli_query($conn,"select statename from statekeys  where abbr='$shipstate'");
+        $q=mysqli_fetch_array($q);
+        $shipstate=$q[0];
+        $city=$_POST['city'];
+        $zip=$_POST['zip'];
+        mysqli_query($conn,"update userdetailstb set firstName='$fname',lastName='$lname',emailAddress='$email',contactNo1='$phone',contactNo2='$phone2',shipaddr1='$shipadd',shipaddr2='$shipadd2',shiplandmark='$shipland',state='$shipstate',city='$city',postalcode='$zip' where id='$uid'") or die("no");
     }
 
 ?>
@@ -133,90 +147,69 @@
                                 <hr>
                                 </div>
                                 <?php
-                                    $r=mysqli_query($conn,"select * from userdetailstb where id='$uid'") or die(mysqli_error($conn));
-                                    $r=mysqli_fetch_assoc($r);
+                                    $q=mysqli_query($conn,"select * from userdetailstb where id='$uid'") or die(mysqli_error($conn));
+                                    $q=mysqli_fetch_assoc($q);
                                 ?>
                                 <div class="col-md-6">
-                                    <input type="text" required placeholder="First Name" value="<?php echo $r['firstName'];?>" name="fname" class="form-control">
+                                    <input type="text" required placeholder="First Name" value="<?php echo $q['firstName'];?>" name="fname" class="form-control">
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="text" placeholder="Last Name" value="<?php echo $r['lastName'];?>" name="lname" class="form-control">
+                                    <input type="text" placeholder="Last Name" value="<?php echo $q['lastName'];?>" name="lname" class="form-control">
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="email" required placeholder="Email Address" name="email" value="<?php echo $r['emailAddress'];?>" class="form-control">
+                                    <input type="email" required placeholder="Email Address" name="email" value="<?php echo $q['emailAddress'];?>" class="form-control">
                                 </div>
                                 
                                 <div class="col-md-6">
-                                    <input type="text" required placeholder="Contact Number 1" name="phno" value="<?php echo $r['contactNo1'];?>" class="form-control">
+                                    <input type="text" required placeholder="Contact Number 1" name="phno" value="<?php echo $q['contactNo1'];?>" class="form-control">
                                 </div>
                                 <div class="col-md-12">
-                                    <input type="text" placeholder="Contact Number 2" name="phno2" value="<?php echo $r['contactNo2'];?>" class="form-control">
+                                    <input type="text" placeholder="Contact Number 2" name="phno2" value="<?php echo $q['contactNo2'];?>" class="form-control">
                                 </div>
                                 <div class="col-md-12">
-                                    <input type="text" required="" placeholder="Shipping Address 1" name="shipadd" value="<?php echo $r['shipaddr1'];?>" class="form-control">
+                                    <input type="text" required="" placeholder="Shipping Address 1" name="shipadd" value="<?php echo $q['shipaddr1'];?>" class="form-control">
                                     <span  class="text-muted">Please provide the number and street.</span> 
                                 </div>
                                 <div class="col-md-12">
-                                    <input type="text" required="" placeholder="Shipping Address 2" name="shipadd2" value="<?php echo $r['shipaddr2'];?>" class="form-control">
+                                    <input type="text" required="" placeholder="Shipping Address 2" name="shipadd2" value="<?php echo $q['shipaddr2'];?>" class="form-control">
                                     <span  class="text-muted">Please provide the Area.</span> 
                                 </div>
                                 <div class="col-md-12">
-                                    <input type="text" required placeholder="Shipping Landmark" name="shipland" value="<?php echo $r['shiplandmark'];?>" class="form-control">
+                                    <input type="text" required placeholder="Shipping Landmark" name="shipland" value="<?php echo $q['shiplandmark'];?>" class="form-control">
                                     <span class="text-muted">Please include landmark (e.g : Opposite Bank) as the carrier service may find it easier to locate your address.</span> 
                                 </div>
                                 <div class="col-md-6">
                                     <input name="shippingCountryId" value="India" id="shippingcountryid" disabled class="form-control">
                                 </div>
                                 <div class="col-md-6">
-                                    <select name="shippingstateId" id="shippingstateid"  class="form-control" value="<?php echo $r['state'];?>">
-                                        <option value="AP">Andhra Pradesh</option>
-                                        <option value="AR">Arunachal Pradesh</option>
-                                        <option value="AS">Assam</option>
-                                        <option value="BR">Bihar</option>
-                                        <option value="CT">Chhattisgarh</option>
-                                        <option value="GA">Goa</option>
-                                        <option value="GJ">Gujarat</option>
-                                        <option value="HR">Haryana</option>
-                                        <option value="HP">Himachal Pradesh</option>
-                                        <option value="JK">Jammu and Kashmir</option>
-                                        <option value="JH">Jharkhand</option>
-                                        <option value="KA">Karnataka</option>
-                                        <option value="KL">Kerala</option>
-                                        <option value="MP">Madhya Pradesh</option>
-                                        <option value="MH">Maharashtra</option>
-                                        <option value="MN">Manipur</option>
-                                        <option value="ML">Meghalaya</option>
-                                        <option value="MZ">Mizoram</option>
-                                        <option value="NL">Nagaland</option>
-                                        <option value="OR">Orissa</option>
-                                        <option value="PB">Punjab</option>
-                                        <option value="RJ">Rajasthan</option>
-                                        <option value="SK">Sikkim</option>
-                                        <option value="TN">Tamil Nadu</option>
-                                        <option value="TS">Telangana</option>
-                                        <option value="TR">Tripura</option>
-                                        <option value="UK">Uttarakhand</option>
-                                        <option value="UP">Uttar Pradesh</option>
-                                        <option value="WB">West Bengal</option>
-                                        <option value="AN">Andaman and Nicobar Islands</option>
-                                        <option value="CH">Chandigarh</option>
-                                        <option value="DN">Dadar and Nagar Haveli</option>
-                                        <option value="DD">Daman and Diu</option>
-                                        <option value="DL">Delhi</option>
-                                        <option value="LD">Lakshadeep</option>
-                                        <option value="PY">Pondicherry (Puducherry)</option>
-                                        <option class="text-muted" selected>Select a State</option>
-                                    </select>
+                                <select name="shippingstateId" class="form-control" id="shippingstateid" placeholder="Select a State">
+                                    <?php 
+                                        $sn=$q['state'];
+                                        $v=mysqli_query($conn,"select abbr from statekeys where statename='$sn'") or die(mysqli_error($conn));
+                                        $v=mysqli_fetch_assoc($v);
+                                        echo $v['abbr'];
+                                        $p=mysqli_query($conn,"select * from statekeys") or die(mysqli_error($conn));
+                                        while($r=mysqli_fetch_assoc($p)){
+                                    ?>
                                     
+                                        <option value="<?php echo $r['abbr'];?>" <?php
+                                                if($v==$r['abbr']){
+                                                    echo  "selected";
+                                                }   
+                                        ?>><?php echo $r['statename']?></option>
+                                    
+                                    <?php } ?>
+                                </select>
+                                                
                                 </div>
                                 <div class="col-md-6">
                                 <div class="input-box">
-                                    <input type="text" required placeholder="City" name="city" value="<?php echo $r['city'];?>" class="form-control">
+                                    <input type="text" required placeholder="City" name="city" value="<?php echo $q['city'];?>" class="form-control">
                                 </div>
                                 </div>
                                 <div class="col-md-6">
                                 <div class="input-box">
-                                    <input type="text" required placeholder="Postcode/zip" name="zip" value="<?php echo $r['postalcode'];?>" class="form-control">
+                                    <input type="text" required placeholder="Postcode/zip" name="zip" value="<?php echo $q['postalcode'];?>" class="form-control">
                                 </div>
                                 </div>
                                 <div class="col-md-3" style="margin:0 auto;">

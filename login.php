@@ -38,12 +38,13 @@
 				if(isset($_COOKIE['gadgets_pick_password'])){
 					setcookie("gadgets_pick_password", "", time()- 86400,'/');
 				}
-			}
-		}else{
-			echo "sorry";
-		}
-		header("Location: index.php");
+      }
+      header("Location: index.php");
     	exit;
+		}else{
+			echo "<script>alert('Incorrect Password')</script>"  ; 
+		}
+	
 
   }
 
