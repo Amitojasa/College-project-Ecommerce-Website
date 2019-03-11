@@ -1,3 +1,15 @@
+<?php require 'conn.inc.php'; ?>
+
+<?php
+
+    if(isset($_POST['newsletterSubmit'])){
+        $email = $_POST['email'];
+
+        mysqli_query($conn,"Insert into newsletter(email) values ('$email')") or die(mysqli_error($conn));
+    }
+
+?>
+
 <footer>
     <section class="newsletter text-white bg-warning">
         
@@ -8,11 +20,11 @@
                     <span>Subscribe to our NewsLetter</span>
                 </div>
                 <div class="col-sm-6">
-                    <form action="#">  
+                    <form method="POST">  
                                 <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Email">
+                                    <input type="text" name="email" class="form-control" placeholder="Email" required>
                                     <div class="input-group-append">
-                                        <button class="btn btn-secondary" type="submit">Subscribe</button> 
+                                        <button class="btn btn-secondary" type="submit" name="newsletterSubmit">Subscribe</button> 
                                     </div>
                                 </div>   
                     </form>
