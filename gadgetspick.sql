@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 13, 2019 at 07:21 PM
+-- Generation Time: Mar 18, 2019 at 08:28 PM
 -- Server version: 5.6.21
 -- PHP Version: 5.6.3
 
@@ -19,6 +19,21 @@ SET time_zone = "+00:00";
 --
 -- Database: `gadgetspick`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `faqs`
+--
+
+CREATE TABLE IF NOT EXISTS `faqs` (
+`id` int(11) NOT NULL,
+  `answeredUserid` int(255) NOT NULL,
+  `date` date NOT NULL,
+  `question` varchar(1000) NOT NULL,
+  `answer` varchar(10000) NOT NULL,
+  `productid` int(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -66,6 +81,39 @@ CREATE TABLE IF NOT EXISTS `newsletter` (
 
 INSERT INTO `newsletter` (`id`, `email`) VALUES
 (1, 'amitoj@dgfd.cpm');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `productdetails`
+--
+
+CREATE TABLE IF NOT EXISTS `productdetails` (
+`id` int(255) NOT NULL,
+  `title` varchar(1000) NOT NULL,
+  `category` varchar(255) NOT NULL,
+  `description` varchar(10000) NOT NULL,
+  `newPrice` int(255) NOT NULL,
+  `oldPrice` int(255) NOT NULL,
+  `stock` int(255) NOT NULL,
+  `details` varchar(30000) NOT NULL,
+  `warranty` varchar(10000) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `reviews`
+--
+
+CREATE TABLE IF NOT EXISTS `reviews` (
+`id` int(11) NOT NULL,
+  `userid` int(255) NOT NULL,
+  `rating` int(10) NOT NULL,
+  `reviewDetails` varchar(500) NOT NULL,
+  `date` date NOT NULL,
+  `productid` int(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -171,16 +219,34 @@ INSERT INTO `userdetailstb` (`id`, `firstName`, `lastName`, `emailAddress`, `con
 --
 
 --
+-- Indexes for table `faqs`
+--
+ALTER TABLE `faqs`
+ ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `answeredUserid` (`answeredUserid`), ADD KEY `productid` (`productid`);
+
+--
 -- Indexes for table `logintb`
 --
 ALTER TABLE `logintb`
- ADD PRIMARY KEY (`id`);
+ ADD PRIMARY KEY (`id`), ADD KEY `linkUserId` (`linkUserId`);
 
 --
 -- Indexes for table `newsletter`
 --
 ALTER TABLE `newsletter`
  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `productdetails`
+--
+ALTER TABLE `productdetails`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `reviews`
+--
+ALTER TABLE `reviews`
+ ADD PRIMARY KEY (`id`), ADD KEY `userid` (`userid`), ADD KEY `productid` (`productid`);
 
 --
 -- Indexes for table `userdetailstb`
@@ -193,6 +259,11 @@ ALTER TABLE `userdetailstb`
 --
 
 --
+-- AUTO_INCREMENT for table `faqs`
+--
+ALTER TABLE `faqs`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT for table `logintb`
 --
 ALTER TABLE `logintb`
@@ -203,10 +274,44 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
 ALTER TABLE `newsletter`
 MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
+-- AUTO_INCREMENT for table `productdetails`
+--
+ALTER TABLE `productdetails`
+MODIFY `id` int(255) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `reviews`
+--
+ALTER TABLE `reviews`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT for table `userdetailstb`
 --
 ALTER TABLE `userdetailstb`
 MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=18;
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `faqs`
+--
+ALTER TABLE `faqs`
+ADD CONSTRAINT `faqs_ibfk_1` FOREIGN KEY (`productid`) REFERENCES `productdetails` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `faqs_ibfk_2` FOREIGN KEY (`answeredUserid`) REFERENCES `userdetailstb` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `logintb`
+--
+ALTER TABLE `logintb`
+ADD CONSTRAINT `logintb_ibfk_1` FOREIGN KEY (`linkUserId`) REFERENCES `userdetailstb` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `reviews`
+--
+ALTER TABLE `reviews`
+ADD CONSTRAINT `reviews_ibfk_1` FOREIGN KEY (`userid`) REFERENCES `userdetailstb` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `reviews_ibfk_2` FOREIGN KEY (`productid`) REFERENCES `productdetails` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
