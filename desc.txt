@@ -1,0 +1,7 @@
+Processor: 8th Gen Intel Core i5-8250U processor, 1.6GHz base processor speed, 3.4GHz Max speed, Quad-cores, 6MB SmartCache
+Operating System: Pre-loaded Windows 10 Home with lifetime validity;
+Display: 15.6-inch Full HD (1920x1080) Laptop | Antiglare display;
+Memory & Storage: 4GB DDR4 RAM with Integrated Graphics. 16 GB Intel Optane memory for faster bootup and accelerate frequently used applications. |Storage: 1TB 5400 RPM HDD;
+Design & battery: Laptop weight 2.2kg | Battery Life: Upto 5.5 hours as per MobileMark 2014;
+Warranty: This genuine Lenovo laptop comes with 1 year domestic warranty from Lenovo covering manufacturing defects and not covering physical damage. For more details, see Warranty section below;
+Pre-installed Software: Windows 10 Home | In the Box: Laptop included with battery and charger, user guide;

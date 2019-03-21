@@ -1,3 +1,56 @@
+<?php require '../conn.inc.php';?>
+<?php
+
+    if(isset($_POST['addSubmit'])){
+        $title =  mysqli_real_escape_string($conn,$_POST['title']);
+        $category = $_POST['category'];
+        $newPrice = $_POST['newPrice'];
+        $oldPrice = $_POST['oldPrice'];
+        $stockQuant = $_POST['stockQuant'];
+        $details =  mysqli_real_escape_string($conn,$_POST['details']);
+        $desc =  mysqli_real_escape_string($conn,$_POST['desc']);
+        $warranty =  mysqli_real_escape_string($conn,$_POST['warranty']);
+
+        $qu = mysqli_query($conn,"INSERT INTO `productdetails`(`title`, `category`, `description`, `newPrice`, `oldPrice`, `stock`, `details`, `warranty`) VALUES ('$title','$category','$desc',$newPrice,$oldPrice,'$stockQuant','$details','$warranty')") or die(mysqli_error($conn));
+        $last_id=mysqli_query($conn,"select LAST_INSERT_ID()") or die(mysqli_error($conn));
+		$last_id=mysqli_fetch_array($last_id);
+        $last_id=$last_id[0];
+
+        $filename1 =  mysqli_real_escape_string($conn,$_FILES['image1']['name']);
+        $pathinfo = pathinfo($filename1);
+        $ex=$pathinfo['extension']; 
+        $f1=$last_id."_1.".$ex;
+        $path1='../images/laptops/'.$filename1;
+        $path11='../images/laptops/'.$f1;
+
+        $filename2 =  mysqli_real_escape_string($conn,$_FILES['image2']['name']);
+        $pathinfo = pathinfo($filename2);
+        $ex=$pathinfo['extension']; 
+        $f2=$last_id."_2.".$ex;
+        $path2='../images/laptops/'.$filename2;
+        $path22='../images/laptops/'.$f2;
+
+        $filename3 =  mysqli_real_escape_string($conn,$_FILES['image2']['name']);
+        $pathinfo = pathinfo($filename3);
+        $ex=$pathinfo['extension']; 
+        $f3=$last_id."_3.".$ex;
+        $path3='../images/laptops/'.$filename3;
+        $path33='../images/laptops/'.$f3;
+       
+        mysqli_query($conn,"update `productdetails` set `image1`='$f1',`image2`='$f2',`image3`='$f3'   where id=$last_id") or die("table not found2");
+
+        move_uploaded_file($_FILES['image1']['tmp_name'],$path1);
+        rename ($path1, $path11);
+        move_uploaded_file($_FILES['image2']['tmp_name'],$path2);
+        rename ($path2, $path22);
+        move_uploaded_file($_FILES['image3']['tmp_name'],$path3);
+        rename ($path3, $path33);
+
+    }
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -68,7 +121,7 @@
             <label for="warranty">Warranty Details:</label>
             <textarea name="warranty" class="form-control" id="warranty" cols="30" rows="5" placeholder="Warranty details"></textarea>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary" name="addSubmit">Submit</button>
         
     </form>
     </div>

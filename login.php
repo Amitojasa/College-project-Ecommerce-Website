@@ -13,8 +13,8 @@
 <?php
 
 	if(isset($_POST['submit'])){
-		$email = mysql_real_escape_string($_POST['email']);
-		$pass = mysql_real_escape_string($_POST['password']);
+		$email = mysqli_real_escape_string($conn,$_POST['email']);
+		$pass = mysqli_real_escape_string($conn,$_POST['password']);
 
 	  	$r=mysqli_query($conn,"Select linkUserId,password from logintb where emailId='$email'") or die(mysqli_error($conn));
 

@@ -86,6 +86,7 @@
                             <a href="#" class="dropdown-item">Laptop</a>
                             <a href="#" class="dropdown-item">Mobile</a>
                             <a href="#" class="dropdown-item">Camera</a>
+                            <a href="#" class="dropdown-item">Smat Watches</a>
                             <a href="#" class="dropdown-item">Other</a>
                         </div>
                     </div>
