@@ -20,22 +20,22 @@
         $pathinfo = pathinfo($filename1);
         $ex=$pathinfo['extension']; 
         $f1=$last_id."_1.".$ex;
-        $path1='../images/laptops/'.$filename1;
-        $path11='../images/laptops/'.$f1;
+        $path1='../images/'.$category.'/'.$filename1;
+        $path11='../images/'.$category.'/'.$f1;
 
         $filename2 =  mysqli_real_escape_string($conn,$_FILES['image2']['name']);
         $pathinfo = pathinfo($filename2);
         $ex=$pathinfo['extension']; 
         $f2=$last_id."_2.".$ex;
-        $path2='../images/laptops/'.$filename2;
-        $path22='../images/laptops/'.$f2;
+        $path2='../images/'.$category.'/'.$filename2;
+        $path22='../images/'.$category.'/'.$f2;
 
         $filename3 =  mysqli_real_escape_string($conn,$_FILES['image2']['name']);
         $pathinfo = pathinfo($filename3);
         $ex=$pathinfo['extension']; 
         $f3=$last_id."_3.".$ex;
-        $path3='../images/laptops/'.$filename3;
-        $path33='../images/laptops/'.$f3;
+        $path3='../images/'.$category.'/'.$filename3;
+        $path33='../images/'.$category.'/'.$f3;
        
         mysqli_query($conn,"update `productdetails` set `image1`='$f1',`image2`='$f2',`image3`='$f3'   where id=$last_id") or die("table not found2");
 

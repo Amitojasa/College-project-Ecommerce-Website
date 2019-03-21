@@ -1,3 +1,6 @@
+<?php require '../conn.inc.php'; ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,68 +11,76 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="custom.css">
     <title>Document</title>
 </head>
 <body>
 <div class="container">
-<h2>Product Entry:</h2>
+<h2>Product Edit:</h2>
+    <?php
+        if(isset($_POST['sub'])){
+            $cat=$_POST['category'];
+        }
+     ?>
     <form method="POST" enctype="multipart/form-data">
-        <div class="form-group">
-            <label for="title">Title:</label>
-            <input type="text" name="title" class="form-control" id="title">
-        </div>
-        <div class="form-group">
-            <label for="image1">Image1:</label>
-            <input type="file" name="image1" class="form-control" id="image">
-        </div>
-        <div class="form-group">
-            <label for="image2">Image2:</label>
-            <input type="file" name="image2" class="form-control" id="image">
-        </div>
-        <div class="form-group">
-            <label for="image3">Image3:</label>
-            <input type="file" name="image3" class="form-control" id="image">
-        </div>
-        <div class="form-group">
-            <label for="category">Select Category:</label>
-            <select name="category" class="form-control" id="category">
-                <option value="laptop">Laptop</option>
-                <option value="mobile">Mobile</option>
-                <option value="camera">Camera</option>
-                <option value="watches">Smart watches</option>
-                <option value="other">Other</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="desc">Description:</label>
-            <textarea name="desc" id="desc" class="form-control" cols="30" rows="7" placeholder="separate with ;"></textarea>
-        </div>
-        
-        <div class="form-group">
-            <label for="newPrice">New Price:</label>
-            <input type="number" class="form-control" name="newPrice" id="newPrice">
-        </div>
-        <div class="form-group">
-            <label for="oldPrice">Old Price:</label>
-            <input type="number" class="form-control" name="oldPrice" id="oldPrice">
-        </div>
-        <div class="form-group">
-            <label for="stock">Stock Quantity:</label>
-            <input type="number" class="form-control" name="stockQuant" id="stock">
-        </div>
-        
-        <div class="form-group">
-            <label for="details">Details:</label>
-            <textarea name="details" class="form-control" id="details" cols="30" rows="10" placeholder="Enter data in `key:value;` format"></textarea>
-        </div>
-        <div class="form-group">
-            <label for="warranty">Warranty Details:</label>
-            <textarea name="warranty" class="form-control" id="warranty" cols="30" rows="5" placeholder="Warranty details"></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-        
+        <div class="row">
+            <div class="col-sm-5">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <label for="category">Select Category:</label>
+                    </div>
+                    <div class="col-sm-8">
+                        <select name="category" class="form-control" id="category">
+                            <option value="laptop">Laptop</option>
+                            <option value="mobile">Mobile</option>
+                            <option value="camera">Camera</option>
+                            <option value="watches">Smart watches</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class=" offset-1 col-sm-5 text-right">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fa fa-search"></i></span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Search">
+                </div> 
+            </div>
+            <div class="col-sm-1">
+                <button type="submit" class="btn btn-primary" name="sub">Submit</button>
+            </div>
+        </div> 
     </form>
+    
+<br><br>
+<h3>Choose Product:</h3>
+    <div class="results border">
+
+        <?php
+            if(isset($cat)){
+                $qu = mysqli_query($conn,"Select * from productdetails where category='$cat'") or die(mysqli_error($conn));
+                while($q=mysqli_fetch_assoc($qu)){
+                    ?>
+
+                    <div class="row p-2 disprow">
+                        <div class="col-md-3 img text-center">
+                            <img src="<?php echo "../images/".$cat."/".$q['image1'];?>" alt="GadgetsPick" class="img-fluid">
+                        </div>
+                        <div class="col-md-5 text title text-center"><?php echo $q['title'];?></div>
+                        <div class="col-md-3 price text-center"><?php echo $q['newPrice'];?></div>
+                        <div class="col-md-1  text-center">
+                            <a class="btn btn-primary" href="<?php echo 'singleEdit.php?id='.$q['id'];?>" >Edit</a>
+                        </div>
+                    </div>
+
+                    <?php
+                }
+            }
+        ?>
+    </div>
     </div>
 </body>
 </html>
