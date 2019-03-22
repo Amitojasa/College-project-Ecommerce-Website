@@ -1,3 +1,6 @@
+<?php require '../conn.inc.php'; ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,11 +12,30 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="custom.css">
     <title>Document</title>
 </head>
 <body>
+<script>
+      function remove (id,category) {
+
+          $.ajax({
+            url:"singleProductDelete.php?id="+id+"&cat="+category, //the page containing php script
+            type: "POST", //request type
+            success:function(result){
+                $(".results").load("productDelete.php");
+           }
+         });
+
+     }
+     </script>
 <div class="container">
-<h2>Product Delete:</h2>
+<h2>Product Edit:</h2>
+    <?php
+        if(isset($_POST['sub'])){
+            $cat=$_POST['category'];
+        }
+     ?>
     <form method="POST" enctype="multipart/form-data">
         <div class="row">
             <div class="col-sm-5">
@@ -41,23 +63,38 @@
                 </div> 
             </div>
             <div class="col-sm-1">
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary" name="sub">Submit</button>
             </div>
-       
-        </div>
-        
+        </div> 
     </form>
     
 <br><br>
-    <div class="results border">
-        <div class="row">
-            <div class="col-md-3 img">
-                <img src="laptop.jpg" alt="GadgetsPick">
-            </div>
-            <div class="col-md-3 text title">Title</div>
-            <div class="col-md-3 price">price</div>
-        </div>
-    </div>
+<h3>Choose Product:</h3>
+    <section class="results border" id="results">
+
+        <?php
+            // if(isset($cat)){
+                $cat=@$cat;
+                $qu = mysqli_query($conn,"Select * from productdetails where category='$cat'") or die(mysqli_error($conn));
+                while($q=mysqli_fetch_assoc($qu)){
+                    ?>
+
+                    <div class="row px-3 py-2 disprow">
+                        <div class="col-md-3 img text-center">
+                            <img src="<?php echo "../images/".$cat."/".$q['image1'];?>" alt="GadgetsPick" class="img-fluid">
+                        </div>
+                        <div class="col-md-5 text title text-center"><?php echo $q['title'];?></div>
+                        <div class="col-md-3 price text-center"><?php echo $q['newPrice'];?></div>
+                        <div class="col-md-1  text-center">
+                            <button  onclick='<?php echo 'remove('.$q['id'].',"'.$q['category'].'")';?>' class="btn btn-danger">Delete</a>
+                        </div>
+                    </div>
+
+                    <?php
+                }
+            // }
+        ?>
+    </section>
     </div>
 </body>
 </html>

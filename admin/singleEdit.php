@@ -19,7 +19,8 @@
             $qq=mysqli_query($conn,"select image1 from productdetails");
             $qq=mysqli_fetch_assoc($qq);
             $path11="../images/".$category."/".$qq['image1'];
-            unlink($path11);
+            if(unlink($path11)){
+            }
             $filename1 =  mysqli_real_escape_string($conn,$_FILES['image1']['name']);
             $pathinfo = pathinfo($filename1);
             $ex=$pathinfo['extension']; 
@@ -36,7 +37,8 @@
             $qq=mysqli_query($conn,"select image2 from productdetails");
             $qq=mysqli_fetch_assoc($qq);
             $path11="../images/".$category."/".$qq['image2'];
-            unlink($path11);
+            if(unlink($path11)){
+            }
             $filename2 =  mysqli_real_escape_string($conn,$_FILES['image2']['name']);
             $pathinfo = pathinfo($filename2);
             $ex=$pathinfo['extension']; 
@@ -44,7 +46,6 @@
             $path2="../images/".$category."/".$filename2;
             $path22="../images/".$category."/".$f2;
             mysqli_query($conn,"update `productdetails` set `image2`='$f2' where id=$id") or die(mysqli_error($conn));
-            unlink($path22);
             move_uploaded_file($_FILES['image2']['tmp_name'],$path2);
             rename ($path2, $path22);
         }
@@ -52,14 +53,15 @@
             $qq=mysqli_query($conn,"select image3 from productdetails");
             $qq=mysqli_fetch_assoc($qq);
             $path11="../images/".$category."/".$qq['image3'];
-            unlink($path11);
+            if(unlink($path11)){
+            }
             $filename3 =  mysqli_real_escape_string($conn,$_FILES['image2']['name']);
             $pathinfo = pathinfo($filename3);
             $ex=$pathinfo['extension']; 
             $f3=$id."_3.".$ex;
             $path3="../images/".$category."/".$filename3;            $path33="../images/".$category."/".$f3;
             mysqli_query($conn,"update `productdetails` set `image3`='$f3' where id=$id") or die(mysqli_error($conn));
-            unlink($path33);
+
             move_uploaded_file($_FILES['image3']['tmp_name'],$path3);
             rename ($path3, $path33);
 

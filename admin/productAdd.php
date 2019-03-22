@@ -16,36 +16,53 @@
 		$last_id=mysqli_fetch_array($last_id);
         $last_id=$last_id[0];
 
+
         $filename1 =  mysqli_real_escape_string($conn,$_FILES['image1']['name']);
         $pathinfo = pathinfo($filename1);
         $ex=$pathinfo['extension']; 
         $f1=$last_id."_1.".$ex;
         $path1='../images/'.$category.'/'.$filename1;
         $path11='../images/'.$category.'/'.$f1;
+        move_uploaded_file($_FILES['image1']['tmp_name'],$path1);
+        rename ($path1, $path11);
 
-        $filename2 =  mysqli_real_escape_string($conn,$_FILES['image2']['name']);
-        $pathinfo = pathinfo($filename2);
-        $ex=$pathinfo['extension']; 
-        $f2=$last_id."_2.".$ex;
-        $path2='../images/'.$category.'/'.$filename2;
-        $path22='../images/'.$category.'/'.$f2;
+        $filename2 =  mysqli_real_escape_string($conn,$_FILES['image2']['name']); 
+        if(!empty($filename2)){
+            $pathinfo = pathinfo($filename2);
+            $ex=$pathinfo['extension'];
+            $f2=$last_id."_2.".$ex;
+            $path2='../images/'.$category.'/'.$filename2;
+            $path22='../images/'.$category.'/'.$f2;
+            move_uploaded_file($_FILES['image2']['tmp_name'],$path2);
+            rename ($path2, $path22);            
 
-        $filename3 =  mysqli_real_escape_string($conn,$_FILES['image2']['name']);
-        $pathinfo = pathinfo($filename3);
-        $ex=$pathinfo['extension']; 
-        $f3=$last_id."_3.".$ex;
+        }else{
+            $f2="";
+        }
+        
+        
+
+        $filename3 =  mysqli_real_escape_string($conn,$_FILES['image3']['name']);
+        
+        if(!empty($filename3)){
+            $pathinfo = pathinfo($filename3);
+            $ex=$pathinfo['extension'];
+            $f3=$last_id."_3.".$ex;
+            move_uploaded_file($_FILES['image3']['tmp_name'],$path3);
+            rename ($path3, $path33);
+
+        }else{
+            $f3="";
+        }
+        
         $path3='../images/'.$category.'/'.$filename3;
         $path33='../images/'.$category.'/'.$f3;
        
         mysqli_query($conn,"update `productdetails` set `image1`='$f1',`image2`='$f2',`image3`='$f3'   where id=$last_id") or die("table not found2");
 
-        move_uploaded_file($_FILES['image1']['tmp_name'],$path1);
-        rename ($path1, $path11);
-        move_uploaded_file($_FILES['image2']['tmp_name'],$path2);
-        rename ($path2, $path22);
-        move_uploaded_file($_FILES['image3']['tmp_name'],$path3);
-        rename ($path3, $path33);
-
+        
+        
+        
     }
 
 ?>
