@@ -1,5 +1,5 @@
 <?php require '../conn.inc.php'; ?>
-
+<?php $cate=@$_GET['cat'];?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -9,6 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -23,17 +24,17 @@
             url:"singleProductDelete.php?id="+id+"&cat="+category, //the page containing php script
             type: "POST", //request type
             success:function(result){
-                $(".results").load("productDelete.php");
+                $('#results').load('productDelete.php?cat='+category+' #results');
            }
          });
-
+        
      }
      </script>
 <div class="container">
 <h2>Product Edit:</h2>
     <?php
         if(isset($_POST['sub'])){
-            $cat=$_POST['category'];
+            $cate=$_POST['category'];
         }
      ?>
     <form method="POST" enctype="multipart/form-data">
@@ -70,11 +71,11 @@
     
 <br><br>
 <h3>Choose Product:</h3>
-    <section class="results border" id="results">
 
-        <?php
-            // if(isset($cat)){
-                $cat=@$cat;
+    <section class="results border" >
+        <div id="results">
+            <?php
+                $cat=@$cate;
                 $qu = mysqli_query($conn,"Select * from productdetails where category='$cat'") or die(mysqli_error($conn));
                 while($q=mysqli_fetch_assoc($qu)){
                     ?>
@@ -92,8 +93,9 @@
 
                     <?php
                 }
-            // }
         ?>
+
+        </div>
     </section>
     </div>
 </body>
