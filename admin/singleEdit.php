@@ -11,10 +11,11 @@
         $oldPrice = $_POST['oldPrice'];
         $stockQuant = $_POST['stockQuant'];
         $details =  mysqli_real_escape_string($conn,$_POST['details']);
+        $features =  mysqli_real_escape_string($conn,$_POST['features']);
         $desc =  mysqli_real_escape_string($conn,$_POST['desc']);
         $warranty =  mysqli_real_escape_string($conn,$_POST['warranty']);
 
-        $qu = mysqli_query($conn,"update `productdetails` set `title`='$title', `category`='$category', `description`='$desc', `newPrice`=$newPrice, `oldPrice`=$oldPrice, `stock`='$stockQuant', `details`='$details', `warranty`='$warranty' where id=$id") or die(mysqli_error($conn));
+        $qu = mysqli_query($conn,"update `productdetails` set `title`='$title', `category`='$category', `description`='$desc', `newPrice`=$newPrice, `oldPrice`=$oldPrice, `stock`='$stockQuant', `details`='$details', `warranty`='$warranty', features='$features' where id=$id") or die(mysqli_error($conn));
         if(!empty($_FILES['image1']['name'])){
             $qq=mysqli_query($conn,"select image1 from productdetails");
             $qq=mysqli_fetch_assoc($qq);
@@ -130,6 +131,11 @@
             <textarea name="desc" id="desc" class="form-control" cols="30" rows="7" placeholder="separate with ;"><?php echo $q['description'];?></textarea>
         </div>
         
+        <div class="form-group">
+            <label for="features">Features:</label>
+            <textarea name="features" id="features" class="form-control" cols="30" rows="7" placeholder="separate with ;" value="<?php echo $q['features'];?>"></textarea>
+        </div>
+
         <div class="form-group">
             <label for="newPrice">New Price:</label>
             <input type="number" class="form-control" name="newPrice" id="newPrice" value="<?php echo $q['newPrice'];?>">

@@ -8,10 +8,11 @@
         $oldPrice = $_POST['oldPrice'];
         $stockQuant = $_POST['stockQuant'];
         $details =  mysqli_real_escape_string($conn,$_POST['details']);
+        $features =  mysqli_real_escape_string($conn,$_POST['features']);
         $desc =  mysqli_real_escape_string($conn,$_POST['desc']);
         $warranty =  mysqli_real_escape_string($conn,$_POST['warranty']);
 
-        $qu = mysqli_query($conn,"INSERT INTO `productdetails`(`title`, `category`, `description`, `newPrice`, `oldPrice`, `stock`, `details`, `warranty`) VALUES ('$title','$category','$desc',$newPrice,$oldPrice,'$stockQuant','$details','$warranty')") or die(mysqli_error($conn));
+        $qu = mysqli_query($conn,"INSERT INTO `productdetails`(`title`, `category`, `description`, `newPrice`, `oldPrice`, `stock`, `details`, `warranty`,`features`) VALUES ('$title','$category','$desc',$newPrice,$oldPrice,'$stockQuant','$details','$warranty','$features')") or die(mysqli_error($conn));
         $last_id=mysqli_query($conn,"select LAST_INSERT_ID()") or die(mysqli_error($conn));
 		$last_id=mysqli_fetch_array($last_id);
         $last_id=$last_id[0];
@@ -48,15 +49,15 @@
             $pathinfo = pathinfo($filename3);
             $ex=$pathinfo['extension'];
             $f3=$last_id."_3.".$ex;
+            $path3='../images/'.$category.'/'.$filename3;
+            $path33='../images/'.$category.'/'.$f3;
             move_uploaded_file($_FILES['image3']['tmp_name'],$path3);
             rename ($path3, $path33);
 
         }else{
             $f3="";
         }
-        
-        $path3='../images/'.$category.'/'.$filename3;
-        $path33='../images/'.$category.'/'.$f3;
+       
        
         mysqli_query($conn,"update `productdetails` set `image1`='$f1',`image2`='$f2',`image3`='$f3'   where id=$last_id") or die("table not found2");
 
@@ -117,6 +118,11 @@
             <textarea name="desc" id="desc" class="form-control" cols="30" rows="7" placeholder="separate with ;"></textarea>
         </div>
         
+        <div class="form-group">
+            <label for="features">Features:</label>
+            <textarea name="features" id="features" class="form-control" cols="30" rows="7" placeholder="separate with ;"></textarea>
+        </div>
+
         <div class="form-group">
             <label for="newPrice">New Price:</label>
             <input type="number" class="form-control" name="newPrice" id="newPrice">
