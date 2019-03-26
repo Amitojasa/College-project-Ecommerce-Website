@@ -61,3 +61,8 @@
 .qas .card{
     margin-bottom:10px;
 }
+
+.main-imgs{
+    max-height:300px;
+    width:100%;
+}
