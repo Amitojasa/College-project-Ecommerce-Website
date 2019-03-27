@@ -21,8 +21,9 @@
         $selectQuery=$selectQuery." order by id desc";
     }
 ?>
-<link rel="stylesheet" href="css/shop.css">
 
+
+<link rel="stylesheet" href="css/shop.css">
 
 <div class="container-fluid m-0 p-0">
     <section class="result-sec row m-0">
@@ -85,8 +86,8 @@
             $qu = mysqli_query($conn,$selectQuery) or die(mysqli_error($conn));
             while($q=mysqli_fetch_assoc($qu)){
         ?>
-        <div class="card result-card border-bottom">
-            <div class="card-body  py-0">
+        <div class="card result-card border-bottom ">
+            <div class="card-body py-2">
                 <div class="row">
 
                     <div class="img col-3 d-flex">
@@ -106,7 +107,7 @@
                         <?php $features=(explode(";",$q['features'])); ?>
                             <ul>
                             <?php foreach($features as $i){
-                                if($i!="")
+                                if(trim($i)!="")
                                 echo "<li>$i</li>";
                             }
                             ?>

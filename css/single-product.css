@@ -63,6 +63,17 @@
 }
 
 .main-imgs{
-    max-height:300px;
+    height:350px;
     width:100%;
+}
+.img-fluid{
+    height:90%;
+    width:auto;
+    text-align: center;
+}
+.main-imgs{
+    text-align:center;
+}
+.carousel-control-prev-icon, .carousel-control-next-icon{
+    background-color: #007bff;
 }

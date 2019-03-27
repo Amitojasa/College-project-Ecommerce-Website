@@ -21,19 +21,19 @@
                     <div id="demo" class="demo carousel slide" data-ride="carousel">
 
                         <!-- The slideshow -->
-                        <div class="carousel-inner">
+                        <div class="carousel-inner"> 
                             <?php if(!empty($q['image1'])){ ?>
                                 <div class="main-imgs carousel-item active">
                                     <img class="img-fluid align-self-center" src="<?php echo "images/".$q['category']."/".$q['image1'];?>" alt="Los Angeles" >
                                 </div>
                             <?php } ?>
                             <?php if(!empty($q['image2'])){ ?>
-                                <div class="img main-imgs carousel-item">
+                                <div class="main-imgs carousel-item">
                                     <img class="img-fluid align-self-center" src="<?php echo "images/".$q['category']."/".$q['image2'];?>" alt="Los Angeles">
                                 </div>
                             <?php } ?>
                             <?php if(!empty($q['image3'])){ ?>
-                                <div class="img main-imgs carousel-item">
+                                <div class="main-imgs carousel-item">
                                     <img class="img-fluid align-self-center" src="<?php echo "images/".$q['category']."/".$q['image3'];?>" alt="Los Angeles" >
                                 </div>
                             <?php } ?>
