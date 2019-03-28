@@ -74,6 +74,7 @@ var __slice = [].slice;
       if (!rating) {
         return this.$el.find('span').removeClass('fa-star').addClass('fa-star-o');
       }
+      document.getElementById('stars-existing').setAttribute('data-rating',rating);
     };
 
     return Starrr;

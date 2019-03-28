@@ -99,11 +99,10 @@
                         <form>
                             <div class="input-group-inline">
                             <b><label for="sel1">Quantity:</label></b>
-                            <?php $quant=$q['stock']%4;?>
                             <select class="form-control" id="sel1" <?php if($q['stock']==0){echo "disabled";}?> >
                                 <?php 
                                 if($q['stock']>0){
-                                for($i=0;$i<=$quant;$i++){?>
+                                for($i=0;$i<=$q['stock'];$i++){?>
                                 <option><?php echo $i+1; ?></option>
                                 <?php }} ?>
                             </select>
@@ -211,33 +210,35 @@
     <div class="qas">
     <h5 class="mb-3">Questions & Answers</h5>
     <div class="qa mb-4 bg-dark  text-light p-3 rounded">
-                <form action="/action_page.php">
+                <?php 
+                    if(isset($_POST['quesSubmit'])){
+                        $ques=$_POST['text'];
+                        $date= date("Y-m-d");
+                        mysqli_query($conn,"insert into qatb(`question`, `date`,`productId`) values('$ques','$date',$id)") or die(mysqli_error($conn));
+                    }
+                ?>
+                <form method="POST">
                     <div class="form-group">
                     <label for="review">Ask a Question:</label>
                     <textarea class="form-control bg-light" rows="2" id="comment" maxlength="200" name="text" placeholder="Ask a question"></textarea>
                     </div>
                     
-                    <button type="submit" class="btn btn-warning p-2">Submit Question</button>
+                    <button type="submit" class="btn btn-warning p-2" name="quesSubmit">Submit Question</button>
                     
                 </form>
                 </div>
-    <div class="card">
-            <div class="card-header py-1 font-weight-bold">Q. Can you please explain me it's graphic card fesility?</div>
-            <div class="card-body py-1">Very good </div>
-            <div class="card-footer bg-white p-1 text-secondary border-0 text-right">-By seller on 5th Feb 2019</div>
-        </div>
+        
+        <?php
+            $qu=mysqli_query($conn,"select * from qatb where productId=$id and answerStatus=1") or die(mysqli_error($conn));
+            while($q=mysqli_fetch_assoc($qu)){
+        ?>
         <div class="card">
-            <div class="card-header py-1 font-weight-bold">Q. Can you please explain me it's graphic card fesility?</div>
-            <div class="card-body py-1">Very good </div>
-            <div class="card-footer bg-white p-1 text-secondary border-0 text-right">-By seller on 5th Feb 2019</div>
+            <div class="card-header py-1 font-weight-bold">Q. <?php echo $q['question'];?></div>
+            <div class="card-body py-1"> <?php echo $q['answer'];?> </div>
+            <div class="card-footer bg-white p-1 text-secondary border-0 text-right">-By seller on <?php echo $q['date'];?> </div>
         </div>
-        <div class="card">
-            <div class="card-header py-1 font-weight-bold">Q. Can you please explain me it's graphic card fesility?</div>
-            <div class="card-body py-1"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit aperiam architecto voluptas recusandae alias doloremque ipsam ea blanditiis provident maxime.  </div>
-            <div class="card-footer bg-white p-1 text-secondary border-0 text-right">-By seller on 5th Feb 2019</div>
-        </div>
-
-        <a href="">See more answered questions</a>
+            <?php } ?>
+        <a href="qas.php?category=<?php echo $cat;?>&id=<?php echo $id;?>">See more answered questions</a>
     </div>
 
      </div>
@@ -262,7 +263,7 @@
                     <div class="form-group">
                             <label for="star-rating">Rate the product:</label>
 
-                            <div id="stars-existing" class="starrr text-warning" data-rating='4'></div>  
+                            <div id="stars-existing" class="starrr text-warning" data-rating='2'></div>  
                     </div>
                     <script src="js/star-rating.js"></script>
                         <button type="submit" class="btn btn-warning p-2">Submit Review</button>
