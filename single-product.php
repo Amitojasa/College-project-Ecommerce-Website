@@ -101,10 +101,14 @@
                             <b><label for="sel1">Quantity:</label></b>
                             <select class="form-control" id="sel1" <?php if($q['stock']==0){echo "disabled";}?> >
                                 <?php 
-                                if($q['stock']>0){
-                                for($i=0;$i<=$q['stock'];$i++){?>
+                                if($q['stock']>4){
+                                    $v=4;
+                                }else{
+                                    $v=$q['stock'];
+                                }
+                                for($i=0;$i<$v;$i++){?>
                                 <option><?php echo $i+1; ?></option>
-                                <?php }} ?>
+                                <?php } ?>
                             </select>
                         </form>
                     </div>
@@ -252,25 +256,48 @@
             </div>
         </div>
         <div class="Reviews">
+        
             <h5>Customer Reviews</h5>
                 <div class="review mb-4 bg-dark  text-light p-3 rounded">
-                <form action="/action_page.php">
+                <?php
+                    if(isset($_POST['submitRev'])){
+                        if($login==true){
+                            $star=$_POST['rating'];
+                            $review=$_POST['reviewText'];
+                            $date= date("Y-m-d");
+                            mysqli_query($conn,"insert into reviews(`userid`,`rating`,`reviewDetails`,`date`,`productid`) values($uid,$star,'$review','$date',$id)") or die(mysqli_error($conn));
+                        }else{
+                            echo "<script>alert('Please login to Review');</script>";
+                        }
+                    }
+                ?>
+                <form method="POST">
                     <div class="form-group">
-                    <label for="review">Write a Review:</label>
-                    <textarea class="form-control bg-light" rows="5" id="comment" maxlength="200" name="text" placeholder="Write a review (max length 200 characters.)"></textarea>
+                        <label for="review">Write a Review:</label>
+                        <textarea class="form-control bg-light" rows="5" id="comment" maxlength="200" name="reviewText" placeholder="Write a review (max length 200 characters.)"></textarea>
                     </div>
                     <div class="down d-flex justify-content-between align-items-center">
                     <div class="form-group">
                             <label for="star-rating">Rate the product:</label>
 
-                            <div id="stars-existing" class="starrr text-warning" data-rating='2'></div>  
+                            <div id="stars-existing" class="starrr text-warning" data-rating='4'></div>  
+                            <script src="js/star-rating.js"></script>
+                            <input type="number" value="1" id="rating" name="rating" style="display:none;">
+                            
                     </div>
-                    <script src="js/star-rating.js"></script>
-                        <button type="submit" class="btn btn-warning p-2">Submit Review</button>
+                    <button type="submit" name="submitRev" class="btn btn-warning p-2">Submit Review</button>
                     </div>
+                    
                 </form>
+                
                 </div>
+
+                
                 <h5>Reviews <small class="text-secondary">20 Reviews</small></h5>
+                <?php
+                    $qu=mysqli_query($conn,"select * from qatb where productId=$id and answerStatus=1") or die(mysqli_error($conn));
+                    while($q=mysqli_fetch_assoc($qu)){
+                ?>
                 <div class="review mb-2">
                     <div class="card">
                         <div class="card-header d-flex justify-content-between"><b>UserName</b>

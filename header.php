@@ -14,6 +14,7 @@
         $r=mysqli_query($conn,"select firstName from userdetailstb where id='$uid'") or die(mysqli_error($conn));
         $userName=mysqli_fetch_assoc($r)['firstName'];
 	}else{
+        $login=false;
         $userName="My Account";
     }
 ?>
