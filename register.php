@@ -3,10 +3,10 @@
 <?php
 
 	if(isset($_POST['submit-register'])){
-		$fname=mysql_real_escape_string($_POST['fName']);
-		$lname=mysql_real_escape_string($_POST['lName']);
-		$email=mysql_real_escape_string($_POST['eMail']);
-		$phone=mysql_real_escape_string($_POST['phone']);
+		$fname=mysqli_real_escape_string($_POST['fName']);
+		$lname=mysqli_real_escape_string($_POST['lName']);
+		$email=mysqli_real_escape_string($_POST['eMail']);
+		$phone=mysqli_real_escape_string($_POST['phone']);
 		$pass=$_POST['pass'];
 		$repass=$_POST['repass'];
 

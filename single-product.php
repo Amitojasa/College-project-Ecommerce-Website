@@ -4,6 +4,10 @@
     $cat=@$_GET['category'];
     $id=@$_GET['id'];
 ?>
+<?php 
+    $qu=mysqli_query($conn,"SELECT count(*) as count,avg(`rating`) as avg FROM reviews where productid=$id") or die(mysqli_error($conn));
+    $a=mysqli_fetch_assoc($qu);
+?>
 <link rel="stylesheet" href="css/single-product.css">
 <div class="container-fluid my-3">
     <div class="row">
@@ -81,7 +85,7 @@
                         <h5><?php echo $q['title']; ?></h5>
                     </div>
                     <div class="rating text-secondary my-2 bold">
-                            <span class="badge badge-primary">4.4 <li class="fa fa-star"></li></span> 100 Ratings | 107 reviews
+                            <span class="badge badge-primary"><?php echo round($a['avg'],1);?> <li class="fa fa-star"></li></span> <?php echo $a['count'];?> Ratings & reviews
                     </div>
                     <div class="price">
                             <h6 class="text-dark"><span class="text-secondary">Our-Price: </span>&#8377; <?php echo $q['newPrice']; ?></h6>
@@ -216,7 +220,7 @@
     <div class="qa mb-4 bg-dark  text-light p-3 rounded">
                 <?php 
                     if(isset($_POST['quesSubmit'])){
-                        $ques=$_POST['text'];
+                        $ques=mysql_real_escape_string($_POST['text']);
                         $date= date("Y-m-d");
                         mysqli_query($conn,"insert into qatb(`question`, `date`,`productId`) values('$ques','$date',$id)") or die(mysqli_error($conn));
                     }
@@ -263,7 +267,7 @@
                     if(isset($_POST['submitRev'])){
                         if($login==true){
                             $star=$_POST['rating'];
-                            $review=$_POST['reviewText'];
+                            $review=mysql_real_escape_string($_POST['reviewText']);
                             $date= date("Y-m-d");
                             mysqli_query($conn,"insert into reviews(`userid`,`rating`,`reviewDetails`,`date`,`productid`) values($uid,$star,'$review','$date',$id)") or die(mysqli_error($conn));
                         }else{
@@ -274,7 +278,7 @@
                 <form method="POST">
                     <div class="form-group">
                         <label for="review">Write a Review:</label>
-                        <textarea class="form-control bg-light" rows="5" id="comment" maxlength="200" name="reviewText" placeholder="Write a review (max length 200 characters.)"></textarea>
+                        <textarea class="form-control bg-light" rows="5" id="comment" maxlength="200" name="reviewText" placeholder="Write a review (max length 200 characters.)" required></textarea>
                     </div>
                     <div class="down d-flex justify-content-between align-items-center">
                     <div class="form-group">
@@ -293,83 +297,31 @@
                 </div>
 
                 
-                <h5>Reviews <small class="text-secondary">20 Reviews</small></h5>
+                <h5>Reviews <small class="text-secondary"><?php echo $a['count'];?> Reviews</small></h5>
                 <?php
-                    $qu=mysqli_query($conn,"select * from qatb where productId=$id and answerStatus=1") or die(mysqli_error($conn));
+                    $qu=mysqli_query($conn,"SELECT b.*, a.firstName FROM reviews AS b INNER JOIN userdetailstb as A ON (b.userid=a.id) order by id desc limit 5") or die(mysqli_error($conn));
                     while($q=mysqli_fetch_assoc($qu)){
+
                 ?>
                 <div class="review mb-2">
                     <div class="card">
-                        <div class="card-header d-flex justify-content-between"><b>UserName</b>
-                            <span class="stars"><li class="fa fa-star"></li>
-                                <li class="fa fa-star"></li>
-                                <li class="fa fa-star"></li>
-                                <li class="fa fa-star"></li>
-                                <li class="fa fa-star-o"></li>
+                        <div class="card-header d-flex justify-content-between"><b><?php echo $q['firstName'];?></b>
+                            <span class="stars">
+                            <?php 
+                                for($i=1;$i<=5;$i++){
+                            ?>
+                                <li class="fa fa-star<?php if($i>$q['rating']) echo '-o';?>"></li>
+                                <?php } ?>
                             </span>
-                            <small class="text-muted">5th Feb 2019</small>
+                            <small class="text-muted"><?php echo $q['date'];?></small>
                         </div>
-                        <div class="card-body">As per the description its mentioend windown pre install but when i try to open the Microsoft excel its asking for product key, how we can get</div>
+                        <div class="card-body"><?php echo $q['reviewDetails'];?></div>
                     </div>
                 </div>
-                <div class="review mb-2">
-                    <div class="card">
-                        <div class="card-header d-flex justify-content-between"><b>UserName</b>
-                            <span class="stars"><li class="fa fa-star"></li>
-                                <li class="fa fa-star"></li>
-                                <li class="fa fa-star"></li>
-                                <li class="fa fa-star"></li>
-                                <li class="fa fa-star-o"></li>
-                            </span>
-                            <small class="text-muted">5th Feb 2019</small>
-                        </div>
-                        <div class="card-body">As per the description its mentioend windown pre install but when i try to open the Microsoft excel its asking for product key, how we can get</div>
-                    </div>
-                </div>  
-                <div class="review mb-2">
-                    <div class="card">
-                        <div class="card-header d-flex justify-content-between"><b>UserName</b>
-                            <span class="stars"><li class="fa fa-star"></li>
-                                <li class="fa fa-star"></li>
-                                <li class="fa fa-star"></li>
-                                <li class="fa fa-star"></li>
-                                <li class="fa fa-star-o"></li>
-                            </span>
-                            <small class="text-muted">5th Feb 2019</small>
-                        </div>
-                        <div class="card-body">As per the description its mentioend windown pre install but when i try to open the Microsoft excel its asking for product key, how we can get</div>
-                    </div>
-                </div>  
-                <div class="review mb-2">
-                    <div class="card">
-                        <div class="card-header d-flex justify-content-between"><b>UserName</b>
-                            <span class="stars"><li class="fa fa-star"></li>
-                                <li class="fa fa-star"></li>
-                                <li class="fa fa-star"></li>
-                                <li class="fa fa-star"></li>
-                                <li class="fa fa-star-o"></li>
-                            </span>
-                            <small class="text-muted">5th Feb 2019</small>
-                        </div>
-                        <div class="card-body">As per the description its mentioend windown pre install but when i try to open the Microsoft excel its asking for product key, how we can get</div>
-                    </div>
-                </div>  
-                <div class="review mb-2">
-                    <div class="card">
-                        <div class="card-header d-flex justify-content-between"><b>UserName</b>
-                            <span class="stars"><li class="fa fa-star"></li>
-                                <li class="fa fa-star"></li>
-                                <li class="fa fa-star"></li>
-                                <li class="fa fa-star"></li>
-                                <li class="fa fa-star-o"></li>
-                            </span>
-                            <small class="text-muted">5th Feb 2019</small>
-                        </div>
-                        <div class="card-body">As per the description its mentioend windown pre install but when i try to open the Microsoft excel its asking for product key, how we can get</div>
-                    </div>
-                </div>  
+                    <?php } ?>
+                
                 <br>
-                <a href="#"> More Reviews</a>
+                <a href="moreReviews.php"> More Reviews</a>
 
 
         </div>
@@ -377,11 +329,12 @@
             <h5>Overall Rating of Product</h5>
             <div class="card bg-dark">
                 <div class="card-body text-center">
-                    <span class="stars text-warning"><li class="fa fa-star"></li>
-                                <li class="fa fa-star"></li>
-                                <li class="fa fa-star"></li>
-                                <li class="fa fa-star"></li>
-                                <li class="fa fa-star-o"></li>
+                    <span class="stars text-warning">
+                            <?php 
+                                for($i=1;$i<=5;$i++){
+                            ?>
+                                <li class="fa fa-star<?php if($i>round($a['avg'])) echo '-o';?>"></li>
+                                <?php } ?>
                     </span>
                 </div>
             </div>
