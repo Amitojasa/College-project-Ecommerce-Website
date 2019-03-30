@@ -8,6 +8,19 @@
     $qu=mysqli_query($conn,"SELECT count(*) as count,avg(`rating`) as avg FROM reviews where productid=$id") or die(mysqli_error($conn));
     $a=mysqli_fetch_assoc($qu);
 ?>
+
+<script>
+    function addToCart (id){
+        $.ajax({
+            url:"addToCart.php?id="+id, //the page containing php script
+            type: "POST", //request type
+            success:function(result){
+                alert(result);
+           }
+         });
+    }
+</script>
+
 <link rel="stylesheet" href="css/single-product.css">
 <div class="container-fluid my-3">
     <div class="row">
@@ -74,7 +87,7 @@
             </div>
             <div class="operations m-3 p-3 d-flex justify-content-center row">
                 <button class="btn btn-primary text-white p-3 col-sm-5"><b>Buy Now</b></button>
-                <button class="btn btn-warning text-white p-3 col-sm-5"><b>Add to Cart</b></button>
+                <button class="btn btn-warning text-white p-3 col-sm-5" onclick='addToCart(<?php echo $id;?>);'><b>Add to Cart</b></button>
 
             </div>
         </div>
@@ -100,7 +113,7 @@
                             <h5 class="text-danger"> <?php echo "Out Of Stock"; ?></h5>
                         <?php } ?>
 
-                        <form>
+                        <form method="POST">
                             <div class="input-group-inline">
                             <b><label for="sel1">Quantity:</label></b>
                             <select class="form-control" id="sel1" <?php if($q['stock']==0){echo "disabled";}?> >

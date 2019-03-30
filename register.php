@@ -3,15 +3,18 @@
 <?php
 
 	if(isset($_POST['submit-register'])){
-		$fname=mysqli_real_escape_string($_POST['fName']);
-		$lname=mysqli_real_escape_string($_POST['lName']);
-		$email=mysqli_real_escape_string($_POST['eMail']);
-		$phone=mysqli_real_escape_string($_POST['phone']);
+		$fname=mysqli_real_escape_string($conn,$_POST['fName']);
+		$lname=mysqli_real_escape_string($conn,$_POST['lName']);
+		$email=mysqli_real_escape_string($conn,$_POST['eMail']);
+		$phone=mysqli_real_escape_string($conn,$_POST['phone']);
 		$pass=$_POST['pass'];
-		$repass=$_POST['repass'];
+    $repass=$_POST['repass'];
+    $cart=json_encode(array());
+    $favourite=json_encode(array());
+
 
 		if($pass=$repass){
-			mysqli_query($conn,"Insert into userdetailstb(firstName,lastName,emailAddress,mobileNo) values('$fname','$lname','$email','$phone')") or die(mysqli_error($conn));
+			mysqli_query($conn,"Insert into userdetailstb(firstName,lastName,emailAddress,contactNo1,cart,favourite) values('$fname','$lname','$email','$phone','$cart','$favourite')") or die(mysqli_error($conn));
 			
 			$last_id=mysqli_query($conn,"select LAST_INSERT_ID()") or die(mysqli_error($conn));
 			$last_id=mysqli_fetch_array($last_id);
