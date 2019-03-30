@@ -11,13 +11,19 @@
 
 <script>
     function addToCart (id){
+        var q=document.getElementById('quant').value;
+        a=parseInt(q);
+        if(!isNaN(a)){
         $.ajax({
-            url:"addToCart.php?id="+id, //the page containing php script
+            url:"addToCart.php?id="+id+"&quant="+q, //the page containing php script
             type: "POST", //request type
             success:function(result){
                 alert(result);
            }
-         });
+         });}
+         else{
+             alert("Product is out of stock");
+         }
     }
 </script>
 
@@ -86,7 +92,7 @@
                 </div>
             </div>
             <div class="operations m-3 p-3 d-flex justify-content-center row">
-                <button class="btn btn-primary text-white p-3 col-sm-5"><b>Buy Now</b></button>
+                <a class="btn btn-primary text-white p-3 col-sm-5" href="buyNow.php?id=<?php echo $id;?>" ><b>Buy Now</b></a>
                 <button class="btn btn-warning text-white p-3 col-sm-5" onclick='addToCart(<?php echo $id;?>);'><b>Add to Cart</b></button>
 
             </div>
@@ -113,10 +119,10 @@
                             <h5 class="text-danger"> <?php echo "Out Of Stock"; ?></h5>
                         <?php } ?>
 
-                        <form method="POST">
+                        <form>
                             <div class="input-group-inline">
-                            <b><label for="sel1">Quantity:</label></b>
-                            <select class="form-control" id="sel1" <?php if($q['stock']==0){echo "disabled";}?> >
+                            <b><label for="quant">Quantity:</label></b>
+                            <select class="form-control" id="quant" <?php if($q['stock']==0){echo "disabled";}?> >
                                 <?php 
                                 if($q['stock']>4){
                                     $v=4;
