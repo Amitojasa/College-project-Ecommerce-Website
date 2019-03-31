@@ -11,8 +11,6 @@
     $selectQuery="select * from productdetails where category = '$cat'";
     if($order=='relevance'){
 
-    }elseif($order=='popularity'){
-        //$selectQuery=$selectQuery." order by rating asc";
     }elseif($order=='plth'){
         $selectQuery=$selectQuery." order by newPrice asc";
     }elseif($order=='phtl'){
@@ -52,24 +50,17 @@
             </li>
             <li class="nav-item">
                 <?php
-                    $query['order'] = 'popularity';
-                    $query_result = http_build_query($query);
-                ?>
-                <a class="nav-link <?php if($order=='popularity') echo 'active';?>" href="<?php echo $_SERVER['PHP_SELF']; ?>?<?php echo $query_result; ?>">Popularity</a>
-            </li>
-            <li class="nav-item">
-                <?php
                     $query['order'] = 'plth';
                     $query_result = http_build_query($query);
                 ?>
-                <a class="nav-link <?php if($order=='plth') echo 'active';?>" href="<?php echo $_SERVER['PHP_SELF']; ?>?<?php echo $query_result; ?>">Price-- Low to High</a>
+                <a class="nav-link <?php if($order=='plth') echo 'active';?>" href="<?php echo $_SERVER['PHP_SELF']; ?>?<?php echo $query_result; ?>"><b><span class="text-secondary">Price:</span></b> Low to High</a>
             </li>
             <li class="nav-item">
                 <?php
                     $query['order'] = 'phtl';
                     $query_result = http_build_query($query);
                 ?>
-                <a class="nav-link <?php if($order=='phtl') echo 'active';?>" href="<?php echo $_SERVER['PHP_SELF']; ?>?<?php echo $query_result; ?>">Price-- High to Low</a>
+                <a class="nav-link <?php if($order=='phtl') echo 'active';?>" href="<?php echo $_SERVER['PHP_SELF']; ?>?<?php echo $query_result; ?>"><b><span class="text-secondary">Price:</span></b> High to Low</a>
             </li>
             <li class="nav-item">
                 <?php
@@ -100,7 +91,7 @@
                         </div>
                         
                         <div class="rating text-secondary my-2 bold">
-                            <span class="badge badge-primary">4.4</span> 100 Ratings & 107 reviews
+                            <span class="badge badge-primary"><?php echo $q['rating'];?></span> <?php echo $q['reviewsNo'];?> Ratings & reviews
                         </div>
                         
                         <div class="features">

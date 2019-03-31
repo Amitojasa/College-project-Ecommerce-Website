@@ -7,6 +7,9 @@
 <?php 
     $qu=mysqli_query($conn,"SELECT count(*) as count,avg(`rating`) as avg FROM reviews where productid=$id") or die(mysqli_error($conn));
     $a=mysqli_fetch_assoc($qu);
+    $n=$a['count'];
+    $r=round($a['avg'],1);
+    mysqli_query($conn,"update productdetails set rating='$r',reviewsNo='$n' where id= $id") or die (mysqli_error($conn));
 ?>
 
 <script>
@@ -91,9 +94,11 @@
                     </div>
                 </div>
             </div>
-            <div class="operations m-3 p-3 d-flex justify-content-center row">
-                <a class="btn btn-primary text-white p-3 col-sm-5" href="buyNow.php?id=<?php echo $id;?>" ><b>Buy Now</b></a>
-                <button class="btn btn-warning text-white p-3 col-sm-5" onclick='addToCart(<?php echo $id;?>);'><b>Add to Cart</b></button>
+            <div class="operations my-3 p-3 d-flex justify-content-center row">
+                <button class="btn btn-danger text-white p-3 col-sm-2" href="buyNow.php?id=<?php echo $id;?>" ><i class="fa fa-heart-o" title="favourite"></i></button>
+                <button class="btn btn-primary text-white p-3 col-sm-3" href="buyNow.php?id=<?php echo $id;?>" ><b>Buy Now</b></button>
+                <button class="btn btn-warning text-white p-3 col-sm-3" onclick='addToCart(<?php echo $id;?>);'><b>Add to Cart</b></button>
+                <button class="btn btn-secondary text-white p-3 col-sm-2" href="buyNow.php?id=<?php echo $id;?>" ><i title="compare"><img src="images/compare.png"></i></button>
 
             </div>
         </div>
@@ -104,7 +109,7 @@
                         <h5><?php echo $q['title']; ?></h5>
                     </div>
                     <div class="rating text-secondary my-2 bold">
-                            <span class="badge badge-primary"><?php echo round($a['avg'],1);?> <li class="fa fa-star"></li></span> <?php echo $a['count'];?> Ratings & reviews
+                            <span class="badge badge-primary"><?php echo $q['rating'];?> <li class="fa fa-star"></li></span> <?php echo $q['reviewsNo'];?> Ratings & reviews
                     </div>
                     <div class="price">
                             <h6 class="text-dark"><span class="text-secondary">Our-Price: </span>&#8377; <?php echo $q['newPrice']; ?></h6>
@@ -289,6 +294,7 @@
                             $review=mysql_real_escape_string($_POST['reviewText']);
                             $date= date("Y-m-d");
                             mysqli_query($conn,"insert into reviews(`userid`,`rating`,`reviewDetails`,`date`,`productid`) values($uid,$star,'$review','$date',$id)") or die(mysqli_error($conn));
+                            echo  "<script>Window.open(window.location.href,'_self')</script>";
                         }else{
                             echo "<script>alert('Please login to Review');</script>";
                         }
@@ -316,25 +322,25 @@
                 </div>
 
                 
-                <h5>Reviews <small class="text-secondary"><?php echo $a['count'];?> Reviews</small></h5>
+                <h5>Reviews <small class="text-secondary"><?php echo $q['reviewsNo'];?> Reviews</small></h5>
                 <?php
                     $qu=mysqli_query($conn,"SELECT b.*, a.firstName FROM reviews AS b INNER JOIN userdetailstb as A ON (b.userid=a.id) order by id desc limit 5") or die(mysqli_error($conn));
-                    while($q=mysqli_fetch_assoc($qu)){
+                    while($qp=mysqli_fetch_assoc($qu)){
 
                 ?>
                 <div class="review mb-2">
                     <div class="card">
-                        <div class="card-header d-flex justify-content-between"><b><?php echo $q['firstName'];?></b>
+                        <div class="card-header d-flex justify-content-between"><b><?php echo $qp['firstName'];?></b>
                             <span class="stars">
                             <?php 
                                 for($i=1;$i<=5;$i++){
                             ?>
-                                <li class="fa fa-star<?php if($i>$q['rating']) echo '-o';?>"></li>
+                                <li class="fa fa-star<?php if($i>$qp['rating']) echo '-o';?>"></li>
                                 <?php } ?>
                             </span>
-                            <small class="text-muted"><?php echo $q['date'];?></small>
+                            <small class="text-muted"><?php echo $qp['date'];?></small>
                         </div>
-                        <div class="card-body"><?php echo $q['reviewDetails'];?></div>
+                        <div class="card-body"><?php echo $qp['reviewDetails'];?></div>
                     </div>
                 </div>
                     <?php } ?>
@@ -352,7 +358,7 @@
                             <?php 
                                 for($i=1;$i<=5;$i++){
                             ?>
-                                <li class="fa fa-star<?php if($i>round($a['avg'])) echo '-o';?>"></li>
+                                <li class="fa fa-star<?php if($i>($r)) echo '-o';?>"></li>
                                 <?php } ?>
                     </span>
                 </div>
