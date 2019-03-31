@@ -28,6 +28,26 @@
              alert("Product is out of stock");
          }
     }
+
+    
+</script>
+
+<script>
+function favor(id){
+        $.ajax({
+            url:"favo.php?id="+id, //the page containing php script
+            type: "POST", //request type
+            success:function(result){
+
+                alert(result);
+                if(document.getElementById('favo').className=="fa fa-heart")
+                    document.getElementById('favo').className="fa fa-heart-o";
+                else{
+                    document.getElementById('favo').className="fa fa-heart";
+                }
+           }
+         });
+}
 </script>
 
 <link rel="stylesheet" href="css/single-product.css">
@@ -95,7 +115,7 @@
                 </div>
             </div>
             <div class="operations my-3 p-3 d-flex justify-content-center row">
-                <button class="btn btn-danger text-white p-3 col-sm-2" href="buyNow.php?id=<?php echo $id;?>" ><i class="fa fa-heart-o" title="favourite"></i></button>
+                <button class="btn btn-danger text-white p-3 col-sm-2" onclick='favor(<?php echo $id;?>);' ><i class="fa fa-heart-o" id="favo"  title="favourite"></i></button>
                 <button class="btn btn-primary text-white p-3 col-sm-3" href="buyNow.php?id=<?php echo $id;?>" ><b>Buy Now</b></button>
                 <button class="btn btn-warning text-white p-3 col-sm-3" onclick='addToCart(<?php echo $id;?>);'><b>Add to Cart</b></button>
                 <button class="btn btn-secondary text-white p-3 col-sm-2" href="buyNow.php?id=<?php echo $id;?>" ><i title="compare"><img src="images/compare.png"></i></button>
