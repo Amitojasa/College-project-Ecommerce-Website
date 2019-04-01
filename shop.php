@@ -23,6 +23,23 @@
 
 <link rel="stylesheet" href="css/shop.css">
 
+<script>
+function favor(id){
+        $.ajax({
+            url:"favo.php?id="+id, //the page containing php script
+            type: "POST", //request type
+            success:function(result){
+
+               // alert(result);
+                if(document.getElementById('favo'+id).className=="fa fa-heart text-danger")
+                    document.getElementById('favo'+id).className="fa fa-heart";
+                else{
+                    document.getElementById('favo'+id).className="fa fa-heart text-danger";
+                }
+           }
+         });
+}
+</script>
 <div class="container-fluid m-0 p-0">
     <section class="result-sec row m-0">
         <aside class="aside bg-light col-sm-2">
@@ -107,7 +124,15 @@
                     </div>
                     <div class="col-2 d-flex flex-column align-items-center justify-content-center">
                         <div class="favorite mb-5">
-                            <a href="#"><span class="fa fa-heart"></span></a>
+                            <a onclick="favor(<?php echo $q['id'];?>);"><span id="favo<?php echo $q['id'];?>" class="<?php 
+                                $que=mysqli_query($conn,"select favourite from userdetailstb where id=$uid") or die(mysqli_error($conn));
+                                $ar=json_decode(mysqli_fetch_assoc($que)['favourite']);
+                                if(in_array($q['id'],$ar)){
+                                    echo "fa fa-heart text-danger";
+                                }else{
+                                    echo "fa fa-heart";
+                                }
+                            ?>"></span></a>
                         </div>
                         <div class="price text-center">
                             <h3 class="text-dark"> &#8377; <?php echo $q['oldPrice'];?></h3>
@@ -119,49 +144,6 @@
             
         </div>
         <?php } ?>
-        <div class="card result-card border-bottom">
-            <div class="card-body  py-0">
-                <div class="row">
-
-                    <div class="img col-3 d-flex">
-                        <img class="img-fluid align-self-center" src="images/test.jpeg" alt="">
-                    </div>
-
-                    <div class="col-7">
-                        <div class="title">
-                            <a href="#"> Lorem, ipsum dolor sit amet consectetur adipisicing elit. Mollitia, consectetur! Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores, quae.</a>
-                        </div>
-                        
-                        <div class="rating text-secondary my-2 bold">
-                            <span class="badge badge-primary">4.4</span> 100 Ratings & 107 reviews
-                        </div>
-                        
-                        <div class="features">
-                            <ul>
-                                <li>AMD Radeon Vega 3 Graphics Card for Improved Graphics Performance</li>
-                                <li>AMD Ryzen 3 Dual Core Processor</li>
-                                <li>4 GB DDR4 RAM</li>
-                                <li>64 bit Windows 10 Operating System</li>
-                                <li>1 TB HDD</li>
-                                <li>39.62 cm (15.6 inch) Display</li>
-                                <li>1 Year Onsite Warranty</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-2 d-flex flex-column align-items-center justify-content-center">
-                        <div class="favorite mb-5">
-                            <a href="#"><span class="fa fa-heart text-danger"></span></a>
-                        </div>
-                        <div class="price text-center">
-                            <h3 class="text-dark"> &#8377; 49500</h3>
-                            <strike class="text-danger"><h3 class="text-secondary"><small> &#8377; 49500</small></h3></strike>
-                        </div>
-                    </div>  
-                </div>
-            </div>  
-            
-        </div>
-
         </div>
         <div class="container my-3">
             <div class="row offset-2 d-flex justify-content-center">

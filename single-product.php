@@ -8,8 +8,8 @@
     $qu=mysqli_query($conn,"SELECT count(*) as count,avg(`rating`) as avg FROM reviews where productid=$id") or die(mysqli_error($conn));
     $a=mysqli_fetch_assoc($qu);
     $n=$a['count'];
-    $r=round($a['avg'],1);
-    mysqli_query($conn,"update productdetails set rating='$r',reviewsNo='$n' where id= $id") or die (mysqli_error($conn));
+    $ra=round($a['avg'],1);
+    mysqli_query($conn,"update productdetails set rating='$ra',reviewsNo='$n' where id= $id") or die (mysqli_error($conn));
 ?>
 
 <script>
@@ -39,7 +39,7 @@ function favor(id){
             type: "POST", //request type
             success:function(result){
 
-                alert(result);
+                //alert(result);
                 if(document.getElementById('favo').className=="fa fa-heart")
                     document.getElementById('favo').className="fa fa-heart-o";
                 else{
@@ -115,7 +115,15 @@ function favor(id){
                 </div>
             </div>
             <div class="operations my-3 p-3 d-flex justify-content-center row">
-                <button class="btn btn-danger text-white p-3 col-sm-2" onclick='favor(<?php echo $id;?>);' ><i class="fa fa-heart-o" id="favo"  title="favourite"></i></button>
+                <button class="btn btn-danger text-white p-3 col-sm-2" onclick='favor(<?php echo $id;?>);' ><i class="<?php 
+                    $que=mysqli_query($conn,"select favourite from userdetailstb where id=$uid") or die(mysqli_error($conn));
+                    $ar=json_decode(mysqli_fetch_assoc($que)['favourite']);
+                    if(in_array($id,$ar)){
+                        echo "fa fa-heart";
+                    }else{
+                        echo "fa fa-heart-o";
+                    }
+                ?>" id="favo"  title="favourite"></i></button>
                 <button class="btn btn-primary text-white p-3 col-sm-3" href="buyNow.php?id=<?php echo $id;?>" ><b>Buy Now</b></button>
                 <button class="btn btn-warning text-white p-3 col-sm-3" onclick='addToCart(<?php echo $id;?>);'><b>Add to Cart</b></button>
                 <button class="btn btn-secondary text-white p-3 col-sm-2" href="buyNow.php?id=<?php echo $id;?>" ><i title="compare"><img src="images/compare.png"></i></button>
@@ -282,12 +290,12 @@ function favor(id){
         
         <?php
             $qu=mysqli_query($conn,"select * from qatb where productId=$id and answerStatus=1") or die(mysqli_error($conn));
-            while($q=mysqli_fetch_assoc($qu)){
+            while($qe=mysqli_fetch_assoc($qu)){
         ?>
         <div class="card">
-            <div class="card-header py-1 font-weight-bold">Q. <?php echo $q['question'];?></div>
-            <div class="card-body py-1"> <?php echo $q['answer'];?> </div>
-            <div class="card-footer bg-white p-1 text-secondary border-0 text-right">-By seller on <?php echo $q['date'];?> </div>
+            <div class="card-header py-1 font-weight-bold">Q. <?php echo $qe['question'];?></div>
+            <div class="card-body py-1"> <?php echo $qe['answer'];?> </div>
+            <div class="card-footer bg-white p-1 text-secondary border-0 text-right">-By seller on <?php echo $qe['date'];?> </div>
         </div>
             <?php } ?>
         <a href="qas.php?category=<?php echo $cat;?>&id=<?php echo $id;?>">See more answered questions</a>
@@ -306,7 +314,7 @@ function favor(id){
         <div class="Reviews">
         
             <h5>Customer Reviews</h5>
-                <div class="review mb-4 bg-dark  text-light p-3 rounded">
+                <div class="review mb-4 bg-dark text-light p-3 rounded">
                 <?php
                     if(isset($_POST['submitRev'])){
                         if($login==true){
@@ -314,7 +322,7 @@ function favor(id){
                             $review=mysql_real_escape_string($_POST['reviewText']);
                             $date= date("Y-m-d");
                             mysqli_query($conn,"insert into reviews(`userid`,`rating`,`reviewDetails`,`date`,`productid`) values($uid,$star,'$review','$date',$id)") or die(mysqli_error($conn));
-                            echo  "<script>Window.open(window.location.href,'_self')</script>";
+                            echo "<script>window.open(window.location.href,'_self')</script>";
                         }else{
                             echo "<script>alert('Please login to Review');</script>";
                         }
@@ -331,7 +339,7 @@ function favor(id){
 
                             <div id="stars-existing" class="starrr text-warning" data-rating='4'></div>  
                             <script src="js/star-rating.js"></script>
-                            <input type="number" value="1" id="rating" name="rating" style="display:none;">
+                            <input type="number" value="4" id="rating" name="rating" style="display:none;">
                             
                     </div>
                     <button type="submit" name="submitRev" class="btn btn-warning p-2">Submit Review</button>
@@ -344,7 +352,7 @@ function favor(id){
                 
                 <h5>Reviews <small class="text-secondary"><?php echo $q['reviewsNo'];?> Reviews</small></h5>
                 <?php
-                    $qu=mysqli_query($conn,"SELECT b.*, a.firstName FROM reviews AS b INNER JOIN userdetailstb as A ON (b.userid=a.id) order by id desc limit 5") or die(mysqli_error($conn));
+                    $qu=mysqli_query($conn,"SELECT b.*, a.firstName FROM reviews AS b INNER JOIN userdetailstb as A ON (b.userid=a.id) where b.productid=$id order by id desc limit 5") or die(mysqli_error($conn));
                     while($qp=mysqli_fetch_assoc($qu)){
 
                 ?>
@@ -378,7 +386,7 @@ function favor(id){
                             <?php 
                                 for($i=1;$i<=5;$i++){
                             ?>
-                                <li class="fa fa-star<?php if($i>($r)) echo '-o';?>"></li>
+                                <li class="fa fa-star<?php if($i>(round($q['rating']))) echo '-o';?>"></li>
                                 <?php } ?>
                     </span>
                 </div>
