@@ -77,7 +77,39 @@
         }
     }
 ?>
+<?php 
+    // function priceit($t){
+    //     echo "ajdfgdkfh"
+    //     echo "<script>document.getElementById('price').innerHTML=".$t."</script>";  
+    // }
+?>
 <?php include 'header.php'?>
+<script>
+function favor(id){
+        $.ajax({
+            url:"favo.php?id="+id, //the page containing php script
+            type: "POST", //request type
+            success:function(result){
+                $('#favourite').load('myaccount.php #tabfav');
+           }
+         });
+}
+
+function removeFromCart(id){
+        
+        $.ajax({
+            url:"removeFromCart.php?id="+id, //the page containing php script
+            type: "POST", //request type
+            success:function(result){
+                $('#cart').load('myaccount.php #tabcart');
+
+           }
+         });
+}
+        
+</script>
+
+
 <link rel="stylesheet" href="css/myaccount.css">
 <div class="container m-5">
     <div class="row">
@@ -92,6 +124,9 @@
                     </li>
                     <li class="nav-item">
                     <a class="nav-link" data-toggle="tab" href="#cart">My Cart</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#favourite">Favourites</a>
                     </li>
                     <li class="nav-item">
                     <a class="nav-link" data-toggle="tab" href="#change-pass">Change Password</a>
@@ -225,6 +260,7 @@
             </section>
 
             <section id="cart" class="row tab-pane fade">
+                <div id="tabcart">
                 <div class="row">
                     <div class="col-12">
                         <div class="heading">
@@ -242,58 +278,51 @@
                                         <th colspan="2">
                                             <h4>My Orders</h4>
                                         </th>
+                                       
                                         <th colspan="2"> 
                                             <ul class="pull-right">
-                                                <li class="price-box"><span class="mx-2">Total</span> <span class="price text-danger">₹135000</span></li>
+                                                <li class="price-box"><span class="mx-2">Total</span> <span class="price text-danger">₹</span><span  id="price" class="price text-danger"></span></li>
                                             </ul>
                                         </th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                <?php 
+                                            $t=0;
+                                            echo $t;
+                                            $cart=(json_decode($q['cart']));
+                                            foreach($cart as $i => $value){       
+                                                $selectQuery="select * from productdetails where id=$i";
+
+                                                $qu = mysqli_query($conn,$selectQuery) or die(mysqli_error($conn));
+                                                $qpc=mysqli_fetch_assoc($qu);  
+                                                $t=$t+($qpc['newPrice']*$value);
+                                                priceit($t);
+                                                echo $t;
+                                        ?>
                                     <tr>
                                         <td>
                                             <a href="product-page.php?p=m-tech&amp;id=3">
                                                 <div class="product-image">
-                                                    <img alt="GadgetsPick" class="img img-fluid" src="images/test.jpeg">
+                                                    <img alt="GadgetsPick" class="img img-fluid" src="images/<?php echo $qpc['category']."/".$qpc['image1'];?>">
                                                 </div>
                                             </a>
                                         </td>
-                                        <td>
+                                        <td style="width:300px;">
                                             <div class="product-title"> 
-                                                <a href="product-page.html">ertyuioijhgf</a> 
+                                                <a href="single-product.php?category=<?php echo $qpc['category']."&id=".$qpc['id'];?>"><?php echo $qpc['title']; ?></a>
                                             </div>
                                         </td>
                                         <td>
                                             <div class="base-price price-box"> 
-                                                <span class="price">₹45000 X 2 = ₹90000</span> 
+                                                <span class="price">₹<?php echo $qpc['newPrice'];?> X <?php echo $value;?> = ₹<?php echo ($qpc['newPrice']*$value);?></span> 
                                             </div>
                                         </td>
                                         <td>
-                                            <i title="Remove Item From Cart" data-id="100" class="fa fa-trash cart-remove-item" onclick=""></i>
+                                            <i title="Remove Item From Cart" data-id="100" class="fa fa-trash cart-remove-item" onclick='removeFromCart(<?php echo $i;?>);'></i>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td>
-                                            <a href="product-page.php?p=m-tech&amp;id=3">
-                                                <div class="product-image">
-                                                    <img alt="GadgetsPick" class="img img-fluid" src="images/test.jpeg">
-                                                </div>
-                                            </a>
-                                        </td>
-                                        <td>
-                                            <div class="product-title"> 
-                                                <a href="product-page.html">ertyuioijhgf</a> 
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="base-price price-box"> 
-                                                <span class="price">₹45000 X 1 = ₹45000</span> 
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <i title="Remove Item From Cart" data-id="100" class="fa fa-trash cart-remove-item" onclick=""></i>
-                                        </td>
-                                    </tr>
+                                <?php }?>
                                 </tbody>
                             </table>
                         </div>
@@ -307,6 +336,79 @@
                         <button onclick="printDiv('form-print')" class="btn btn-primary" type="button">Print</button>
                         </div>
                     </div>
+                </div>
+                </div></section>
+            <section id="favourite" class="row tab-pane fade">
+            <div id="tabfav">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="heading">
+                            <h2 class="bg-light p-3">Favourites</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="row py-2" id="tab">
+                    <div class="col-12 mb-xs-30">
+                    <div class="cart-item-table commun-table">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th colspan="2">
+                                            <h4>My Favourites</h4>
+                                        </th>
+                                        <th colspan="3"> 
+                                            <ul class="pull-right">
+                                                <li class="price-box"><span class="mx-2">Total Items : </span> <span class="total text-danger"><?php echo count(json_decode($q['favourite']));?></span></li>
+                                            </ul>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                <?php 
+                                    
+                                    $fav=(json_decode($q['favourite']));
+                                    foreach($fav as $i){       
+                                        $selectQuery="select * from productdetails where id=$i";
+
+                                        $qu = mysqli_query($conn,$selectQuery) or die(mysqli_error($conn));
+                                        $qp=mysqli_fetch_assoc($qu);                         
+                                ?>
+                                    <tr>
+                                        <td>
+                                            <div class="product-image">
+                                                    <img alt="GadgetsPick" class="img img-fluid" src="images/<?php echo $qp['category']."/".$qp['image1'];?>">
+                                                </div>
+                                        </td>
+                                        <td style="width:300px;">
+                                            <div class="product-title"> 
+                                                <a href="single-product.php?category=<?php echo $qp['category']."&id=".$qp['id'];?>"><?php echo $qp['title']; ?></a> 
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="base-price price-box"> 
+                                                <span class="category"><?php echo $qp['category'];?></span> 
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="base-price price-box"> 
+                                                <span class="price">₹<?php echo $qp['newPrice'];?></span> 
+                                            </div>
+                                        </td>
+                                        <td class="lastbtns">
+                                            <a class="btn btn-primary" href="single-product.php?category=<?php echo $qp['category']."&id=".$qp['id'];?>">View</a>
+                                            <i title="Remove Item From Favourites" data-id="100" class="fa fa-trash cart-remove-item" onclick='favor(<?php echo $i;?>);' ></i>
+                                        
+                                        </td>
+                                    </tr>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                           
                 </div>
             </section>
 

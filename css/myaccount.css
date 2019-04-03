@@ -6,12 +6,17 @@
 .body2>.row>div{
     margin-bottom:15px;
 }
-section#cart table img{
+section#cart table .product-image{
+    width:200px
+}
+#tabfav table .product-image{
     width:200px
 }
 
+
 section#cart table td{
     vertical-align: middle;
+  
 }
 section#cart table td >*{
     display: flex;
@@ -23,4 +28,21 @@ table ul{
 
 .alert{
     display: none;
+}
+#tabfav table td{
+    vertical-align: middle;
+    text-align: center;
+}
+#tabfav table td >*{
+   text-align:center;
+}
+
+.lastbtns>*{
+    margin:20px auto;
+    text-align: center;
+}
+
+.lastbtns{
+    display: flex;
+    flex-direction: column;
 }
