@@ -77,13 +77,11 @@
         }
     }
 ?>
-<?php 
-    // function priceit($t){
-    //     echo "ajdfgdkfh"
-    //     echo "<script>document.getElementById('price').innerHTML=".$t."</script>";  
-    // }
-?>
+
 <?php include 'header.php'?>
+
+
+
 <script>
 function favor(id){
         $.ajax({
@@ -91,6 +89,7 @@ function favor(id){
             type: "POST", //request type
             success:function(result){
                 $('#favourite').load('myaccount.php #tabfav');
+               
            }
          });
 }
@@ -102,7 +101,6 @@ function removeFromCart(id){
             type: "POST", //request type
             success:function(result){
                 $('#cart').load('myaccount.php #tabcart');
-
            }
          });
 }
@@ -117,7 +115,7 @@ function removeFromCart(id){
             <nav class="navbar bg-white">
                 <ul class="navbar-nav nav nav-pills" id="menu" role="tablist">
                     <li class="nav-item">
-                    <a class="nav-link active" data-toggle="tab" href="#dashboard">My Dashboard</a>
+                    <a class="nav-link" data-toggle="tab" href="#dashboard">My Dashboard</a>
                     </li>
                     <li class="nav-item">
                     <a class="nav-link" data-toggle="tab" href="#account-details">Account Details</a>
@@ -153,11 +151,23 @@ function removeFromCart(id){
                         </div>
                         <div class="card">
                             <div class="card-header ">Shipping Address</div>
-                            <div class="card-body text-center font-weight-bold">
-                                #21500 Street No. 6/4-A<br>
-                                Power House Road,<br>
-                                Bathinda,Punjab
+                            <div class="card-body text-center font-weight-bold" id="shipadd">
+                            <?php
+                                    $q=mysqli_query($conn,"select * from userdetailstb where id='$uid'") or die(mysqli_error($conn));
+                                    $qud=mysqli_fetch_assoc($q);
+                            ?>
+                                
+                                <?php if($qud['shipaddr1']!='') echo $qud['shipaddr1']."<br>";?>
+                                <?php if($qud['shipaddr2']!='') echo $qud['shipaddr2']."<br>";?>
+                                <?php if($qud['shiplandmark']!='') echo $qud['shiplandmark']."<br>";?>
+                                <?php if($qud['city']!='') echo $qud['city'].",";?><?php if($qud['state']!='') echo $qud['state'];?>
+                                
                             </div>
+                            <script>
+                                if(document.getElementById('shipadd').innerHTML.trim()==""){
+                                    document.getElementById('shipadd').innerHTML="Please fill out the account details !!!";
+                                }
+                            </script>
                         </div>
                     </div>
                 </div>
@@ -278,18 +288,8 @@ function removeFromCart(id){
                                         <th colspan="2">
                                             <h4>My Orders</h4>
                                         </th>
-                                       
-                                        <th colspan="2"> 
-                                            <ul class="pull-right">
-                                                <li class="price-box"><span class="mx-2">Total</span> <span class="price text-danger">₹</span><span  id="price" class="price text-danger"></span></li>
-                                            </ul>
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                <?php 
+                                        <?php 
                                             $t=0;
-                                            echo $t;
                                             $cart=(json_decode($q['cart']));
                                             foreach($cart as $i => $value){       
                                                 $selectQuery="select * from productdetails where id=$i";
@@ -297,12 +297,29 @@ function removeFromCart(id){
                                                 $qu = mysqli_query($conn,$selectQuery) or die(mysqli_error($conn));
                                                 $qpc=mysqli_fetch_assoc($qu);  
                                                 $t=$t+($qpc['newPrice']*$value);
-                                                priceit($t);
-                                                echo $t;
+                                            }
+                                        ?>
+                                        <th colspan="2"> 
+                                            <ul class="pull-right">
+                                                <li class="price-box"><span class="mx-2">Total</span> <span class="price text-danger">₹</span><span  id="price" class="price text-danger"><?php echo @$t;?></span></li>
+                                            </ul>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                <?php 
+                                            $t=0;
+                                            $cart=(json_decode($q['cart']));
+                                            foreach($cart as $i => $value){       
+                                                $selectQuery="select * from productdetails where id=$i";
+
+                                                $qu = mysqli_query($conn,$selectQuery) or die(mysqli_error($conn));
+                                                $qpc=mysqli_fetch_assoc($qu);  
+                                                $t=$t+($qpc['newPrice']*$value);
                                         ?>
                                     <tr>
                                         <td>
-                                            <a href="product-page.php?p=m-tech&amp;id=3">
+                                            <a href="">
                                                 <div class="product-image">
                                                     <img alt="GadgetsPick" class="img img-fluid" src="images/<?php echo $qpc['category']."/".$qpc['image1'];?>">
                                                 </div>
@@ -330,14 +347,8 @@ function removeFromCart(id){
                     </div>
                 </div>
                 
-                <div class="row">
-                    <div class="col-12">
-                        <div class="print-btn text-center mt-3">
-                        <button onclick="printDiv('form-print')" class="btn btn-primary" type="button">Print</button>
-                        </div>
-                    </div>
                 </div>
-                </div></section>
+                </section>
             <section id="favourite" class="row tab-pane fade">
             <div id="tabfav">
                 <div class="row">
@@ -462,4 +473,11 @@ function removeFromCart(id){
     </div>
 </div>
 
+<script>
+    var type = window.location.hash.substr(1);
+    if(type=="") type="dashboard";
+    // document.getElementById('#'+type).classList.add("active");
+    $("a[href$='#"+type+"']").addClass("active");
+</script>
 <?php include 'footer.php'?>
+
