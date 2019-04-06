@@ -125,7 +125,8 @@ function favor(id){
                     <div class="col-2 d-flex flex-column align-items-center justify-content-center">
                         <div class="favorite mb-5">
                             <a onclick="favor(<?php echo $q['id'];?>);"><span id="favo<?php echo $q['id'];?>" class="<?php 
-                                $que=mysqli_query($conn,"select favourite from userdetailstb where id=$uid") or die(mysqli_error($conn));
+                               
+                                $que=mysqli_query($conn,"select favourite from userdetailstb where id=$uid");
                                 $ar=json_decode(mysqli_fetch_assoc($que)['favourite']);
                                 if(in_array($q['id'],$ar)){
                                     echo "fa fa-heart text-danger";

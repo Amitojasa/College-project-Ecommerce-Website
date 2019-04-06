@@ -9,3 +9,10 @@
     width:200px;
     height:auto;
 }
+
+.qas > *{
+    margin:5px;
+}
+.qas .card-body {
+    display:none;
+}

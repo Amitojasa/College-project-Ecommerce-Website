@@ -116,7 +116,7 @@ function favor(id){
             </div>
             <div class="operations my-3 p-3 d-flex justify-content-center row">
                 <button class="btn btn-danger text-white p-3 col-sm-2" onclick='favor(<?php echo $id;?>);' ><i class="<?php 
-                    $que=mysqli_query($conn,"select favourite from userdetailstb where id=$uid") or die(mysqli_error($conn));
+                    $que=mysqli_query($conn,"select favourite from userdetailstb where id=$uid");
                     $ar=json_decode(mysqli_fetch_assoc($que)['favourite']);
                     if(in_array($id,$ar)){
                         echo "fa fa-heart";
@@ -273,8 +273,8 @@ function favor(id){
                 <?php 
                     if(isset($_POST['quesSubmit'])){
                         $ques=mysql_real_escape_string($_POST['text']);
-                        $date= date("Y-m-d");
-                        mysqli_query($conn,"insert into qatb(`question`, `date`,`productId`) values('$ques','$date',$id)") or die(mysqli_error($conn));
+                        //$date= date("Y-m-d");
+                        mysqli_query($conn,"insert into qatb(`question`,`productId`) values('$ques',$id)") or die(mysqli_error($conn));
                     }
                 ?>
                 <form method="POST">
