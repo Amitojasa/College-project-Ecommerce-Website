@@ -71,6 +71,7 @@
                     <li class="nav-item">
                         <a href="myaccount.php" class="nav-link"><span class="fa fa-user"></span> <?php echo $userName; ?></a>
                     </li>
+                    
                 </ul>
             </div>  
         </nav>
@@ -107,6 +108,9 @@
                     </li>
                     <li class="nav-item ml-sm-3">
                         <a href="myaccount.php#cart" class="nav-link" title="Shopping Cart" ><span class="fa fa-shopping-cart nav2-icons"></span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="compare.php" title="compare" class="nav-link"><img src="images/compare-grey.png"></a>
                     </li>
                 </ul>
             </div>
