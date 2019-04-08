@@ -18,7 +18,7 @@
         <div class="row">
             <div class="col-6">
                 <select name="prod1" id="prod1" class="form-control" placeholder="select a product">
-                    <?php
+                    <?php 
                         $cat=echo "<script>document.getElementById('cat').value</script>";
                         $qp1=mysqli_query($conn,"select compare from userdetailstb where id=$uid");
                         $qp1=mysqli_fetch_assoc($qp1)['compare'];
