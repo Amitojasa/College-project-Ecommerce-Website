@@ -28,6 +28,15 @@
              alert("Product is out of stock");
          }
     }
+    function addToCompare (id){
+       $.ajax({
+            url:"addToCompare.php?id="+id, //the page containing php script
+            type: "POST", //request type
+            success:function(result){
+                alert(result);
+           }
+         });
+    }
 
     
 </script>
@@ -126,7 +135,7 @@ function favor(id){
                 ?>" id="favo"  title="favourite"></i></button>
                 <button class="btn btn-primary text-white p-3 col-sm-3" href="buyNow.php?id=<?php echo $id;?>" ><b>Buy Now</b></button>
                 <button class="btn btn-warning text-white p-3 col-sm-3" onclick='addToCart(<?php echo $id;?>);'><b>Add to Cart</b></button>
-                <button class="btn btn-secondary text-white p-3 col-sm-2" href="buyNow.php?id=<?php echo $id;?>" ><i title="compare"><img src="images/compare.png"></i></button>
+                <button class="btn btn-secondary text-white p-3 col-sm-2" onclick="addToCompare(<?php echo $id;?>);" ><i title="compare"><img src="images/compare.png"></i></button>
 
             </div>
         </div>
@@ -191,56 +200,82 @@ function favor(id){
 
 <section class="m-3 related">
     <h4 class="mb-2">Related Products</h4>
-    <div class="card-deck">
-    <div class="card">
-    
-        <img class="card-img-top" src="images/test.jpeg" alt="Card image">
-        <div class="card-body pt-2">
-            <h5 class="card-title my-1">Lenovo Ideapad </h5>
-            <p class="card-text p-0 my-1">Lenovo Ideapad 330 Core</p>
-            <h5 class="card-title p-0 m-0 mb-2"> &#8377; 49500 <strike class="text-danger"><small class="text-secondary"> &#8377; 60000</small></strike> </h5>
-            <a href="#" class="btn btn-primary px-5">View</a>
+    <div id="demo2" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <div class="card-deck">
+                    <div class="card">
+                        <img class="card-img-top" src="images/test.jpeg" alt="Card image">
+                        <div class="card-body pt-2">
+                            <h5 class="card-title my-1">Lenovo Ideapad </h5>
+                            <p class="card-text p-0 my-1">Lenovo Ideapad 330 Core</p>
+                            <h5 class="card-title p-0 m-0 mb-2"> &#8377; 49500 <strike class="text-danger"><small class="text-secondary"> &#8377; 60000</small></strike> </h5>
+                            <a href="#" class="btn btn-primary px-5">View</a>
+                        </div>
+                    </div>
+                    <div class="card">
+                    
+                        <img class="card-img-top" src="images/test.jpeg" alt="Card image">
+                        <div class="card-body pt-2">
+                            <h5 class="card-title my-1">Lenovo Ideapad </h5>
+                            <p class="card-text p-0 my-1">Lenovo Ideapad 330 Core</p>
+                            <h5 class="card-title p-0 m-0 mb-2"> &#8377; 49500 <strike class="text-danger"><small class="text-secondary"> &#8377; 60000</small></strike> </h5>
+                            <a href="#" class="btn btn-primary px-5">View</a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img class="card-img-top" src="images/test.jpeg" alt="Card image">
+                        <div class="card-body pt-2">
+                            <h5 class="card-title my-1">Lenovo Ideapad </h5>
+                            <p class="card-text p-0 my-1">Lenovo Ideapad 330 Core</p>
+                            <h5 class="card-title p-0 m-0 mb-2"> &#8377; 49500 <strike class="text-danger"><small class="text-secondary"> &#8377; 60000</small></strike> </h5>
+                            <a href="#" class="btn btn-primary px-5">View</a>
+                        </div>
+                    </div>
+                    <div class="card">
+                    
+                        <img class="card-img-top" src="images/test.jpeg" alt="Card image">
+                        <div class="card-body pt-2">
+                            <h5 class="card-title my-1">Lenovo Ideapad </h5>
+                            <p class="card-text p-0 my-1">Lenovo Ideapad 330 Core</p>
+                            <h5 class="card-title p-0 m-0 mb-2"> &#8377; 49500 <strike class="text-danger"><small class="text-secondary"> &#8377; 60000</small></strike> </h5>
+                            <a href="#" class="btn btn-primary px-5">View</a>
+                        </div>
+                    </div>
+                    <div class="card">
+                    
+                        <img class="card-img-top" src="images/test.jpeg" alt="Card image">
+                        <div class="card-body pt-2">
+                            <h5 class="card-title my-1">Lenovo Ideapad </h5>
+                            <p class="card-text p-0 my-1">Lenovo Ideapad 330 Core</p>
+                            <h5 class="card-title p-0 m-0 mb-2"> &#8377; 49500 <strike class="text-danger"><small class="text-secondary"> &#8377; 60000</small></strike> </h5>
+                            <a href="#" class="btn btn-primary px-5">View</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="card-deck">
+                    <div class="card">
+                    
+                        <img class="card-img-top" src="images/test.jpeg" alt="Card image">
+                        <div class="card-body pt-2">
+                            <h5 class="card-title my-1">Lenovo Ideapad </h5>
+                            <p class="card-text p-0 my-1">Lenovo Ideapad 330 Core</p>
+                            <h5 class="card-title p-0 m-0 mb-2"> &#8377; 49500 <strike class="text-danger"><small class="text-secondary"> &#8377; 60000</small></strike> </h5>
+                            <a href="#" class="btn btn-primary px-5">View</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
-    <div class="card">
-    
-        <img class="card-img-top" src="images/test.jpeg" alt="Card image">
-        <div class="card-body pt-2">
-            <h5 class="card-title my-1">Lenovo Ideapad </h5>
-            <p class="card-text p-0 my-1">Lenovo Ideapad 330 Core</p>
-            <h5 class="card-title p-0 m-0 mb-2"> &#8377; 49500 <strike class="text-danger"><small class="text-secondary"> &#8377; 60000</small></strike> </h5>
-            <a href="#" class="btn btn-primary px-5">View</a>
-        </div>
-    </div>
-    <div class="card">
-    
-        <img class="card-img-top" src="images/test.jpeg" alt="Card image">
-        <div class="card-body pt-2">
-            <h5 class="card-title my-1">Lenovo Ideapad </h5>
-            <p class="card-text p-0 my-1">Lenovo Ideapad 330 Core</p>
-            <h5 class="card-title p-0 m-0 mb-2"> &#8377; 49500 <strike class="text-danger"><small class="text-secondary"> &#8377; 60000</small></strike> </h5>
-            <a href="#" class="btn btn-primary px-5">View</a>
-        </div>
-    </div>
-    <div class="card">
-    
-        <img class="card-img-top" src="images/test.jpeg" alt="Card image">
-        <div class="card-body pt-2">
-            <h5 class="card-title my-1">Lenovo Ideapad </h5>
-            <p class="card-text p-0 my-1">Lenovo Ideapad 330 Core</p>
-            <h5 class="card-title p-0 m-0 mb-2"> &#8377; 49500 <strike class="text-danger"><small class="text-secondary"> &#8377; 60000</small></strike> </h5>
-            <a href="#" class="btn btn-primary px-5">View</a>
-        </div>
-    </div>
-    <div class="card">
-    
-        <img class="card-img-top" src="images/test.jpeg" alt="Card image">
-        <div class="card-body pt-2">
-            <h5 class="card-title my-1">Lenovo Ideapad </h5>
-            <p class="card-text p-0 my-1">Lenovo Ideapad 330 Core</p>
-            <h5 class="card-title p-0 m-0 mb-2"> &#8377; 49500 <strike class="text-danger"><small class="text-secondary"> &#8377; 60000</small></strike> </h5>
-            <a href="#" class="btn btn-primary px-5">View</a>
-        </div>
+        <a class="carousel-control-prev" href="#demo2" data-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </a>
+        <a class="carousel-control-next" href="#demo2" data-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </a>
+
     </div>
 </section>
 

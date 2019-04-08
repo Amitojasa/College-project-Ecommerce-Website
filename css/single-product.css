@@ -37,7 +37,7 @@
     margin:0;
     margin-left:2px!important;
     margin-right:2px!important;
-    width:300px;
+    max-width:270px;
     padding:10px;
     border:0;
 }
@@ -76,4 +76,14 @@
 }
 .carousel-control-prev-icon, .carousel-control-next-icon{
     background-color: #007bff;
+}
+#demo2 .carousel-control-prev,#demo2 .carousel-control-next{
+    width:20px;
+
+}
+#demo2 .carousel-control-prev-icon,#demo2 .carousel-control-next-icon{
+    background-color:#007bff;
+}
+#demo .card img{
+    width:100%;
 }

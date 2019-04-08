@@ -8,11 +8,19 @@
     margin:0;
     margin-left:2px!important;
     margin-right:2px!important;
-    max-width:300px;
+    max-width:270px;
     padding:10px;
     border:0;
 }
 
 .card img{
     width:100%;
+}
+
+.m-3 .carousel-control-prev,.m-3 .carousel-control-next{
+    width:20px;
+
+}
+.m-3 .carousel-control-prev-icon,.m-3 .carousel-control-next-icon{
+    background-color:#007bff;
 }
