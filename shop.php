@@ -8,6 +8,16 @@
                 $_SERVER['REQUEST_URI'];
 
     
+    $limit = 3; 
+    if (isset($_GET["page"])) {  
+        $pn  = $_GET["page"];  
+    }  
+    else {  
+        $pn=1;  
+    };   
+    $start_from = ($pn-1) * $limit;   
+                        
+
     $selectQuery="select * from productdetails where category = '$cat'";
     if($order=='relevance'){
 
@@ -18,6 +28,7 @@
     }elseif($order=='newest'){
         $selectQuery=$selectQuery." order by id desc";
     }
+    $selectQuery.=" limit $start_from,$limit";
 ?>
 
 
@@ -47,8 +58,9 @@ function favor(id){
         </aside>
 
         <?php 
-            $qc = mysqli_query($conn,"select count(*) from productdetails where category = '$cat'") or die(mysqli_error($conn));
+            $qc = mysqli_query($conn,"select count(*) from productdetails where category = '$cat'  ") or die(mysqli_error($conn));
             $v=mysqli_fetch_array($qc)[0];
+            $total_records=$v;
         ?>
 
         <div class="col-sm-10">
@@ -149,11 +161,23 @@ function favor(id){
         <div class="container my-3">
             <div class="row offset-2 d-flex justify-content-center">
                 <ul class="pagination">
-                    <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                    <li class="page-item <?php if($pn==1)echo 'disabled';?>"><a class="page-link" href="shop.php?category=laptop&page=<?php echo $pn-1;?>">Previous</a></li>
+                    <?php   
+                                                   
+                            // Number of pages required. 
+                            $total_pages = ceil($total_records / $limit);   
+                            $pagLink = "";                         
+                            for ($i=1; $i<=$total_pages; $i++) { 
+                            if ($i==$pn) { 
+                                $pagLink .= '<li class="page-item active"><a class="page-link" href="shop.php?category=laptop&page='.$i.'">'.$i.'</a></li>';
+                            }             
+                            else  { 
+                                $pagLink .= '<li class="page-item"><a class="page-link" href="shop.php?category=laptop&page='.$i.'">'.$i.'</a></li>';  
+                            } 
+                            };   
+                            echo $pagLink;   
+                        ?> 
+                        <li class="page-item"><a class="page-link" href="shop.php?category=laptop&page=<?php echo $pn+1;?>">Next</a></li>
                 </ul>
             </div>
         </div>

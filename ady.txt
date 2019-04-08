@@ -1,0 +1,1 @@
+<li class="page-item"><a class="page-link" href="shop.php?category=laptop&page=<?php echo $pn+1;?>">Next</a></li>
