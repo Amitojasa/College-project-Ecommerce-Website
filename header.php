@@ -103,10 +103,10 @@
              
                 <ul class="navbar-nav cols-sm-1 offset-1 ">
                     <li class="nav-item">
-                        <a href="#" class="nav-link" title="Favourites"><span class="fa fa-heart nav2-icons" ></span></a>
+                        <a href="myaccount.php#favourite" class="nav-link" title="Favourites"><span class="fa fa-heart nav2-icons" ></span></a>
                     </li>
                     <li class="nav-item ml-sm-3">
-                        <a href="#" class="nav-link" title="Shopping Cart" ><span class="fa fa-shopping-cart nav2-icons"></span></a>
+                        <a href="myaccount.php#cart" class="nav-link" title="Shopping Cart" ><span class="fa fa-shopping-cart nav2-icons"></span></a>
                     </li>
                 </ul>
             </div>
