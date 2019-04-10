@@ -1,12 +1,36 @@
 <?php include 'header.php'; ?>
-
+<link rel="stylesheet" href="css/compare.css">
 <?php
     $cat='%';
 ?>
-<section class="comparision container-fluid  my-2">
+
+<script>
+
+    function categoryselect(){
+        document.cookie = "cat="+document.getElementById('cat').value;
+        location.reload();
+
+    }
+    function prod1select(){
+        
+        document.cookie = "prod1="+document.getElementById('prod1').value; 
+        location.reload();
+    }
+
+
+    function prod2select(){
+        
+        document.cookie = "prod2="+document.getElementById('prod2').value; 
+        location.reload();
+    }
+
+</script>
+<section class="comparision container-fluid my-3">
     <form method="post">
 
-        <select name="category" id="cat" class="form-control" placeholder="select a category">
+        <select name="category" id="cat" class="form-control" placeholder="select a category" onchange="categoryselect()">
+            <?php $cat=$_COOKIE['cat'];?>
+            <option value="%" <?php if($cat=='%')echo "selected";?>>All</option>
             <option value="laptop" <?php if($cat=='laptop')echo "selected";?>>laptop</option>
             <option value="mobile" <?php if($cat=='mobile')echo "selected";?>>mobile</option>
             <option value="camera" <?php if($cat=='camera')echo "selected";?>>camera</option>
@@ -14,41 +38,59 @@
             <option value="other" <?php if($cat=='other')echo "selected";?>>Other</option>
         </select>
         <br>
-
+       
         <div class="row">
-            <div class="col-6">
-                <select name="prod1" id="prod1" class="form-control" placeholder="select a product">
+            <div class="col-6"> 
+                <select name="prod1" id="prod1" class="form-control" placeholder="select a product" onchange="prod1select()">
+                <option value=""><?php echo "Select a Product";?></option>
                     <?php 
-                        $cat=echo "<script>document.getElementById('cat').value</script>";
+                        $cat=$_COOKIE['cat'];
                         $qp1=mysqli_query($conn,"select compare from userdetailstb where id=$uid");
                         $qp1=mysqli_fetch_assoc($qp1)['compare'];
                         $ar=json_decode($qp1);
                         foreach($ar as $p){
-                            $qp1=mysqli_query($conn,"select * from productdetails where id=$p");
+                            $qp1=mysqli_query($conn,"select * from productdetails where id=$p and category='$cat'");
+                            $qp1=mysqli_fetch_assoc($qp1);
                     ?>
-                    <option value="<?php echo $p;?>">all</option>
+                    <option value="<?php echo $p;?>"<?php if($_COOKIE['prod1']==$p)echo "selected";?>><?php echo $qp1['title'];?></option>
+                    <?php } ?>
                 </select>
             </div>
             <div class="col-6">
-                <select name="category" id="cat" class="form-control" placeholder="select a category">
-                    <option value="%" <?php if($cat=='%')echo "selected";?>>all</option>
+                <select name="prod2" id="prod2" class="form-control" placeholder="select a category" onchange="prod2select()">
+                <option value=""><?php echo "Select a Product";?></option>
+                    <?php 
+                        $cat=$_COOKIE['cat'];
+                        $qp2=mysqli_query($conn,"select compare from userdetailstb where id=$uid");
+                        $qp2=mysqli_fetch_assoc($qp2)['compare'];
+                        $ar=json_decode($qp2);
+                        foreach($ar as $p){
+                            $qp2=mysqli_query($conn,"select * from productdetails where id=$p and category='$cat'");
+                            $qp2=mysqli_fetch_assoc($qp2);
+                    ?>
+                    <option value="<?php echo $p;?>"<?php if(isset($_COOKIE['prod2'])==$p)echo "selected";?>><?php echo $qp2['title'];?></option>
+                    <?php } ?>
                 </select>
             </div>
         </div>
-
-        <button type="submit" class="btn btn-primary" name="submit">Submit</button>
     </form>
 
     <div class="comparison-results">
         <div class="row">
-            <div class="col-6">
+            <div class="col-6" id="prod1result">
+                
+
                 <?php 
+                if(isset($_COOKIE['prod1']) && ($_COOKIE['prod1']!="")){
+                    $id=$_COOKIE['prod1'];
+                
                     $selectQuery="select * from productdetails where category = '$cat' and id=$id";
 
-                        $qu = mysqli_query($conn,$selectQuery) or die(mysqli_error($conn));
+                        $qu = mysqli_query($conn,$selectQuery);
                         $q=mysqli_fetch_assoc($qu);
                 ?>
-                <img class="img-fluid align-self-center" src="<?php echo "images/".$q['category']."/".$q['image1'];?>" alt="Los Angeles" >
+                <div class="image">
+                <img class="img-fluid align-self-center" src="<?php echo "images/".$q['category']."/".$q['image1'];?>" alt="Los Angeles" ></div>
                 <div class="title">
                         <h5><?php echo $q['title']; ?></h5>
                     </div>
@@ -60,7 +102,7 @@
                             <h6  class="text-secondary">MRP: <strike class="text-danger"><span  class="text-dark"> &#8377; <?php echo $q['oldPrice']; ?></span></strike></h6>
                             <h6 class="text-dark"><span class="text-secondary">You Save: </span>&#8377; <?php echo $q['oldPrice']-$q['newPrice']; ?></h6>
                             
-                    </div>
+                    </div><br>
                     <section class="details row" id="details">
                             <?php $features=(explode(";",$q['details']));
                                 $detailsArray = array();
@@ -74,7 +116,7 @@
                                 <div class="secHeader mb-3">
                                     <h5>Product Details</h5>
                                 </div>
-                        <table class="table" cellspacing="0" cellpadding="0" border="0">
+                        <table class="table col-11" cellspacing="0" cellpadding="0" border="0">
                             <tbody>
                                 <?php foreach($detailsArray as $i=>$j){?>
                                 <tr><td class="bg-light px-2"><?php echo $i;?></td><td class="value px-2"><?php echo $j;?></td></tr>
@@ -82,17 +124,23 @@
                             </tbody>
                         </table>
                     </section>
-
+                    <?php }
+                        else{
+                            echo "Please select the product.";
+                    }?>                       
             </div>
-            <div class="col-6">
+            <div class="col-6" id="prod2result">
                 <?php 
-                
-                    $selectQuery="select * from productdetails where category = '$cat' and id=$id";
+                    if(isset($_COOKIE['prod2']) && ($_COOKIE['prod2']!="")){
+                        $id=$_COOKIE['prod2'];
+                        $selectQuery="select * from productdetails where category = '$cat' and id=$id";
 
-                    $qu = mysqli_query($conn,$selectQuery) or die(mysqli_error($conn));
-                    $q=mysqli_fetch_assoc($qu);
+                        $qu = mysqli_query($conn,$selectQuery) or die(mysqli_error($conn));
+                        $q=mysqli_fetch_assoc($qu);
                 ?>
+                <div class="image">
                 <img class="img-fluid align-self-center" src="<?php echo "images/".$q['category']."/".$q['image1'];?>" alt="Los Angeles" >
+                </div>
                     <div class="title">
                             <h5><?php echo $q['title']; ?></h5>
                         </div>
@@ -104,7 +152,7 @@
                                 <h6  class="text-secondary">MRP: <strike class="text-danger"><span  class="text-dark"> &#8377; <?php echo $q['oldPrice']; ?></span></strike></h6>
                                 <h6 class="text-dark"><span class="text-secondary">You Save: </span>&#8377; <?php echo $q['oldPrice']-$q['newPrice']; ?></h6>
                                 
-                        </div>
+                        </div><br>
                         <section class="details row" id="details">
                                 <?php $features=(explode(";",$q['details']));
                                     $detailsArray = array();
@@ -118,7 +166,7 @@
                                     <div class="secHeader mb-3">
                                         <h5>Product Details</h5>
                                     </div>
-                            <table class="table" cellspacing="0" cellpadding="0" border="0">
+                            <table class="table col-11" cellspacing="0" cellpadding="0" border="0">
                                 <tbody>
                                     <?php foreach($detailsArray as $i=>$j){?>
                                     <tr><td class="bg-light px-2"><?php echo $i;?></td><td class="value px-2"><?php echo $j;?></td></tr>
@@ -126,6 +174,12 @@
                                 </tbody>
                             </table>
                         </section>
+                    <?php }
+                        else{
+                            echo "Please select the product.";
+                        }
+                    ?>
+                    
             </div>
         </div>
     </div>

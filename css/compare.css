@@ -1,0 +1,18 @@
+.img-fluid{
+
+    height:90%;
+    width:auto;
+    
+
+}
+.image{
+    height:400px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.table td{
+    padding:2px;
+    margin:0px;
+}
