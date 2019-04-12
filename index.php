@@ -38,7 +38,7 @@ include 'header.php';
 </div>
 </section>
 <section class="m-3">
-    <h4 class="mb-2">On Sale Products</h4>
+    <h4 class="mb-2">Deals of the Day</h4>
     <div id="demo0" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active">
