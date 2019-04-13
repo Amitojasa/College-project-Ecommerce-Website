@@ -38,155 +38,49 @@ include 'header.php';
 </div>
 </section>
 <section class="m-3">
-    <h4 class="mb-2">Deals of the Day</h4>
-    <div id="demo0" class="carousel slide" data-ride="carousel">
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <div class="card-deck">
-                    <div class="card">
-                        <img class="card-img-top" src="images/test.jpeg" alt="Card image">
-                        <div class="card-body pt-2">
-                            <h5 class="card-title my-1">Lenovo Ideapad </h5>
-                            <p class="card-text p-0 my-1">Lenovo Ideapad 330 Core</p>
-                            <h5 class="card-title p-0 m-0 mb-2"> &#8377; 49500 <strike class="text-danger"><small class="text-secondary"> &#8377; 60000</small></strike> </h5>
-                            <a href="#" class="btn btn-primary px-5">View</a>
-                        </div>
-                    </div>
-                    <div class="card">
-                    
-                        <img class="card-img-top" src="images/test.jpeg" alt="Card image">
-                        <div class="card-body pt-2">
-                            <h5 class="card-title my-1">Lenovo Ideapad </h5>
-                            <p class="card-text p-0 my-1">Lenovo Ideapad 330 Core</p>
-                            <h5 class="card-title p-0 m-0 mb-2"> &#8377; 49500 <strike class="text-danger"><small class="text-secondary"> &#8377; 60000</small></strike> </h5>
-                            <a href="#" class="btn btn-primary px-5">View</a>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <img class="card-img-top" src="images/test.jpeg" alt="Card image">
-                        <div class="card-body pt-2">
-                            <h5 class="card-title my-1">Lenovo Ideapad </h5>
-                            <p class="card-text p-0 my-1">Lenovo Ideapad 330 Core</p>
-                            <h5 class="card-title p-0 m-0 mb-2"> &#8377; 49500 <strike class="text-danger"><small class="text-secondary"> &#8377; 60000</small></strike> </h5>
-                            <a href="#" class="btn btn-primary px-5">View</a>
-                        </div>
-                    </div>
-                    <div class="card">
-                    
-                        <img class="card-img-top" src="images/test.jpeg" alt="Card image">
-                        <div class="card-body pt-2">
-                            <h5 class="card-title my-1">Lenovo Ideapad </h5>
-                            <p class="card-text p-0 my-1">Lenovo Ideapad 330 Core</p>
-                            <h5 class="card-title p-0 m-0 mb-2"> &#8377; 49500 <strike class="text-danger"><small class="text-secondary"> &#8377; 60000</small></strike> </h5>
-                            <a href="#" class="btn btn-primary px-5">View</a>
-                        </div>
-                    </div>
-                    <div class="card">
-                    
-                        <img class="card-img-top" src="images/test.jpeg" alt="Card image">
-                        <div class="card-body pt-2">
-                            <h5 class="card-title my-1">Lenovo Ideapad </h5>
-                            <p class="card-text p-0 my-1">Lenovo Ideapad 330 Core</p>
-                            <h5 class="card-title p-0 m-0 mb-2"> &#8377; 49500 <strike class="text-danger"><small class="text-secondary"> &#8377; 60000</small></strike> </h5>
-                            <a href="#" class="btn btn-primary px-5">View</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <div class="card-deck">
-                    <div class="card">
-                    
-                        <img class="card-img-top" src="images/test.jpeg" alt="Card image">
-                        <div class="card-body pt-2">
-                            <h5 class="card-title my-1">Lenovo Ideapad </h5>
-                            <p class="card-text p-0 my-1">Lenovo Ideapad 330 Core</p>
-                            <h5 class="card-title p-0 m-0 mb-2"> &#8377; 49500 <strike class="text-danger"><small class="text-secondary"> &#8377; 60000</small></strike> </h5>
-                            <a href="#" class="btn btn-primary px-5">View</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <a class="carousel-control-prev" href="#demo0" data-slide="prev">
-            <span class="carousel-control-prev-icon"></span>
-        </a>
-        <a class="carousel-control-next" href="#demo0" data-slide="next">
-            <span class="carousel-control-next-icon"></span>
-        </a>
-
-    </div>
-</section>
-<hr>
-
-<section class="m-3">
-    <h4 class="mb-2">Popular Products</h4>
+    <h4 class="mb-2">Deals Of The Day</h4>
     <div id="demo1" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active">
                 <div class="card-deck">
+                <?php
+                $q=mysqli_query($conn,"select dealsOfDay from custom");
+                $l=json_decode(mysqli_fetch_assoc($q)['dealsOfDay'],true);
+                for($c=0;$c<count($l)%5;$c++){
+                    $i=$l[$c];
+                    $qu = mysqli_query($conn,"Select * from productdetails where id='$i'") or die(mysqli_error($conn));
+                    $q=mysqli_fetch_assoc($qu);
+                ?>
                     <div class="card">
-                        <img class="card-img-top" src="images/test.jpeg" alt="Card image">
+                        <img class="card-img-top" src="<?php echo "images/".$q['category']."/".$q['image1'];?>" alt="Card image">
                         <div class="card-body pt-2">
-                            <h5 class="card-title my-1">Lenovo Ideapad </h5>
-                            <p class="card-text p-0 my-1">Lenovo Ideapad 330 Core</p>
-                            <h5 class="card-title p-0 m-0 mb-2"> &#8377; 49500 <strike class="text-danger"><small class="text-secondary"> &#8377; 60000</small></strike> </h5>
+                            <h6 class="card-title my-1"><?php echo $q['title'];?></h6>
+                            <p class="card-text p-0 my-1"><?php echo $q['category'];?></p>
+                            <h5 class="card-title p-0 m-0 mb-2"> &#8377; <?php echo $q['newPrice'];?> <strike class="text-danger"><small class="text-secondary"> &#8377; <?php echo $q['oldPrice'];?></small></strike> </h5>
                             <a href="#" class="btn btn-primary px-5">View</a>
                         </div>
                     </div>
-                    <div class="card">
-                    
-                        <img class="card-img-top" src="images/test.jpeg" alt="Card image">
-                        <div class="card-body pt-2">
-                            <h5 class="card-title my-1">Lenovo Ideapad </h5>
-                            <p class="card-text p-0 my-1">Lenovo Ideapad 330 Core</p>
-                            <h5 class="card-title p-0 m-0 mb-2"> &#8377; 49500 <strike class="text-danger"><small class="text-secondary"> &#8377; 60000</small></strike> </h5>
-                            <a href="#" class="btn btn-primary px-5">View</a>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <img class="card-img-top" src="images/test.jpeg" alt="Card image">
-                        <div class="card-body pt-2">
-                            <h5 class="card-title my-1">Lenovo Ideapad </h5>
-                            <p class="card-text p-0 my-1">Lenovo Ideapad 330 Core</p>
-                            <h5 class="card-title p-0 m-0 mb-2"> &#8377; 49500 <strike class="text-danger"><small class="text-secondary"> &#8377; 60000</small></strike> </h5>
-                            <a href="#" class="btn btn-primary px-5">View</a>
-                        </div>
-                    </div>
-                    <div class="card">
-                    
-                        <img class="card-img-top" src="images/test.jpeg" alt="Card image">
-                        <div class="card-body pt-2">
-                            <h5 class="card-title my-1">Lenovo Ideapad </h5>
-                            <p class="card-text p-0 my-1">Lenovo Ideapad 330 Core</p>
-                            <h5 class="card-title p-0 m-0 mb-2"> &#8377; 49500 <strike class="text-danger"><small class="text-secondary"> &#8377; 60000</small></strike> </h5>
-                            <a href="#" class="btn btn-primary px-5">View</a>
-                        </div>
-                    </div>
-                    <div class="card">
-                    
-                        <img class="card-img-top" src="images/test.jpeg" alt="Card image">
-                        <div class="card-body pt-2">
-                            <h5 class="card-title my-1">Lenovo Ideapad </h5>
-                            <p class="card-text p-0 my-1">Lenovo Ideapad 330 Core</p>
-                            <h5 class="card-title p-0 m-0 mb-2"> &#8377; 49500 <strike class="text-danger"><small class="text-secondary"> &#8377; 60000</small></strike> </h5>
-                            <a href="#" class="btn btn-primary px-5">View</a>
-                        </div>
-                    </div>
+                <?php } ?>
                 </div>
             </div>
             <div class="carousel-item">
                 <div class="card-deck">
+                <?php
+                for($c=5;$c<count($l);$c++){
+                    $i=$l[$c];
+                    $qu = mysqli_query($conn,"Select * from productdetails where id='$i'") or die(mysqli_error($conn));
+                    $q=mysqli_fetch_assoc($qu);
+                ?>
                     <div class="card">
-                    
-                        <img class="card-img-top" src="images/test.jpeg" alt="Card image">
+                        <img class="card-img-top" src="<?php echo "images/".$q['category']."/".$q['image1'];?>" alt="Card image">
                         <div class="card-body pt-2">
-                            <h5 class="card-title my-1">Lenovo Ideapad </h5>
-                            <p class="card-text p-0 my-1">Lenovo Ideapad 330 Core</p>
-                            <h5 class="card-title p-0 m-0 mb-2"> &#8377; 49500 <strike class="text-danger"><small class="text-secondary"> &#8377; 60000</small></strike> </h5>
+                            <h6 class="card-title my-1"><?php echo $q['title'];?></h6>
+                            <p class="card-text p-0 my-1"><?php echo $q['category'];?></p>
+                            <h5 class="card-title p-0 m-0 mb-2"> &#8377; <?php echo $q['newPrice'];?> <strike class="text-danger"><small class="text-secondary"> &#8377; <?php echo $q['oldPrice'];?></small></strike> </h5>
                             <a href="#" class="btn btn-primary px-5">View</a>
                         </div>
                     </div>
+                <?php } ?>
                 </div>
             </div>
         </div>
@@ -282,7 +176,87 @@ include 'header.php';
 
     </div>
 </section>
+<section class="m-3">
+    <h4 class="mb-2">Deals of the Day</h4>
+    <div id="demo0" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <div class="card-deck">
+                    <div class="card">
+                        <img class="card-img-top" src="images/test.jpeg" alt="Card image">
+                        <div class="card-body pt-2">
+                            <h5 class="card-title my-1">Lenovo Ideapad </h5>
+                            <p class="card-text p-0 my-1">Lenovo Ideapad 330 Core</p>
+                            <h5 class="card-title p-0 m-0 mb-2"> &#8377; 49500 <strike class="text-danger"><small class="text-secondary"> &#8377; 60000</small></strike> </h5>
+                            <a href="#" class="btn btn-primary px-5">View</a>
+                        </div>
+                    </div>
+                    <div class="card">
+                    
+                        <img class="card-img-top" src="images/test.jpeg" alt="Card image">
+                        <div class="card-body pt-2">
+                            <h5 class="card-title my-1">Lenovo Ideapad </h5>
+                            <p class="card-text p-0 my-1">Lenovo Ideapad 330 Core</p>
+                            <h5 class="card-title p-0 m-0 mb-2"> &#8377; 49500 <strike class="text-danger"><small class="text-secondary"> &#8377; 60000</small></strike> </h5>
+                            <a href="#" class="btn btn-primary px-5">View</a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img class="card-img-top" src="images/test.jpeg" alt="Card image">
+                        <div class="card-body pt-2">
+                            <h5 class="card-title my-1">Lenovo Ideapad </h5>
+                            <p class="card-text p-0 my-1">Lenovo Ideapad 330 Core</p>
+                            <h5 class="card-title p-0 m-0 mb-2"> &#8377; 49500 <strike class="text-danger"><small class="text-secondary"> &#8377; 60000</small></strike> </h5>
+                            <a href="#" class="btn btn-primary px-5">View</a>
+                        </div>
+                    </div>
+                    <div class="card">
+                    
+                        <img class="card-img-top" src="images/test.jpeg" alt="Card image">
+                        <div class="card-body pt-2">
+                            <h5 class="card-title my-1">Lenovo Ideapad </h5>
+                            <p class="card-text p-0 my-1">Lenovo Ideapad 330 Core</p>
+                            <h5 class="card-title p-0 m-0 mb-2"> &#8377; 49500 <strike class="text-danger"><small class="text-secondary"> &#8377; 60000</small></strike> </h5>
+                            <a href="#" class="btn btn-primary px-5">View</a>
+                        </div>
+                    </div>
+                    <div class="card">
+                    
+                        <img class="card-img-top" src="images/test.jpeg" alt="Card image">
+                        <div class="card-body pt-2">
+                            <h5 class="card-title my-1">Lenovo Ideapad </h5>
+                            <p class="card-text p-0 my-1">Lenovo Ideapad 330 Core</p>
+                            <h5 class="card-title p-0 m-0 mb-2"> &#8377; 49500 <strike class="text-danger"><small class="text-secondary"> &#8377; 60000</small></strike> </h5>
+                            <a href="#" class="btn btn-primary px-5">View</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="card-deck">
+                    <div class="card">
+                    
+                        <img class="card-img-top" src="images/test.jpeg" alt="Card image">
+                        <div class="card-body pt-2">
+                            <h5 class="card-title my-1">Lenovo Ideapad </h5>
+                            <p class="card-text p-0 my-1">Lenovo Ideapad 330 Core</p>
+                            <h5 class="card-title p-0 m-0 mb-2"> &#8377; 49500 <strike class="text-danger"><small class="text-secondary"> &#8377; 60000</small></strike> </h5>
+                            <a href="#" class="btn btn-primary px-5">View</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#demo0" data-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </a>
+        <a class="carousel-control-next" href="#demo0" data-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </a>
 
+    </div>
+</section>
+<hr>
 
 
 <?php
