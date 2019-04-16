@@ -8,7 +8,7 @@
                 $_SERVER['REQUEST_URI'];
 
     
-    $limit = 3; 
+    $limit = 5; 
     if (isset($_GET["page"])) {  
         $pn  = $_GET["page"];  
     }  
