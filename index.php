@@ -4,29 +4,48 @@ include 'header.php';
 <link rel="stylesheet" href="css/home.css">
 <section>
 <div id="demo" class="carousel slide" data-ride="carousel">
-
+    <?php
+        $category="banner";
+        $q=mysqli_query($conn,"select * from banner") or die(mysqli_error($conn));
+        $q=mysqli_fetch_assoc($q);
+    ?>
   <!-- Indicators -->
-  <ul class="carousel-indicators">
-    <li data-target="#demo" data-slide-to="0" class="active"></li>
-    <li data-target="#demo" data-slide-to="1"></li>
-    <li data-target="#demo" data-slide-to="2"></li>
-    <li data-target="#demo" data-slide-to="3"></li>
-  </ul>
+    <ul class="carousel-indicators">
+    <?php if(!empty($q['image1'])){?>
+            <li data-target="#demo" data-slide-to="0" class="active"></li>
+        <?php } ?>
+        <?php if(!empty($q['image2'])){?>
+            <li data-target="#demo" data-slide-to="1"></li>
+        <?php } ?>
+        <?php if(!empty($q['image3'])){?>
+            <li data-target="#demo" data-slide-to="2"></li>
+        <?php } ?>
+        <?php if(!empty($q['image4'])){?>
+            <li data-target="#demo" data-slide-to="3"></li>
+        <?php } ?>
+    </ul>
   
   <!-- The slideshow -->
-  <div class="carousel-inner">
+   
+    <div class="carousel-inner">
     <div class="carousel-item active">
-      <img src="images/1.jpg" alt="Los Angeles">
+      <img src="<?php echo "images/".$category."/".$q['image1'];?>" alt="Los Angeles">
     </div>
+    <?php if(!empty($q['image2'])){?>
     <div class="carousel-item">
-      <img src="images/2.jpg" alt="Chicago">
+      <img src="<?php echo "images/".$category."/".$q['image2'];?>" alt="Chicago">
     </div>
+    <?php } ?>
+    <?php if(!empty($q['image3'])){?>
     <div class="carousel-item">
-      <img src="images/3.jpg" alt="New York">
+      <img src="<?php echo "images/".$category."/".$q['image3'];?>" alt="Chicago">
     </div>
+    <?php } ?>
+    <?php if(!empty($q['image4'])){?>
     <div class="carousel-item">
-      <img src="images/4.jpg" alt="New York">
-  </div>
+      <img src="<?php echo "images/".$category."/".$q['image4'];?>" alt="Chicago">
+    </div>
+    <?php } ?>
   
   <!-- Left and right controls -->
   <a class="carousel-control-prev" href="#demo" data-slide="prev">

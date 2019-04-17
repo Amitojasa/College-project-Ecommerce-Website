@@ -26,6 +26,8 @@
 
 </script>
 <section class="comparision container-fluid my-3">
+
+    <p><strong>Note:</strong> You must be logged in and select the add some products to your compare list by clicking on compare button on the product's respective page.</p>
     <form method="post">
 
         <select name="category" id="cat" class="form-control" placeholder="select a category" onchange="categoryselect()">
@@ -52,7 +54,7 @@
                             $qp1=mysqli_query($conn,"select * from productdetails where id=$p and category='$cat'");
                             $qp1=mysqli_fetch_assoc($qp1);
                     ?>
-                    <option value="<?php echo $p;?>"<?php if($_COOKIE['prod1']==$p)echo "selected";?>><?php echo $qp1['title'];?></option>
+                    <option value="<?php echo $p;?>"<?php if(isset($_COOKIE['prod1'])==$p)echo "selected";?>><?php echo $qp1['title'];?></option>
                     <?php } ?>
                 </select>
             </div>
