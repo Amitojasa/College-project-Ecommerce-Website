@@ -1,4 +1,10 @@
 <?php
+  include '../conn.inc.php';
+  $qp=mysqli_query($conn,"select post from posted");
+  $qp=mysqli_fetch_assoc($qp)['post'];
+
+  $posted=json_decode($qp,TRUE);
+
 
 $MERCHANT_KEY = "BMjMcPRe";
 $SALT = "YSm0MskVKa";
@@ -9,9 +15,23 @@ $PAYU_BASE_URL = "https://sandboxsecure.payu.in";		// For Sandbox Mode
 
 $action = '';
 
-$posted = array();
-$posted['surl']='http://localhost/project/payu/success.php';
-$posted['furl']='http://localhost/project/payu/failure.php';
+// $posted = array();
+// $posted['surl']='http://localhost/project/payu/success.php';
+// $posted['furl']='http://localhost/project/payu/failure.php';
+// $posted['surl']='http://localhost/project/payu/success.php';
+// $posted['furl']='http://localhost/project/payu/failure.php';
+// $posted['amount']=$total;
+// $posted['firstname']=$user['firstName'];
+// $posted['lastname']=$user['lastName'];
+// $posted['email']=$user['emailAddress'];
+// $posted['phone']=$user['contactNo1'];
+// $posted['productinfo']=$q['title'];
+// $posted['address1']=$user['shipaddr1'];
+// $posted['address2']=$user['shipaddr2'];
+// $posted['city']=$user['city'];
+// $posted['state']=$user['state'];
+// $posted['country']=$user['country'];
+// $posted['zipcode']=$user['postalcode'];
 
 if(!empty($_POST)) {
     //print_r($_POST);
@@ -68,6 +88,24 @@ if(empty($posted['hash']) && sizeof($posted) > 0) {
 ?>
 <html>
   <head>
+    <style>
+      table{
+        display:none;
+      }
+      #subm{
+        height:100px;
+        width:300px;
+        background-color:#007bff;
+        border-radius:10px;
+        border:0;
+      }
+      #submbo{
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        height:100%;
+      }
+    </style>
   <script>
     var hash = '<?php echo $hash ?>';
     function submitPayuForm() {
@@ -80,14 +118,7 @@ if(empty($posted['hash']) && sizeof($posted) > 0) {
   </script>
   </head>
   <body onload="submitPayuForm()">
-    <h2>PayU Form</h2>
     <br/>
-    <?php if($formError) { ?>
-	
-      <span style="color:red">Please fill all mandatory fields.</span>
-      <br/>
-      <br/>
-    <?php } ?>
     <form action="<?php echo $action; ?>" method="post" name="payuForm">
       <input type="hidden" name="key" value="<?php echo $MERCHANT_KEY ?>" />
       <input type="hidden" name="hash" value="<?php echo $hash ?>"/>
@@ -104,7 +135,7 @@ if(empty($posted['hash']) && sizeof($posted) > 0) {
         </tr>
         <tr>
           <td>Email: </td>
-          <td><input name="email" id="email" value="<?php echo (empty($posted['email'])) ? '' : $posted['email']; ?>" /></td> 
+          <td><input name="email" id="email" value="<?php echo (empty($posted['email'])) ? '' : $posted['email']; ?>" /></td>
           <td>Phone: </td>
           <td><input name="phone" value="<?php echo (empty($posted['phone'])) ? '' : $posted['phone']; ?>" /></td>
         </tr>
@@ -170,12 +201,13 @@ if(empty($posted['hash']) && sizeof($posted) > 0) {
           <td>PG: </td>
           <td><input name="pg" value="<?php echo (empty($posted['pg'])) ? '' : $posted['pg']; ?>" /></td>
         </tr>
-        <tr>
+        </table>
+        <div id="submbo">
           <?php if(!$hash) { ?>
-            <td colspan="4"><input type="submit" value="Submit" /></td>
+            <div><input id="subm" type="submit" value="Pay Now" />
           <?php } ?>
-        </tr>
-      </table>
+          </div>
+      
     </form>
   </body>
 </html>

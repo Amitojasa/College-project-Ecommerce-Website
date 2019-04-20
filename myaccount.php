@@ -154,25 +154,25 @@ function removeFromCart(id){
                         <h4 class="bg-white">Account Information</h4>
                         <hr>
                         </div>
-                        <div class="card">
-                            <div class="card-header ">Shipping Address</div>
-                            <div class="card-body text-center font-weight-bold" id="shipadd">
-                            <?php
-                                    $q=mysqli_query($conn,"select * from userdetailstb where id='$uid'") or die(mysqli_error($conn));
-                                    $qud=mysqli_fetch_assoc($q);
-                            ?>
-                                
-                                <?php if($qud['shipaddr1']!='') echo $qud['shipaddr1']."<br>";?>
-                                <?php if($qud['shipaddr2']!='') echo $qud['shipaddr2']."<br>";?>
-                                <?php if($qud['shiplandmark']!='') echo $qud['shiplandmark']."<br>";?>
-                                <?php if($qud['city']!='') echo $qud['city'].",";?><?php if($qud['state']!='') echo $qud['state'];?>
-                                
-                            </div>
-                            <script>
-                                if(document.getElementById('shipadd').innerHTML.trim()==""){
-                                    document.getElementById('shipadd').innerHTML="Please fill out the account details !!!";
-                                }
-                            </script>
+                            <div class="card">
+                                <div class="card-header ">Shipping Address</div>
+                                <div class="card-body text-center font-weight-bold" id="shipadd">
+                                <?php
+                                        $q=mysqli_query($conn,"select * from userdetailstb where id='$uid'") or die(mysqli_error($conn));
+                                        $qud=mysqli_fetch_assoc($q);
+                                ?>
+                                    
+                                    <?php if($qud['shipaddr1']!='') echo $qud['shipaddr1']."<br>";?>
+                                    <?php if($qud['shipaddr2']!='') echo $qud['shipaddr2']."<br>";?>
+                                    <?php if($qud['shiplandmark']!='') echo $qud['shiplandmark']."<br>";?>
+                                    <?php if($qud['city']!='') echo $qud['city'].",";?><?php if($qud['state']!='') echo $qud['state'];?>
+                                    
+                                </div>
+                                <script>
+                                    if(document.getElementById('shipadd').innerHTML.trim()==""){
+                                        document.getElementById('shipadd').innerHTML="Please fill out the account details !!!";
+                                    }
+                                </script>
                         </div>
                     </div>
                 </div>
@@ -207,7 +207,7 @@ function removeFromCart(id){
                                     <input type="text" placeholder="Last Name" value="<?php echo $q['lastName'];?>" name="lname" class="form-control">
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="email" required placeholder="Email Address" name="email" value="<?php echo $q['emailAddress'];?>" class="form-control">
+                                    <input type="email" required placeholder="Email Address" name="email" value="<?php echo $q['emailAddress'];?>" class="form-control">    
                                 </div>
                                 
                                 <div class="col-md-6">
@@ -243,7 +243,7 @@ function removeFromCart(id){
                                     ?>
                                     
                                         <option value="<?php echo $r['abbr'];?>" <?php
-                                                if($v==$r['abbr']){
+                                                if(($v['abbr'])==($r['abbr'])){
                                                     echo  "selected";
                                                 }   
                                         ?>><?php echo $r['statename']?></option>

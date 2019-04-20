@@ -6,3 +6,10 @@
     width:auto;
     height:100%;
 }
+#payu table{
+    /* display:none; */
+}
+.subm{
+    margin:auto;
+    display:block;
+}
