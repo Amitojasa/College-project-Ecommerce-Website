@@ -38,7 +38,15 @@
          });
     }
 
-    
+function buyNow(id,cat){
+    var q=document.getElementById('quant').value;
+        a=parseInt(q);
+        if(!isNaN(a)){
+            window.location.href = "buyNow.php?id="+id+"&quant="+a+"&category="+cat;}
+         else{
+             alert("Product is out of stock");
+         }
+}   
 </script>
 
 <script>
@@ -133,7 +141,7 @@ function favor(id){
                         echo "fa fa-heart-o";
                     }
                 ?>" id="favo"  title="favourite"></i></button>
-                <button class="btn btn-primary text-white p-3 col-sm-3" href="buyNow.php?id=<?php echo $id;?>" ><b>Buy Now</b></button>
+                <button class="btn btn-primary text-white p-3 col-sm-3" onclick="buyNow(<?php echo $id;?>,'<?php echo $cat;?>')"><b>Buy Now</b></button>
                 <button class="btn btn-warning text-white p-3 col-sm-3" onclick='addToCart(<?php echo $id;?>);'><b>Add to Cart</b></button>
                 <button class="btn btn-secondary text-white p-3 col-sm-2" onclick="addToCompare(<?php echo $id;?>);" ><i title="compare"><img src="images/compare.png"></i></button>
 
