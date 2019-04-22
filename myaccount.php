@@ -271,6 +271,8 @@ function removeFromCart(id){
                             </div>
                             
                         </form>
+
+                       
                         </div>
             </section>
 
@@ -312,7 +314,7 @@ function removeFromCart(id){
                                     </tr>
                                 </thead>
                                 <tbody>
-                                <?php 
+                                <?php
                                             $t=0;
                                             $cart=(json_decode($q['cart']));
                                             foreach($cart as $i => $value){       
@@ -353,7 +355,10 @@ function removeFromCart(id){
                 </div>
                 
                 </div>
-                </section>
+                <div class="text-center">
+                <a href="buyNowCart.php" class="btn btn-primary">Checkout</a>
+                </div>
+            </section>
             <section id="favourite" class="row tab-pane fade">
             <div id="tabfav">
                 <div class="row">

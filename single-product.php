@@ -212,70 +212,49 @@ function favor(id){
         <div class="carousel-inner">
             <div class="carousel-item active">
                 <div class="card-deck">
+                <?php
+                $qu=mysqli_query($conn,"select * from productdetails where category='$cat'  order by id desc  limit 1,5");
+
+                while($q=mysqli_fetch_assoc($qu)){
+                ?>
                     <div class="card">
-                        <img class="card-img-top" src="images/test.jpeg" alt="Card image">
+                        <div class="card-img">
+                            <img class="card-img-top" src="<?php echo "images/".$q['category']."/".$q['image1'];?>" alt="Card image">
+                        </div>
                         <div class="card-body pt-2">
-                            <h5 class="card-title my-1">Lenovo Ideapad </h5>
-                            <p class="card-text p-0 my-1">Lenovo Ideapad 330 Core</p>
-                            <h5 class="card-title p-0 m-0 mb-2"> &#8377; 49500 <strike class="text-danger"><small class="text-secondary"> &#8377; 60000</small></strike> </h5>
+                            <div class="card-title-outer">
+                                <p class="card-title my-1" title="<?php echo $q['title'];?>"><?php echo $q['title'];?>
+                                </p>
+                                <span style="background-color:white;color:#49b0c1;position:absolute;bottom:0;right:0;padding-left:10px;">...</span>
+                                
+                            </div>
+                            <h6 class="card-text p-0 my-1"><?php echo $q['category'];?></h6>
+                            <h5 class="card-price p-0 m-0 mb-2"> &#8377; <?php echo $q['newPrice'];?> <strike class="text-danger"><small class="text-secondary"> &#8377; <?php echo $q['oldPrice'];?></small></strike> </h5>
                             <a href="#" class="btn btn-primary px-5">View</a>
                         </div>
                     </div>
-                    <div class="card">
-                    
-                        <img class="card-img-top" src="images/test.jpeg" alt="Card image">
-                        <div class="card-body pt-2">
-                            <h5 class="card-title my-1">Lenovo Ideapad </h5>
-                            <p class="card-text p-0 my-1">Lenovo Ideapad 330 Core</p>
-                            <h5 class="card-title p-0 m-0 mb-2"> &#8377; 49500 <strike class="text-danger"><small class="text-secondary"> &#8377; 60000</small></strike> </h5>
-                            <a href="#" class="btn btn-primary px-5">View</a>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <img class="card-img-top" src="images/test.jpeg" alt="Card image">
-                        <div class="card-body pt-2">
-                            <h5 class="card-title my-1">Lenovo Ideapad </h5>
-                            <p class="card-text p-0 my-1">Lenovo Ideapad 330 Core</p>
-                            <h5 class="card-title p-0 m-0 mb-2"> &#8377; 49500 <strike class="text-danger"><small class="text-secondary"> &#8377; 60000</small></strike> </h5>
-                            <a href="#" class="btn btn-primary px-5">View</a>
-                        </div>
-                    </div>
-                    <div class="card">
-                    
-                        <img class="card-img-top" src="images/test.jpeg" alt="Card image">
-                        <div class="card-body pt-2">
-                            <h5 class="card-title my-1">Lenovo Ideapad </h5>
-                            <p class="card-text p-0 my-1">Lenovo Ideapad 330 Core</p>
-                            <h5 class="card-title p-0 m-0 mb-2"> &#8377; 49500 <strike class="text-danger"><small class="text-secondary"> &#8377; 60000</small></strike> </h5>
-                            <a href="#" class="btn btn-primary px-5">View</a>
-                        </div>
-                    </div>
-                    <div class="card">
-                    
-                        <img class="card-img-top" src="images/test.jpeg" alt="Card image">
-                        <div class="card-body pt-2">
-                            <h5 class="card-title my-1">Lenovo Ideapad </h5>
-                            <p class="card-text p-0 my-1">Lenovo Ideapad 330 Core</p>
-                            <h5 class="card-title p-0 m-0 mb-2"> &#8377; 49500 <strike class="text-danger"><small class="text-secondary"> &#8377; 60000</small></strike> </h5>
-                            <a href="#" class="btn btn-primary px-5">View</a>
-                        </div>
-                    </div>
+                <?php } ?>
                 </div>
             </div>
+            <?php 
+                $qu=mysqli_query($conn,"select * from productdetails where category='laptop'  order by id desc  limit 6,5");
+
+                while($q=mysqli_fetch_assoc($qu)){
+            ?>
             <div class="carousel-item">
                 <div class="card-deck">
                     <div class="card">
-                    
-                        <img class="card-img-top" src="images/test.jpeg" alt="Card image">
+                        <img class="card-img-top" src="<?php echo "images/".$q['category']."/".$q['image1'];?>" alt="Card image">
                         <div class="card-body pt-2">
-                            <h5 class="card-title my-1">Lenovo Ideapad </h5>
-                            <p class="card-text p-0 my-1">Lenovo Ideapad 330 Core</p>
-                            <h5 class="card-title p-0 m-0 mb-2"> &#8377; 49500 <strike class="text-danger"><small class="text-secondary"> &#8377; 60000</small></strike> </h5>
+                            <h6 class="card-title my-1"><?php echo $q['title'];?></h6>
+                            <p class="card-text p-0 my-1"><?php echo $q['category'];?></p>
+                            <h5 class="card-title p-0 m-0 mb-2"> &#8377; <?php echo $q['newPrice'];?> <strike class="text-danger"><small class="text-secondary"> &#8377; <?php echo $q['oldPrice'];?></small></strike> </h5>
                             <a href="#" class="btn btn-primary px-5">View</a>
                         </div>
                     </div>
                 </div>
             </div>
+            <?php }?>
         </div>
         <a class="carousel-control-prev" href="#demo2" data-slide="prev">
             <span class="carousel-control-prev-icon"></span>

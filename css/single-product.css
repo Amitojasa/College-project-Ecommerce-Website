@@ -74,6 +74,42 @@
 .main-imgs{
     text-align:center;
 }
+
+
+#demo .card img{
+    width:100%;
+}
+.related .card-title-outer{
+    font-size:14px;
+}
+
+
+.related .card-title-outer{
+    height:70px;
+    overflow:hidden;
+    position:relative;
+}
+.related .card{
+    text-align: center;
+    margin:0;
+    margin-left:2px!important;
+    margin-right:2px!important;
+    max-width:270px;
+    padding:10px;
+    border:0;
+}
+
+.related .card-img{
+    width:100%;
+    height:230px;
+    display:flex;
+    align-items: center;
+}
+
+.related .card-img-top{
+    width:100%;
+    height:auto;
+}
 .carousel-control-prev-icon, .carousel-control-next-icon{
     background-color: #007bff;
 }
@@ -83,7 +119,4 @@
 }
 #demo2 .carousel-control-prev-icon,#demo2 .carousel-control-next-icon{
     background-color:#007bff;
-}
-#demo .card img{
-    width:100%;
 }

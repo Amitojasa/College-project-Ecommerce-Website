@@ -7,6 +7,7 @@
     } 
 ?>
 <?php
+    $_SESSION['fromCart']=true;
 	if (@$_SESSION['login']==true){
         $login=true;
         $uid=$_SESSION['userid'];
@@ -30,17 +31,23 @@
 
 <link rel="stylesheet" href="css/buyNow.css">
 <div class="container-fluid my-3">
+<?php 
+                    $t=0;
+                    $cart=(json_decode($user['cart']));
+                    foreach($cart as $i => $value){       
+                    $selectQuery="select * from productdetails where id=$i";
+
+                    $qu = mysqli_query($conn,$selectQuery) or die(mysqli_error($conn));
+                    $q=mysqli_fetch_assoc($qu);  
+                    $t=$t+($q['newPrice']*$value);
+                ?>
     <div class="row">
         <div class="left col-sm-4">
             <div class="slideshow">
                 <div class="card border-0">
                 
-                <?php 
-                 $selectQuery="select * from productdetails where category = '$cat' and id=$id";
+                
 
-                    $qu = mysqli_query($conn,$selectQuery) or die(mysqli_error($conn));
-                    $q=mysqli_fetch_assoc($qu);
-                ?>
                     <div class="card-body p-3 m-2">
                     <div id="demo" class="demo carousel slide" data-ride="carousel">
                             <?php if(!empty($q['image1'])){
@@ -75,16 +82,20 @@
                             <h6 class="text-dark"><span class="text-secondary">Our-Price: </span>&#8377; <?php echo $q['newPrice']; ?></h6>                           
                     </div>
                     <div class="quantity">
-                            <h6 class="text-dark"><span class="text-secondary">Quantity: </span><?php echo $quant; ?></h6>                           
+                            <h6 class="text-dark"><span class="text-secondary">Quantity: </span><?php echo $value; ?></h6>                           
                     </div>
                     <br>
                     <div class="total-price">
-                            <h6 class="text-dark"><span class="text-secondary">Total: </span>&#8377; <?php $total= $q['newPrice']*$quant; echo $total; ?></h6>                           
+                            <h6 class="text-dark"><span class="text-secondary">Total: </span>&#8377; <?php echo $t; ?></h6>                           
                     </div>
                 </div>
             </div>
         </div>
+    <?php } ?>
     </div>
+    </div>
+    <div class="row">
+    <div class="col-12">
     <div class="card">
                                 <div class="card-header ">Shipping Address</div>
                                 <div class="card-body text-center font-weight-bold" id="shipadd">
@@ -105,13 +116,15 @@
                                     }
                                 </script>
                                 <a class="btn btn-danger" target="_blank" href="myaccount.php#account-details">Enter/Edit shipping address</a>
+    </div>
+    </div>
 </div>
 
 <?php
     $posted = array();
     $posted['surl']='http://localhost/project/payu/success.php';
     $posted['furl']='http://localhost/project/payu/failure.php';
-    $posted['amount']=$total;
+    $posted['amount']=$t;
     $posted['firstname']=$user['firstName'];
     $posted['lastname']=$user['lastName']   ;
     $posted['email']=$user['emailAddress'];
@@ -126,7 +139,9 @@
     $post=json_encode($posted);
     mysqli_query($conn,"update posted set post='$post'");
 ?>
+
     <a href="payu/PayUMoney_form.php" class="btn btn-primary">Continue</a>
+
 </div>
 
 <?php include 'footer.php'; ?>
