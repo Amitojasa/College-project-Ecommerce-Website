@@ -1,0 +1,15 @@
+.main-imgs{
+    height:200px;
+    width:200px;
+}
+.img-fluid{
+    width:100%;
+    height:auto;
+}
+#payu table{
+    /* display:none; */
+}
+.subm{
+    margin:auto;
+    display:block;
+}

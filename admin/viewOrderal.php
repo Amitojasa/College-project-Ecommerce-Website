@@ -1,39 +1,28 @@
 
-<?php include 'conn.inc.php'; ?>
+<?php include '../conn.inc.php'; ?>
 <?php
 	if(!isset($_SESSION)) 
     { 
         session_start(); 
     } 
 ?>
-<?php
-    $_SESSION['fromCart']=true;
-	if (@$_SESSION['login']==true){
-        $login=true;
-        $uid=$_SESSION['userid'];
-        $r=mysqli_query($conn,"select firstName from userdetailstb where id='$uid'") or die(mysqli_error($conn));
-        $userName=mysqli_fetch_assoc($r)['firstName'];
-	}else{
-        header("Location: login.php");
-        exit;
-    }
-?>
+
 <?php include 'header.php'; ?>
+
 <?php 
-    $quant=@$_GET['quant'];
-    $cat=@$_GET['category'];
-    $id=@$_GET['id'];
-    $type=@$_GET['type'];
-    $im=0;
+    $ido=@$_GET['id'];
+    $ord=mysqli_query($conn,"select * from transactions where id='$ido'") or die(mysqli_error($conn));
+    $ordi=mysqli_fetch_assoc($ord);
+    $uid=$ordi['uid'];
     $user=mysqli_query($conn,"select * from userdetailstb where id='$uid'") or die(mysqli_error($conn));
     $user=mysqli_fetch_assoc($user);
 ?>
 
-<link rel="stylesheet" href="css/buyNowCart.css">
-<div class="container-fluid my-3">
+<link rel="stylesheet" href="../css/buyNowCart.css">
+    <div class="container-fluid my-3">
                 <?php 
                     $t=0;
-                    $cart=(json_decode($user['cart']));
+                    $cart=(json_decode($ordi['products'],TRUE));
                     foreach($cart as $i => $value){       
                     $selectQuery="select * from productdetails where id=$i";
 
@@ -54,17 +43,17 @@
                                 $im=1;
                                 ?>
                                 <div class="main-imgs active text-center">
-                                    <img class="img-fluid" src="<?php echo "images/".$q['category']."/".$q['image1'];?>" alt="Los Angeles" >
+                                    <img class="img-fluid" src="<?php echo "../images/".$q['category']."/".$q['image1'];?>" alt="Los Angeles" >
                                 </div>
                             <?php } ?>
                             <?php if(!empty($q['image2']) && $im!=1){ ?>
                                 <div class="main-imgs  text-center">
-                                    <img class="img-fluid align-self-center" src="<?php echo "images/".$q['category']."/".$q['image2'];?>" alt="Los Angeles">
+                                    <img class="img-fluid align-self-center" src="<?php echo "../images/".$q['category']."/".$q['image2'];?>" alt="Los Angeles">
                                 </div>
                             <?php } ?>
                             <?php if(!empty($q['image3']) && $im!=1){ ?>
                                 <div class="main-imgs text-center">
-                                    <img class="img-fluid align-self-center" src="<?php echo "images/".$q['category']."/".$q['image3'];?>" alt="Los Angeles" >
+                                    <img class="img-fluid align-self-center" src="<?php echo "../images/".$q['category']."/".$q['image3'];?>" alt="Los Angeles" >
                                 </div>
                             <?php } ?>
                         </div>
@@ -111,39 +100,11 @@
                                     <?php if($qud['city']!='') echo $qud['city'].",";?><?php if($qud['state']!='') echo $qud['state'];?>
                                     
                                 </div>
-                                <script>
-                                    if(document.getElementById('shipadd').innerHTML.trim()==""){
-                                        document.getElementById('shipadd').innerHTML="Please fill out the Shipping details !!! before proceeding further..";
-                                    }
-                                </script>
-                                <a class="btn btn-danger" target="_blank" href="myaccount.php#account-details">Enter/Edit shipping address</a>
     </div>
     </div>
+    
 </div>
 
-<?php
-    $_SESSION['prods']=$user['cart'];
-    $posted = array();
-    $posted['surl']='http://localhost/project/payu/success.php';
-    $posted['furl']='http://localhost/project/payu/failure.php';
-    $posted['amount']=$t;
-    $posted['firstname']=$user['firstName'];
-    $posted['lastname']=$user['lastName']   ;
-    $posted['email']=$user['emailAddress'];
-    $posted['phone']=$user['contactNo1'];
-    $posted['productinfo']=$q['title'];
-    $posted['address1']=$user['shipaddr1'];
-    $posted['address2']=$user['shipaddr2'];
-    $posted['city']=$user['city'];
-    $posted['state']=$user['state'];
-    $posted['country']=$user['country'];
-    $posted['zipcode']=$user['postalcode'];
-    
-    $post=json_encode($posted);
-    mysqli_query($conn,"update posted set post='$post'");
-?>
-
-    <a href="payu/PayUMoney_form.php" class="btn btn-primary">Continue</a>
 
 </div>
 

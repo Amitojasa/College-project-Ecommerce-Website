@@ -108,6 +108,7 @@
 </div>
 
 <?php
+    $_SESSION['prods']=json_encode(array($id=>$quant));
     $posted = array();
     $posted['surl']='http://localhost/project/payu/success.php';
     $posted['furl']='http://localhost/project/payu/failure.php';
@@ -123,6 +124,7 @@
     $posted['state']=$user['state'];
     $posted['country']=$user['country'];
     $posted['zipcode']=$user['postalcode'];
+    
     $post=json_encode($posted);
     mysqli_query($conn,"update posted set post='$post'");
 ?>

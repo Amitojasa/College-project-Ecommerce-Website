@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 17, 2019 at 03:12 PM
+-- Generation Time: Apr 23, 2019 at 08:13 PM
 -- Server version: 5.6.21
 -- PHP Version: 5.6.3
 
@@ -56,7 +56,7 @@ CREATE TABLE IF NOT EXISTS `custom` (
 --
 
 INSERT INTO `custom` (`id`, `dealsOfDay`) VALUES
-(1, '["24","31"]');
+(1, '["31","32"]');
 
 -- --------------------------------------------------------
 
@@ -69,7 +69,7 @@ CREATE TABLE IF NOT EXISTS `logintb` (
   `emailId` varchar(100) NOT NULL,
   `password` varchar(100) NOT NULL,
   `linkUserId` int(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `logintb`
@@ -77,7 +77,8 @@ CREATE TABLE IF NOT EXISTS `logintb` (
 
 INSERT INTO `logintb` (`id`, `emailId`, `password`, `linkUserId`) VALUES
 (11, 'sasingh25@gmail.com', '12345', 18),
-(12, 'amitojvmc@gmail.com', '12345', 19);
+(12, 'amitojvmc@gmail.com', '12345', 19),
+(13, 'harmanjot147@gmail.com', '123456', 20);
 
 -- --------------------------------------------------------
 
@@ -96,6 +97,43 @@ CREATE TABLE IF NOT EXISTS `newsletter` (
 
 INSERT INTO `newsletter` (`id`, `email`) VALUES
 (1, 'amitoj@dgfd.cpm');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orderstatus`
+--
+
+CREATE TABLE IF NOT EXISTS `orderstatus` (
+`id` int(11) NOT NULL,
+  `orderId` int(11) NOT NULL,
+  `status` varchar(1000) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `orderstatus`
+--
+
+INSERT INTO `orderstatus` (`id`, `orderId`, `status`) VALUES
+(1, 7, 'delivered'),
+(2, 8, 'delivered');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `posted`
+--
+
+CREATE TABLE IF NOT EXISTS `posted` (
+  `post` varchar(20000) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `posted`
+--
+
+INSERT INTO `posted` (`post`) VALUES
+('{"surl":"http://localhost/project/payu/success.php","furl":"http://localhost/project/payu/failure.php","amount":500,"firstname":"Amitoj","lastname":"singh","email":"amitojvmc@gmail.com","phone":"9417171800","productinfo":"Lenovo Ideapad 330 Intel Core i5 8th Gen 15.6-inch Full HD Laptop (4GB + 16GB Optane/1TB HDD/Windows 10 Home/Onyx Black/ 2.2kg), 81DE021HIN","address1":"21500, 6/4","address2":"Power House road","city":"Bathinda","state":"Punjab","country":"India","zipcode":"151001"}');
 
 -- --------------------------------------------------------
 
@@ -127,9 +165,9 @@ CREATE TABLE IF NOT EXISTS `productdetails` (
 --
 
 INSERT INTO `productdetails` (`id`, `title`, `category`, `description`, `newPrice`, `oldPrice`, `stock`, `details`, `warranty`, `image1`, `image2`, `image3`, `features`, `uploadDate`, `rating`, `reviewsNo`) VALUES
-(24, 'Lenovo Ideapad 330 Intel Core i5 8th Gen 15.6-inch Full HD Laptop (4GB + 16GB Optane/1TB HDD/Windows 10 Home/Onyx Black/ 2.2kg), 81DE021HIN', 'laptop', 'asdfghyuj', 86545, 6874, 12, 'oi9uydtrexfcvbn ', 'jhgvbmn', '24_1.jpg', '', '', 'AMD Radeon Vega 3 Graphics Card for Improved Graphics Performance;AMD Ryzen 3 Dual Core Processor;4 GB DDR4 RAM;64 bit Windows 10 Operating System;1 TB HDD;39.62 cm (15.6 inch) Display;1 Year Onsite Warranty;', '0000-00-00', 3.9, 72),
+(24, 'Lenovo Ideapad 330 Intel Core i5 8th Gen 15.6-inch Full HD Laptop (4GB + 16GB Optane/1TB HDD/Windows 10 Home/Onyx Black/ 2.2kg), 81DE021HIN', 'laptop', 'asdfghyuj', 500, 6874, 12, 'oi9uydtrexfcvbn ', 'jhgvbmn', '24_1.jpg', '', '', 'AMD Radeon Vega 3 Graphics Card for Improved Graphics Performance;AMD Ryzen 3 Dual Core Processor;4 GB DDR4 RAM;64 bit Windows 10 Operating System;1 TB HDD;39.62 cm (15.6 inch) Display;1 Year Onsite Warranty;', '0000-00-00', 3.9, 72),
 (31, 'Lenovo Ideapad 330 Intel Core i5 8th Gen 15.6-inch Full HD Laptop (4GB + 16GB Optane/1TB HDD/Windows 10 Home/Onyx Black/ 2.2kg), 81DE021HIN', 'laptop', 'Processor: 8th Gen Intel Core i5-8250U processor, 1.6GHz base processor speed, 3.4GHz Max speed, Quad-cores, 6MB SmartCache\r\nOperating System: Pre-loaded Windows 10 Home with lifetime validity;\r\nDisplay: 15.6-inch Full HD (1920x1080) Laptop | Antiglare display;\r\nMemory & Storage: 4GB DDR4 RAM with Integrated Graphics. 16 GB Intel Optane memory for faster bootup and accelerate frequently used applications. |Storage: 1TB 5400 RPM HDD;\r\nDesign & battery: Laptop weight 2.2kg | Battery Life: Upto 5.5 hours as per MobileMark 2014;\r\nWarranty: This genuine Lenovo laptop comes with 1 year domestic warranty from Lenovo covering manufacturing defects and not covering physical damage. For more details, see Warranty section below;\r\nPre-installed Software: Windows 10 Home | In the Box: Laptop included with battery and charger, user guide;', 75324, 7527, 24, 'Brand:Lenovo;\r\nSeries:Ideapad 330;\r\nColour:Onyx Black;\r\nItem Height:23 Millimeters;\r\nItem Width:26 Centimeters;\r\nScreen Size:15.6 Inches;\r\nMaximum Display Resolution:1920 x 1080 (Full HD);\r\nItem Weight:2.2 Kg;\r\nProduct Dimensions:37.8 x 26 x 2.3 cm;\r\nBatteries:Lithium Polymer batteries required. (included);\r\nItem model number:81DE021HIN;\r\nProcessor Brand:Intel;\r\nProcessor Type:Core i5 8250U;\r\nRAM Size:4 GB;\r\nMemory Technolog:DDR4;\r\nHard Drive Size:1 TB;\r\nHard Disk Technology:Mechanical Hard Drive;\r\nSpeaker Description:2x1.5W; Dolby Audio;\r\nGraphics Coprocessor:Integrated Graphics;\r\nConnectivity Type:WIFI 1X1 AC+BT4.1;\r\nNumber of USB 3.0 Ports:2;\r\nNumber of HDMI Ports:1;\r\nNumber of Audio-out Ports:1;\r\nNumber of Ethernet Ports:1;\r\nNumber of Microphone Ports:1;\r\nOptical Drive Type:None;\r\nOperating System:Windows 10;\r\nLithium Battery Energy Content:30 Watt Hours;\r\nNumber of Lithium Ion Cells:2;\r\nIncluded Components:Laptop, Adapter and Manual;', '1 year manufacturer warranty on the device and 6 months manufacturer warranty on included accessories from the date of purchase', '31_1.jpeg', '31_2.jpeg', '', 'AMD Radeon Vega 3 Graphics Card for Improved Graphics Performance;\r\nAMD Ryzen 3 Dual Core Processor;\r\n4 GB DDR4 RAM;\r\n64 bit Windows 10 Operating System;\r\n1 TB HDD;\r\n39.62 cm (15.6 inch) Display;\r\n1 Year Onsite Warranty;', '0000-00-00', 0, 0),
-(32, 'Lenovo Ideapad 330 Intel Core i5 8th Gen 15.6-inch Full HD Laptop (4GB + 16GB Optane/1TB HDD/Windows 10 Home/Onyx Black/ 2.2kg), 81DE021HIN', 'laptop', 'Processor: 8th Gen Intel Core i5-8250U processor, 1.6GHz base processor speed, 3.4GHz Max speed, Quad-cores, 6MB SmartCache\r\nOperating System: Pre-loaded Windows 10 Home with lifetime validity;\r\nDisplay: 15.6-inch Full HD (1920x1080) Laptop | Antiglare display;\r\nMemory & Storage: 4GB DDR4 RAM with Integrated Graphics. 16 GB Intel Optane memory for faster bootup and accelerate frequently used applications. |Storage: 1TB 5400 RPM HDD;\r\nDesign & battery: Laptop weight 2.2kg | Battery Life: Upto 5.5 hours as per MobileMark 2014;\r\nWarranty: This genuine Lenovo laptop comes with 1 year domestic warranty from Lenovo covering manufacturing defects and not covering physical damage. For more details, see Warranty section below;\r\nPre-installed Software: Windows 10 Home | In the Box: Laptop included with battery and charger, user guide;', 75324, 7527, 10, 'Brand:Lenovo;\r\nSeries:Ideapad 330;\r\nColour:Onyx Black;\r\nItem Height:23 Millimeters;\r\nItem Width:26 Centimeters;\r\nScreen Size:15.6 Inches;\r\nMaximum Display Resolution:1920 x 1080 (Full HD);\r\nItem Weight:2.2 Kg;\r\nProduct Dimensions:37.8 x 26 x 2.3 cm;\r\nBatteries:Lithium Polymer batteries required. (included);\r\nItem model number:81DE021HIN;\r\nProcessor Brand:Intel;\r\nProcessor Type:Core i5 8250U;\r\nRAM Size:4 GB;\r\nMemory Technolog:DDR4;\r\nHard Drive Size:1 TB;\r\nHard Disk Technology:Mechanical Hard Drive;\r\nSpeaker Description:2x1.5W; Dolby Audio;\r\nGraphics Coprocessor:Integrated Graphics;\r\nConnectivity Type:WIFI 1X1 AC+BT4.1;\r\nNumber of USB 3.0 Ports:2;\r\nNumber of HDMI Ports:1;\r\nNumber of Audio-out Ports:1;\r\nNumber of Ethernet Ports:1;\r\nNumber of Microphone Ports:1;\r\nOptical Drive Type:None;\r\nOperating System:Windows 10;\r\nLithium Battery Energy Content:30 Watt Hours;\r\nNumber of Lithium Ion Cells:2;\r\nIncluded Components:Laptop, Adapter and Manual;', '1 year manufacturer warranty on the device and 6 months manufacturer warranty on included accessories from the date of purchase', '32_1.jpeg', '32_2.jpeg', '32_3.jpg', 'AMD Radeon Vega 3 Graphics Card for Improved Graphics Performance;\r\nAMD Ryzen 3 Dual Core Processor;\r\n4 GB DDR4 RAM;\r\n64 bit Windows 10 Operating System;\r\n1 TB HDD;\r\n39.62 cm (15.6 inch) Display;\r\n1 Year Onsite Warranty;', '0000-00-00', 3.5, 15);
+(32, 'Lenovo Ideapad 330 Intel Core i5 8th Gen 15.6-inch Full HD Laptop (4GB + 16GB Optane/1TB HDD/Windows 10 Home/Onyx Black/ 2.2kg), 81DE021HIN', 'laptop', 'Processor: 8th Gen Intel Core i5-8250U processor, 1.6GHz base processor speed, 3.4GHz Max speed, Quad-cores, 6MB SmartCache\r\nOperating System: Pre-loaded Windows 10 Home with lifetime validity;\r\nDisplay: 15.6-inch Full HD (1920x1080) Laptop | Antiglare display;\r\nMemory & Storage: 4GB DDR4 RAM with Integrated Graphics. 16 GB Intel Optane memory for faster bootup and accelerate frequently used applications. |Storage: 1TB 5400 RPM HDD;\r\nDesign & battery: Laptop weight 2.2kg | Battery Life: Upto 5.5 hours as per MobileMark 2014;\r\nWarranty: This genuine Lenovo laptop comes with 1 year domestic warranty from Lenovo covering manufacturing defects and not covering physical damage. For more details, see Warranty section below;\r\nPre-installed Software: Windows 10 Home | In the Box: Laptop included with battery and charger, user guide;', 75324, 7527, 10, 'Brand:Lenovo;\r\nSeries:Ideapad 330;\r\nColour:Onyx Black;\r\nItem Height:23 Millimeters;\r\nItem Width:26 Centimeters;\r\nScreen Size:15.6 Inches;\r\nMaximum Display Resolution:1920 x 1080 (Full HD);\r\nItem Weight:2.2 Kg;\r\nProduct Dimensions:37.8 x 26 x 2.3 cm;\r\nBatteries:Lithium Polymer batteries required. (included);\r\nItem model number:81DE021HIN;\r\nProcessor Brand:Intel;\r\nProcessor Type:Core i5 8250U;\r\nRAM Size:4 GB;\r\nMemory Technolog:DDR4;\r\nHard Drive Size:1 TB;\r\nHard Disk Technology:Mechanical Hard Drive;\r\nSpeaker Description:2x1.5W; Dolby Audio;\r\nGraphics Coprocessor:Integrated Graphics;\r\nConnectivity Type:WIFI 1X1 AC+BT4.1;\r\nNumber of USB 3.0 Ports:2;\r\nNumber of HDMI Ports:1;\r\nNumber of Audio-out Ports:1;\r\nNumber of Ethernet Ports:1;\r\nNumber of Microphone Ports:1;\r\nOptical Drive Type:None;\r\nOperating System:Windows 10;\r\nLithium Battery Energy Content:30 Watt Hours;\r\nNumber of Lithium Ion Cells:2;\r\nIncluded Components:Laptop, Adapter and Manual;', '1 year manufacturer warranty on the device and 6 months manufacturer warranty on included accessories from the date of purchase', '32_1.jpeg', '32_2.jpeg', '32_3.jpg', 'AMD Radeon Vega 3 Graphics Card for Improved Graphics Performance;\r\nAMD Ryzen 3 Dual Core Processor;\r\n4 GB DDR4 RAM;\r\n64 bit Windows 10 Operating System;\r\n1 TB HDD;\r\n39.62 cm (15.6 inch) Display;\r\n1 Year Onsite Warranty;', '0000-00-00', 3.6, 16);
 
 -- --------------------------------------------------------
 
@@ -157,7 +195,7 @@ CREATE TABLE IF NOT EXISTS `qatb` (
   `productId` int(255) NOT NULL,
   `answer` varchar(1000) NOT NULL DEFAULT 'Not yet Answered...',
   `answerStatus` tinyint(1) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `qatb`
@@ -170,7 +208,8 @@ INSERT INTO `qatb` (`id`, `question`, `date`, `productId`, `answer`, `answerStat
 (6, 'khasgdhsgdhagdhasgdhgasd', '2019-03-28', 30, 'Not yet Answered...', 0),
 (7, 'khasgdhsgdhagdhasgdhgasd', '2019-04-06', 30, 'herkfjjkjad', 1),
 (8, 'is it compatible', '2019-04-08', 32, 'no, because', 1),
-(9, 'jhgfds', '2019-04-09', 32, 'k,jhgfv', 1);
+(9, 'jhgfds', '2019-04-09', 32, 'k,jhgfv', 1),
+(10, 'hgrtyertytr', '2019-04-19', 32, 'wsrdtfhrsdfvgnk', 1);
 
 -- --------------------------------------------------------
 
@@ -185,7 +224,7 @@ CREATE TABLE IF NOT EXISTS `reviews` (
   `reviewDetails` varchar(500) NOT NULL,
   `date` date NOT NULL,
   `productid` int(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=88 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=89 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `reviews`
@@ -278,7 +317,8 @@ INSERT INTO `reviews` (`id`, `userid`, `rating`, `reviewDetails`, `date`, `produ
 (84, 18, 1, 'adjfhasdjfhasdhfjashf', '2019-04-01', 32),
 (85, 18, 1, 'sajfasdjfhasjdfh', '2019-04-01', 32),
 (86, 19, 5, 'adjfhadjfhasjfkajfkjaklfj', '2019-04-08', 24),
-(87, 19, 5, 'u7ytrew', '2019-04-09', 32);
+(87, 19, 5, 'u7ytrew', '2019-04-09', 32),
+(88, 19, 5, 'szdazdsghujijgtr3ws', '2019-04-19', 32);
 
 -- --------------------------------------------------------
 
@@ -337,6 +377,29 @@ INSERT INTO `statekeys` (`abbr`, `statename`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `transactions`
+--
+
+CREATE TABLE IF NOT EXISTS `transactions` (
+`id` int(11) NOT NULL,
+  `txnId` varchar(10000) NOT NULL,
+  `uid` int(255) NOT NULL,
+  `products` varchar(10000) NOT NULL,
+  `amount` int(255) NOT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `transactions`
+--
+
+INSERT INTO `transactions` (`id`, `txnId`, `uid`, `products`, `amount`, `status`) VALUES
+(7, '3218a57a97a85722f776', 19, '{"24":"1","32":"1"}', 75824, 1),
+(8, 'f03945434af77a698695', 19, '{"24":"1"}', 500, 1);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `userdetailstb`
 --
 
@@ -357,7 +420,7 @@ CREATE TABLE IF NOT EXISTS `userdetailstb` (
   `cart` varchar(10000) NOT NULL DEFAULT '',
   `favourite` varchar(10000) NOT NULL,
   `compare` varchar(1000) NOT NULL DEFAULT '[]'
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `userdetailstb`
@@ -365,7 +428,8 @@ CREATE TABLE IF NOT EXISTS `userdetailstb` (
 
 INSERT INTO `userdetailstb` (`id`, `firstName`, `lastName`, `emailAddress`, `contactNo1`, `contactNo2`, `shipaddr1`, `shipaddr2`, `shiplandmark`, `country`, `state`, `city`, `postalcode`, `cart`, `favourite`, `compare`) VALUES
 (18, 'sarbjeet', 'singh', 'sasingh25@gmail.com', '9417171800', '1452367894', '21500, 6/4', 'power house road', 'adjacent to overseas bank', 'India', 'Punjab', 'Bathinda', '151001', '{"24":4}', '["24","32"]', '[]'),
-(19, 'Amitoj', 'singh', 'amitojvmc@gmail.com', '9417171800', '', '', '', '', 'India', '', '', '', '{"24":"1"}', '["31","24"]', '["24","31"]');
+(19, 'Amitoj', 'singh', 'amitojvmc@gmail.com', '9417171800', '', '21500, 6/4', 'Power House road', 'opposite cake square', 'India', 'Punjab', 'Bathinda', '151001', '[]', '["31","24"]', '["24","31","32"]'),
+(20, 'Harmanjot', 'Singh', 'harmanjot147@gmail.com', '7009737844', '', '59H', 'Near MBD', 'near mBD', 'India', 'Punjab', 'Ludhiana', '141214', '[]', '[]', '[]');
 
 --
 -- Indexes for dumped tables
@@ -388,6 +452,12 @@ ALTER TABLE `logintb`
 --
 ALTER TABLE `newsletter`
  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `orderstatus`
+--
+ALTER TABLE `orderstatus`
+ ADD PRIMARY KEY (`id`), ADD KEY `orderId` (`orderId`);
 
 --
 -- Indexes for table `productdetails`
@@ -414,6 +484,12 @@ ALTER TABLE `reviews`
  ADD PRIMARY KEY (`id`), ADD KEY `userid` (`userid`), ADD KEY `productid` (`productid`), ADD KEY `productid_2` (`productid`);
 
 --
+-- Indexes for table `transactions`
+--
+ALTER TABLE `transactions`
+ ADD PRIMARY KEY (`id`), ADD KEY `uid` (`uid`), ADD KEY `uid_2` (`uid`);
+
+--
 -- Indexes for table `userdetailstb`
 --
 ALTER TABLE `userdetailstb`
@@ -432,12 +508,17 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 -- AUTO_INCREMENT for table `logintb`
 --
 ALTER TABLE `logintb`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT for table `newsletter`
 --
 ALTER TABLE `newsletter`
 MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `orderstatus`
+--
+ALTER TABLE `orderstatus`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `productdetails`
 --
@@ -452,17 +533,22 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT for table `qatb`
 --
 ALTER TABLE `qatb`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `reviews`
 --
 ALTER TABLE `reviews`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=88;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=89;
+--
+-- AUTO_INCREMENT for table `transactions`
+--
+ALTER TABLE `transactions`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `userdetailstb`
 --
 ALTER TABLE `userdetailstb`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=20;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=21;
 --
 -- Constraints for dumped tables
 --
@@ -472,6 +558,12 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=20;
 --
 ALTER TABLE `logintb`
 ADD CONSTRAINT `logintb_ibfk_1` FOREIGN KEY (`linkUserId`) REFERENCES `userdetailstb` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `orderstatus`
+--
+ALTER TABLE `orderstatus`
+ADD CONSTRAINT `orderstatus_ibfk_1` FOREIGN KEY (`orderId`) REFERENCES `transactions` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `productsale`
@@ -485,6 +577,12 @@ ADD CONSTRAINT `productsale_ibfk_1` FOREIGN KEY (`productId`) REFERENCES `produc
 ALTER TABLE `reviews`
 ADD CONSTRAINT `reviews_ibfk_1` FOREIGN KEY (`userid`) REFERENCES `userdetailstb` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
 ADD CONSTRAINT `reviews_ibfk_2` FOREIGN KEY (`productid`) REFERENCES `productdetails` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `transactions`
+--
+ALTER TABLE `transactions`
+ADD CONSTRAINT `transactions_ibfk_1` FOREIGN KEY (`uid`) REFERENCES `userdetailstb` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

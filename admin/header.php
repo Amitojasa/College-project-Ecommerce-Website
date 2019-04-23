@@ -50,6 +50,16 @@
                 <ul class="navbar-nav collapsenav">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                            Orders
+                        </a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="newOrders.php">New Orders</a>
+                            <a class="dropdown-item" href="ontheway.php">On the Way</a>
+                            <a class="dropdown-item" href="Delivered.php">Delivered</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
                             Products
                         </a>
                         <div class="dropdown-menu">
