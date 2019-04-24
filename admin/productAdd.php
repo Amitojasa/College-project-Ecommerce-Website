@@ -60,6 +60,9 @@
        
        
         mysqli_query($conn,"update `productdetails` set `image1`='$f1',`image2`='$f2',`image3`='$f3'   where id=$last_id") or die("table not found2");
+       
+        mysqli_query($conn,"insert into `productsale` (productid,initialquantity) values($last_id,'$stockQuant')") or die("table not found2");
+
 
         
         
