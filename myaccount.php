@@ -88,6 +88,17 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
 <script>
+
+function dispatched (id){
+       $.ajax({
+            url:"orderStatus.php?id="+id, //the page containing php script
+            type: "POST", //request type
+            success:function(result){
+                alert("Order has been "+result);
+           }
+         });
+    }
+
 function favor(id){
     $.ajax({
             url:"favo.php?id="+id, //the page containing php script
@@ -134,10 +145,12 @@ function removeFromCart(id){
                     <li class="nav-item">
                     <a class="nav-link" data-toggle="tab" href="#change-pass">Change Password</a>
                     </li>
+                    <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#my-orders">My Orders</a>
+                    </li>
                 </ul>
             </nav>
         </div>
-        
         <div class="col-sm-9 tab-content">
 
             <section  id="dashboard" class="row tab-pane active">
@@ -360,7 +373,7 @@ function removeFromCart(id){
                 </div>
             </section>
             <section id="favourite" class="row tab-pane fade">
-            <div id="tabfav">
+                <div id="tabfav">
                 <div class="row">
                     <div class="col-12">
                         <div class="heading">
@@ -432,6 +445,46 @@ function removeFromCart(id){
                            
                 </div>
             </section>
+            <section id="my-orders" class="row tab-pane fade">
+                <div id="tabfav">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="heading">
+                            <h2 class="bg-light p-3">My Orders</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="row py-2" id="tab">
+                    <div class="col-12 mb-xs-30">
+                    <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Order Id</th>
+                        <th>Txn Id</th>
+                        <th>Amount</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php  
+                        $qu=mysqli_query($conn,"select distinct * from transactions where uid=$uid") or die(mysqli_error($conn));
+                        while($qe=mysqli_fetch_assoc($qu)){ 
+                    ?>
+                    <tr>
+                        <td><?php echo $qe['id'];?></td>
+                        <td><?php echo $qe['txnId'];?></td>
+                        <td><?php echo $qe['amount'];?></td>
+                        <td><a target="_blank" href="viewOrder.php?id=<?php echo $qe['id'];?>" class="btn btn-primary btn-sm">View Order</a></td>
+                        <td> <button class=" btn btn-sm btn-danger" onclick='dispatched(<?php echo $qe['id'];?>)'> Status </button></td>
+                        
+                    </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
+                    </div>
+                </div>
+                           
+                </div>
+            </section>
 
             <section id="change-pass" class="row tab-pane fade">
 
@@ -444,7 +497,7 @@ function removeFromCart(id){
                 <div class="row">
                     <div class="col-12">
                         <div class="heading">
-                            <h2 class="bg-light p-3">My Cart</h2>
+                            <h2 class="bg-light p-3">Change Password</h2>
                         </div>
                     </div>
                 </div>
@@ -477,9 +530,9 @@ function removeFromCart(id){
                     </form>
                 </div>
             </section>
+
         
         </div>
-
     </div>
 </div>
 
