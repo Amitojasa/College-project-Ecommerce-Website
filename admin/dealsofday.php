@@ -17,7 +17,7 @@ function addToDeals (id){
             url:"addToDeals.php?id="+id, //the page containing php script
             type: "POST", //request type
             success:function(result){
-                // $('#count').load('dealsofday.php #count');
+                $('#count').load('dealsofday.php #count');
                 $('#results').load('dealsofday.php #results');
            }
          });
@@ -36,6 +36,7 @@ function addToDeals (id){
                     </div>
                     <div class="col-sm-8">
                         <select name="category" class="form-control" id="category">
+                            <option value="">Select Category</option>
                             <option value="laptop">Laptop</option>
                             <option value="mobile">Mobile</option>
                             <option value="camera">Camera</option>

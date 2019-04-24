@@ -20,6 +20,7 @@ function dispatched (id){
                     <thead>
                     <tr>
                         <th>Order Id</th>
+                        <th>Order Date</th>
                         <th>Txn Id</th>
                         <th>Amount</th>
                     </tr>
@@ -31,6 +32,7 @@ function dispatched (id){
                     ?>
                     <tr>
                         <td><?php echo $qe['id'];?></td>
+                        <td><?php echo $qe['date'];?></td>
                         <td><?php echo $qe['txnId'];?></td>
                         <td><?php echo $qe['amount'];?></td>
                         <td><a href="viewOrder.php?id=<?php echo $qe['id'];?>" class="btn btn-primary btn-sm">View Order</a></td>

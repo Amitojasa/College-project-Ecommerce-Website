@@ -22,11 +22,14 @@ $salt="YSm0MskVKa";
 ?>
 
 <?php
-	if (@$_SESSION['login']==true){
-        $login=true;
+	if (@$_SESSION['login']==true ){
+ 
+        $_SESSION['rel']=true;
         $uid=$_SESSION['userid'];
+        $date= date("Y-m-d");
+        $r=mysqli_query($conn,"INSERT INTO `transactions`(`txnId`, `uid`, `products`, `amount`,`date`) VALUES ('$txnid',$uid,'$prods','$amount','$date')") or die(mysqli_error($conn));
         if(@$_SESSION['fromCart']==true){
-            $r=mysqli_query($conn,"INSERT INTO `transactions`(`txnId`, `uid`, `products`, `amount`) VALUES ('$txnid',$uid,'$prods','$amount')") or die(mysqli_error($conn));
+            
             $r=mysqli_query($conn,"update userdetailstb set cart='[]' where id='$uid'") or die(mysqli_error($conn));
         }
         $cart=(json_decode($prods,TRUE));
@@ -36,7 +39,14 @@ $salt="YSm0MskVKa";
             $newStock=mysqli_fetch_assoc($r)['stock']-$value;
             $Query="update productdetails set stock=$newStock where id = $i";
             $qu = mysqli_query($conn,$Query) or die(mysqli_error($conn));
+            $sq="select * from productsale where productId=$i";
+            $rs=mysqli_query($conn,$sq);
+            $sold=mysqli_fetch_assoc($rs)['sold']+$value;
+            $Query="update productsale set sold=$sold where productId = $i";
+            $qu = mysqli_query($conn,$Query) or die(mysqli_error($conn));
         }
+        echo "you will be redirected to home page in 2 secs!!";
+        echo "<script>setTimeout(\"location.href = '../';\",2000);</script>";
     }else{
         header("Location: login.php");
         exit;

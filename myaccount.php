@@ -306,7 +306,7 @@ function removeFromCart(id){
                                 <thead>
                                     <tr>
                                         <th colspan="2">
-                                            <h4>My Orders</h4>
+                                            <h4>My Products</h4>
                                         </th>
                                         <?php 
                                             $t=0;
@@ -460,6 +460,7 @@ function removeFromCart(id){
                     <thead>
                     <tr>
                         <th>Order Id</th>
+                        <th>Order Date</th>
                         <th>Txn Id</th>
                         <th>Amount</th>
                     </tr>
@@ -471,6 +472,7 @@ function removeFromCart(id){
                     ?>
                     <tr>
                         <td><?php echo $qe['id'];?></td>
+                        <td><?php echo $qe['date'];?></td>
                         <td><?php echo $qe['txnId'];?></td>
                         <td><?php echo $qe['amount'];?></td>
                         <td><a target="_blank" href="viewOrder.php?id=<?php echo $qe['id'];?>" class="btn btn-primary btn-sm">View Order</a></td>

@@ -16,7 +16,6 @@
         $warranty =  mysqli_real_escape_string($conn,$_POST['warranty']);
 
         $qu = mysqli_query($conn,"update `productdetails` set `title`='$title', `category`='$category', `description`='$desc', `newPrice`=$newPrice, `oldPrice`=$oldPrice, `stock`='$stockQuant', `details`='$details', `warranty`='$warranty', features='$features' where id=$id") or die(mysqli_error($conn));
-       // mysqli_query($conn,"update `productsale` set `initialquantity`='$stockQuant' where id=$id") or die(mysqli_error($conn));
         if(!empty($_FILES['image1']['name'])){
             $qq=mysqli_query($conn,"select image1 from productdetails");
             $qq=mysqli_fetch_assoc($qq);

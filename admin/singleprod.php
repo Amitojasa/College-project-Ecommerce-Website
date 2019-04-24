@@ -22,8 +22,8 @@
                     $q=mysqli_fetch_assoc($qu);
                 ?>
     <div class="row">
-        <h4 class="col-6 p-3 text-danger">Total Sale Amount: &#8377;<?php echo ((int)$ar['initialquantity']-(int)$q['stock'])*(int)$q['newPrice'];?></h4>
-        <h4 class="col-6 p-3 text-right text-danger">Total quantity sold: <?php echo ((int)$ar['initialquantity']-(int)$q['stock']);?></h4>
+        <h4 class="col-6 p-3 text-danger">Total Sale Amount: &#8377;<?php echo ((int)$ar['sold']*(int)$q['newPrice']);?></h4>
+        <h4 class="col-6 p-3 text-right text-danger">Total quantity sold: <?php echo ((int)$ar['sold']);?></h4>
     </div>
     
     <div class="row">

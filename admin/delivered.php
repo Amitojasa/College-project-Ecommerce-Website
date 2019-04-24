@@ -8,6 +8,7 @@
                     <thead>
                     <tr>
                         <th>Order Id</th>
+                        <th>Delivery Date</th>
                         <th>Txn Id</th>
                         <th>Amount</th>
                     </tr>
@@ -23,6 +24,7 @@
                     ?>
                     <tr>
                         <td><?php echo $qe['id'];?></td>
+                        <td><?php echo $pp['deliverydate'];?></td>
                         <td><?php echo $qe['txnId'];?></td>
                         <td><?php echo $qe['amount'];?></td>
                         <td><a href="viewOrderal.php?id=<?php echo $qe['id'];?>" class="btn btn-primary btn-sm">View Order</a></td>
