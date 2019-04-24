@@ -120,7 +120,7 @@
         </div>
         <div class="form-group">
             <label for="stock">Stock Quantity:</label>
-            <input type="number" class="form-control" name="stockQuant" id="stock">
+            <input type="number" class="form-control" name="stockQuant" id="stock" placeholder="(If adding more stock please enter the total stock ie previous present + new )">
         </div>
         
         <div class="form-group">

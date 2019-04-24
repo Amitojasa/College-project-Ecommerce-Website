@@ -25,15 +25,18 @@ $salt="YSm0MskVKa";
 	if (@$_SESSION['login']==true){
         $login=true;
         $uid=$_SESSION['userid'];
-        if(@$_SESSION['fromCart']==true)
-        $r=mysqli_query($conn,"INSERT INTO `transactions`(`txnId`, `uid`, `products`, `amount`) VALUES ('$txnid',$uid,'$prods','$amount')") or die(mysqli_error($conn));
-        $r=mysqli_query($conn,"update userdetailstb set cart='[]' where id='$uid'") or die(mysqli_error($conn));
-        // $cart=(json_decode($ordi['products'],TRUE));
-        // foreach($cart as $i => $value){       
-        // $selectQuery="select * from productdetails where id=$i";
-        //     $qu = mysqli_query($conn,$selectQuery) or die(mysqli_error($conn));
-        //     $q=mysqli_fetch_assoc($qu);  
-    
+        if(@$_SESSION['fromCart']==true){
+            $r=mysqli_query($conn,"INSERT INTO `transactions`(`txnId`, `uid`, `products`, `amount`) VALUES ('$txnid',$uid,'$prods','$amount')") or die(mysqli_error($conn));
+            $r=mysqli_query($conn,"update userdetailstb set cart='[]' where id='$uid'") or die(mysqli_error($conn));
+        }
+        $cart=(json_decode($prods,TRUE));
+        foreach($cart as $i => $value){  
+            $selectQuery="select * from productdetails where id=$i";
+            $r=mysqli_query($conn,$selectQuery);
+            $newStock=mysqli_fetch_assoc($r)['stock']-$value;
+            $Query="update productdetails set stock=$newStock where id = $i";
+            $qu = mysqli_query($conn,$Query) or die(mysqli_error($conn));
+        }
     }else{
         header("Location: login.php");
         exit;
