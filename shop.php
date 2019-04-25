@@ -1,12 +1,28 @@
+
 <?php include 'header.php'; ?>
+
 <?php 
     $cat=@$_GET['category'];
     $order = @$_GET['order'];
+    $sql="select * from productdetails where category = '$cat'";
+    $sqlc="";
+    $s1 = @$_GET['search_text'];
+            $s=explode(" ",$s1);
+            $sql="";
+            foreach($s as $i){
+                  $sql .= "union SELECT * FROM `productdetails` where ((title like '%{$i}%' or details like '%{$i}%') and category='$cat')";
+                  $sqlc .= "union SELECT count(*) FROM `productdetails` where ((title like '%{$i}%' or details like '%{$i}%') and category='$cat')";
+                   
+            } 
+        $sql=substr($sql,6);
+        $sqlc=substr($sqlc,6);
+        //echo $sqlc;
     $query = $_GET;
+    $query1 = $_GET;
     $link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 
                 "https" : "http") . "://" . $_SERVER['HTTP_HOST'] .  
                 $_SERVER['REQUEST_URI'];
-
+    //echo $link;
     
     $limit = 5; 
     if (isset($_GET["page"])) {  
@@ -18,17 +34,17 @@
     $start_from = ($pn-1) * $limit;   
                         
 
-    $selectQuery="select * from productdetails where category = '$cat'";
+    
     if($order=='relevance'){
 
     }elseif($order=='plth'){
-        $selectQuery=$selectQuery." order by newPrice asc";
+        $sql=$sql." order by newPrice asc";
     }elseif($order=='phtl'){
-        $selectQuery=$selectQuery." order by newPrice desc";
+        $sql=$sql." order by newPrice desc";
     }elseif($order=='newest'){
-        $selectQuery=$selectQuery." order by id desc";
+        $sql=$sql." order by id desc";
     }
-    $selectQuery.=" limit $start_from,$limit";
+    $sql.=" limit $start_from,$limit";
 ?>
 
 
@@ -58,7 +74,8 @@ function favor(id){
         </aside>
 
         <?php 
-            $qc = mysqli_query($conn,"select count(*) from productdetails where category = '$cat'  ") or die(mysqli_error($conn));
+            $qc = mysqli_query($conn,@$sqlc);
+            // $qc = mysqli_query($conn,"select count(*) from productdetails where category = '$cat' ") or die(mysqli_error($conn));
             $v=mysqli_fetch_array($qc)[0];
             $total_records=$v;
         ?>
@@ -103,7 +120,9 @@ function favor(id){
         </nav>
         <hr>
         <?php
-            $qu = mysqli_query($conn,$selectQuery) or die(mysqli_error($conn));
+            // $qu = mysqli_query($conn,$sql) or die(mysqli_error($conn));
+            
+            $qu = mysqli_query($conn,@$sql);
             while($q=mysqli_fetch_assoc($qu)){
         ?>
         <div class="card result-card border-bottom ">
@@ -165,19 +184,22 @@ function favor(id){
                     <?php   
                                                    
                             // Number of pages required. 
+                            
                             $total_pages = ceil($total_records / $limit);   
                             $pagLink = "";                         
                             for ($i=1; $i<=$total_pages; $i++) { 
+                                $query1['page'] = $i ;
+                                $query_result1 = http_build_query($query1);
                             if ($i==$pn) { 
-                                $pagLink .= '<li class="page-item active"><a class="page-link" href="shop.php?category=laptop&page='.$i.'">'.$i.'</a></li>';
+                                $pagLink .= '<li class="page-item active"><a class="page-link" href="'.$_SERVER['PHP_SELF'].'?'.$query_result1.'">'.$i.'</a></li>';
                             }             
                             else  { 
-                                $pagLink .= '<li class="page-item"><a class="page-link" href="shop.php?category=laptop&page='.$i.'">'.$i.'</a></li>';  
+                                $pagLink .= '<li class="page-item"><a class="page-link" href="'.$_SERVER['PHP_SELF'].'?'.$query_result1.'">'.$i.'</a></li>';
                             } 
                             };   
                             echo $pagLink;   
                         ?> 
-                        <li class="page-item"><a class="page-link" href="shop.php?category=laptop&page=<?php echo $pn+1;?>">Next</a></li>
+                        <li class="page-item"><a class="page-link" href="<?php $link;?>&page=<?php echo $pn+1;?>">Next</a></li>
                 </ul>
             </div>
         </div>

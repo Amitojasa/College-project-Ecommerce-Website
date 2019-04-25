@@ -6,6 +6,7 @@
 ?>
 <?php
     require 'conn.inc.php';
+    $cate="";
 ?>
 <?php
 	if (@$_SESSION['login']==true){
@@ -17,6 +18,7 @@
         $login=false;
         $userName="My Account";
     }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -78,24 +80,41 @@
         <nav class="navbar navbar-expand-sm bg-light navbar-light">
             <div class="container">
                 <div class="col-sm-10 searchbar">    
-                    <form action="#">
+                    <form method="GET" action="shop.php">
                         
                     <div class="input-group">
                     <div class="input-group-prepend">
-                        <button type="button" class="btn btn-outline-secondary dropdown-toggle cate-but" data-toggle="dropdown">
-                        Categories
-                        </button>
-                        <div class="dropdown-menu">
-                            <a href="#" class="dropdown-item">Laptop</a>
-                            <a href="#" class="dropdown-item">Mobile</a>
-                            <a href="#" class="dropdown-item">Camera</a>
-                            <a href="#" class="dropdown-item">Smat Watches</a>
-                            <a href="#" class="dropdown-item">Other</a>
-                        </div>
+                    <select name="category" class="form-control bg-secondary text-white" id="category">
+                        <option value="" <?php
+                                                            if(($cate)==('')){
+                                                                echo  "selected";
+                                                            } ?>>All</option>
+                        <option value="laptop" <?php
+                                                            if(($cate)==('laptop')){
+                                                                echo  "selected";
+                                                            } ?>>Laptop</option>
+                            <option value="mobile" <?php
+                                                            if(($cate)==('mobile')){
+                                                                echo  "selected";
+                                                            } ?> >Mobile</option>
+                            
+                            <option value="camera" <?php
+                                                            if(($cate)==('camera')){
+                                                                echo  "selected";
+                                                            } ?>>Camera</option>
+                            <option value="watches" <?php
+                                                            if(($cate)==('watches')){
+                                                                echo  "selected";
+                                                            } ?>>Smart watches</option>
+                            <option value="other" <?php
+                                                            if(($cate)==('other')){
+                                                                echo  "selected";
+                                                            } ?>>Other</option>
+                        </select>
                     </div>
-                        <input type="text" class="form-control" placeholder="Search">
+                        <input type="text" name="search_text" class="form-control" placeholder="Search">
                         <div class="input-group-append">
-                            <button class="btn btn-secondary" type="submit">Search</button> 
+                            <button class="btn btn-secondary" name="sub" type="submit" onclick="window.location.href='shop.php'">Search</button> 
                         </div>
                     </div>
                         

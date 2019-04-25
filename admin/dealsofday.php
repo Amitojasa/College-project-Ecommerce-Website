@@ -1,13 +1,23 @@
-<?php require '../conn.inc.php'; ?>
+<?php require '../conn.inc.php'; 
+$cate="";
+?>
 
  <?php
         if(isset($_POST['sub'])){
-            $cat=$_POST['category'];
+            $cate=$_POST['category'];
             if( !isset($_COOKIE['dealsCategory'])){
-                setcookie('dealsCategory', $cat);
+                setcookie('dealsCategory', $cate);
             }else{
-                $_COOKIE['dealsCategory']=$cat;
+                $_COOKIE['dealsCategory']=$cate;
             }
+            $s1=$_POST['search_text'];
+            $s=explode(" ",$s1);
+            $sql="";
+            foreach($s as $i){
+                  $sql .= "union SELECT * FROM `productdetails` where ((title like '%{$i}%' or details like '%{$i}%') and category='$cate')";
+                   
+            } 
+            $sql=substr($sql,6);
         }
      ?> 
 <?php include 'header.php';?>
@@ -35,13 +45,32 @@ function addToDeals (id){
                         <label for="category">Select Category:</label>
                     </div>
                     <div class="col-sm-8">
-                        <select name="category" class="form-control" id="category">
-                            <option value="">Select Category</option>
-                            <option value="laptop">Laptop</option>
-                            <option value="mobile">Mobile</option>
-                            <option value="camera">Camera</option>
-                            <option value="watches">Smart watches</option>
-                            <option value="other">Other</option>
+                    <select name="category" class="form-control" id="category" value="<?php echo $q['category'];?>">
+                        <option value="" <?php
+                                                            if(($cate)==('')){
+                                                                echo  "selected";
+                                                            } ?>>All</option>
+                        <option value="laptop" <?php
+                                                            if(($cate)==('laptop')){
+                                                                echo  "selected";
+                                                            } ?>>Laptop</option>
+                            <option value="mobile" <?php
+                                                            if(($cate)==('mobile')){
+                                                                echo  "selected";
+                                                            } ?> >Mobile</option>
+                            
+                            <option value="camera" <?php
+                                                            if(($cate)==('camera')){
+                                                                echo  "selected";
+                                                            } ?>>Camera</option>
+                            <option value="watches" <?php
+                                                            if(($cate)==('watches')){
+                                                                echo  "selected";
+                                                            } ?>>Smart watches</option>
+                            <option value="other" <?php
+                                                            if(($cate)==('other')){
+                                                                echo  "selected";
+                                                            } ?>>Other</option>
                         </select>
                     </div>
                 </div>
@@ -51,7 +80,7 @@ function addToDeals (id){
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fa fa-search"></i></span>
                     </div>
-                    <input type="text" class="form-control" placeholder="Search">
+                    <input type="text" name="search_text" class="form-control" placeholder="Search">
                 </div> 
             </div>
             <div class="col-sm-1">
@@ -78,7 +107,10 @@ function addToDeals (id){
         <?php
             if(isset($_COOKIE['dealsCategory'])){
                 $cat=$_COOKIE['dealsCategory'];
-                $qu = mysqli_query($conn,"Select * from productdetails where category='$cat'") or die(mysqli_error($conn));
+                if(!isset($sql))
+                    $qu = mysqli_query($conn,"Select * from productdetails where category='$cat'") or die(mysqli_error($conn));
+                else
+                    $qu = mysqli_query($conn,@$sql);
                 while($q=mysqli_fetch_assoc($qu)){
                     if(in_array($q['id'],$l)){
                         continue;
@@ -91,7 +123,7 @@ function addToDeals (id){
                             <img src="<?php echo "../images/".$cat."/".$q['image1'];?>" alt="GadgetsPick" class="img-fluid">
                         </div>
                         <div class="col-md-5 text title text-center"><?php echo $q['title'];?></div>
-                        <div class="col-md-2 price text-center"><?php echo $q['newPrice'];?></div>
+                        <div class="col-md-2 price text-center">₹ <?php echo $q['newPrice'];?></div>
                         <div class="col-md-2  text-center">
                             <button class="btn btn-primary" onclick='addToDeals(<?php echo $q['id'];?>)' >Add to Deals</button>
                         </div>

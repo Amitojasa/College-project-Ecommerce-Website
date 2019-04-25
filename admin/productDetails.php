@@ -90,7 +90,7 @@ $cate="";
                             <img src="<?php echo "../images/".$cat."/".$q['image1'];?>" alt="GadgetsPick" class="img-fluid">
                         </div>
                         <div class="col-md-5 text title text-center"><?php echo $q['title'];?></div>
-                        <div class="col-md-3 price text-center"><?php echo $q['newPrice'];?></div>
+                        <div class="col-md-3 price text-center"> ₹ <?php echo $q['newPrice'];?></div>
                         <div class="col-md-1  text-center">
                             <a target="_blank" href="singleprod.php?id=<?php echo $q['id'];?>&category=<?php echo $q['category'];?>" class="btn btn-danger">View</a>
                         </div>
