@@ -213,23 +213,23 @@ function favor(id){
             <div class="carousel-item active">
                 <div class="card-deck">
                 <?php
-                $qu=mysqli_query($conn,"select * from productdetails where category='$cat'  order by id desc  limit 1,5");
+                $qurp=mysqli_query($conn,"select * from productdetails where category='$cat'  order by id desc  limit 1,5");
 
-                while($q=mysqli_fetch_assoc($qu)){
+                while($qrp=mysqli_fetch_assoc($qurp)){
                 ?>
                     <div class="card">
                         <div class="card-img">
-                            <img class="card-img-top" src="<?php echo "images/".$q['category']."/".$q['image1'];?>" alt="Card image">
+                            <img class="card-img-top" src="<?php echo "images/".$qrp['category']."/".$qrp['image1'];?>" alt="Card image">
                         </div>
                         <div class="card-body pt-2">
                             <div class="card-title-outer">
-                                <p class="card-title my-1" title="<?php echo $q['title'];?>"><?php echo $q['title'];?>
+                                <p class="card-title my-1" title="<?php echo $qrp['title'];?>"><?php echo $qrp['title'];?>
                                 </p>
                                 <span style="background-color:white;color:#49b0c1;position:absolute;bottom:0;right:0;padding-left:10px;">...</span>
                                 
                             </div>
-                            <h6 class="card-text p-0 my-1"><?php echo $q['category'];?></h6>
-                            <h5 class="card-price p-0 m-0 mb-2"> &#8377; <?php echo $q['newPrice'];?> <strike class="text-danger"><small class="text-secondary"> &#8377; <?php echo $q['oldPrice'];?></small></strike> </h5>
+                            <h6 class="card-text p-0 my-1"><?php echo $qrp['category'];?></h6>
+                            <h5 class="card-price p-0 m-0 mb-2"> &#8377; <?php echo $qrp['newPrice'];?> <strike class="text-danger"><small class="text-secondary"> &#8377; <?php echo $qrp['oldPrice'];?></small></strike> </h5>
                             <a href="#" class="btn btn-primary px-5">View</a>
                         </div>
                     </div>
@@ -237,18 +237,18 @@ function favor(id){
                 </div>
             </div>
             <?php 
-                $qu=mysqli_query($conn,"select * from productdetails where category='laptop'  order by id desc  limit 6,5");
+                $qurp=mysqli_query($conn,"select * from productdetails where category='$cat'  order by id desc  limit 6,5");
 
-                while($q=mysqli_fetch_assoc($qu)){
+                while($qrp=mysqli_fetch_assoc($qurp)){
             ?>
             <div class="carousel-item">
                 <div class="card-deck">
                     <div class="card">
-                        <img class="card-img-top" src="<?php echo "images/".$q['category']."/".$q['image1'];?>" alt="Card image">
+                        <img class="card-img-top" src="<?php echo "images/".$qrp['category']."/".$q['image1'];?>" alt="Card image">
                         <div class="card-body pt-2">
-                            <h6 class="card-title my-1"><?php echo $q['title'];?></h6>
-                            <p class="card-text p-0 my-1"><?php echo $q['category'];?></p>
-                            <h5 class="card-title p-0 m-0 mb-2"> &#8377; <?php echo $q['newPrice'];?> <strike class="text-danger"><small class="text-secondary"> &#8377; <?php echo $q['oldPrice'];?></small></strike> </h5>
+                            <h6 class="card-title my-1"><?php echo $qrp['title'];?></h6>
+                            <p class="card-text p-0 my-1"><?php echo $qrp['category'];?></p>
+                            <h5 class="card-title p-0 m-0 mb-2"> &#8377; <?php echo $qrp['newPrice'];?> <strike class="text-danger"><small class="text-secondary"> &#8377; <?php echo $qrp['oldPrice'];?></small></strike> </h5>
                             <a href="#" class="btn btn-primary px-5">View</a>
                         </div>
                     </div>
@@ -267,7 +267,9 @@ function favor(id){
 </section>
 
 <section class="details row" id="details">
-                            <?php $features=(explode(";",$q['details']));
+                            <?php 
+                                 
+                                $features=(explode(";",$q['details']));
                                 $detailsArray = array();
                                 foreach($features as $i){
 

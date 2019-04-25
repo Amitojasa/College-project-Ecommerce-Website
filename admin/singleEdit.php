@@ -104,12 +104,27 @@
         <div class="form-group">
             <label for="category">Select Category:</label>
             <select name="category" class="form-control" id="category" value="<?php echo $q['category'];?>">
-            <option value="laptop">Laptop</option>
-                <option value="mobile">Mobile</option>
+            <option value="laptop" <?php
+                                                if(($q['category'])==('laptop')){
+                                                    echo  "selected";
+                                                } ?>>Laptop</option>
+                <option value="mobile" <?php
+                                                if(($q['category'])==('mobile')){
+                                                    echo  "selected";
+                                                } ?> >Mobile</option>
                 
-                <option value="camera">Camera</option>
-                <option value="watches">Smart watches</option>
-                <option value="other">Other</option>
+                <option value="camera" <?php
+                                                if(($q['category'])==('camera')){
+                                                    echo  "selected";
+                                                } ?>>Camera</option>
+                <option value="watches" <?php
+                                                if(($q['category'])==('watches')){
+                                                    echo  "selected";
+                                                } ?>>Smart watches</option>
+                <option value="other" <?php
+                                                if(($q['category'])==('other')){
+                                                    echo  "selected";
+                                                } ?>>Other</option>
             </select>
         </div>
         <div class="form-group">

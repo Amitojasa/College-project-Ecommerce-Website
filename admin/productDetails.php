@@ -1,5 +1,7 @@
 <?php require '../conn.inc.php'; ?>
-<?php include 'header.php';?>
+<?php include 'header.php';
+$cate="";
+?>
 
 
 <div class="container my-3">
@@ -7,6 +9,14 @@
     <?php
         if(isset($_POST['sub'])){
             $cate=$_POST['category'];
+            $s1=$_POST['search_text'];
+            $s=explode(" ",$s1);
+            $sql="";
+            foreach($s as $i){
+                  $sql .= "union SELECT * FROM `productdetails` where ((title like '%{$i}%' or details like '%{$i}%') and category='$cate')";
+                   
+            } 
+            $sql=substr($sql,6);
         }
      ?>
     <form method="POST" enctype="multipart/form-data">
@@ -17,12 +27,32 @@
                         <label for="category">Select Category:</label>
                     </div>
                     <div class="col-sm-8">
-                        <select name="category" class="form-control" id="category">
-                            <option value="laptop">Laptop</option>
-                            <option value="mobile">Mobile</option>
-                            <option value="camera">Camera</option>
-                            <option value="watches">Smart watches</option>
-                            <option value="other">Other</option>
+                    <select name="category" class="form-control" id="category" value="<?php echo $q['category'];?>">
+                        <option value="" <?php
+                                                            if(($cate)==('')){
+                                                                echo  "selected";
+                                                            } ?>>All</option>
+                        <option value="laptop" <?php
+                                                            if(($cate)==('laptop')){
+                                                                echo  "selected";
+                                                            } ?>>Laptop</option>
+                            <option value="mobile" <?php
+                                                            if(($cate)==('mobile')){
+                                                                echo  "selected";
+                                                            } ?> >Mobile</option>
+                            
+                            <option value="camera" <?php
+                                                            if(($cate)==('camera')){
+                                                                echo  "selected";
+                                                            } ?>>Camera</option>
+                            <option value="watches" <?php
+                                                            if(($cate)==('watches')){
+                                                                echo  "selected";
+                                                            } ?>>Smart watches</option>
+                            <option value="other" <?php
+                                                            if(($cate)==('other')){
+                                                                echo  "selected";
+                                                            } ?>>Other</option>
                         </select>
                     </div>
                 </div>
@@ -32,7 +62,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fa fa-search"></i></span>
                     </div>
-                    <input type="text" class="form-control" placeholder="Search">
+                    <input name="search_text" type="text" class="form-control" placeholder="Search">
                 </div> 
             </div>
             <div class="col-sm-1">
@@ -48,7 +78,10 @@
         <div id="results">
             <?php
                 $cat=@$cate;
-                $qu = mysqli_query($conn,"Select * from productdetails where category='$cat'") or die(mysqli_error($conn));
+                if(!isset($sql))
+                    $qu = mysqli_query($conn,"Select * from productdetails where category='$cat'") or die(mysqli_error($conn));
+                else
+                    $qu = mysqli_query($conn,@$sql);
                 while($q=mysqli_fetch_assoc($qu)){
                     ?>
 
@@ -65,6 +98,7 @@
 
                     <?php
                 }
+           
         ?>
 
         </div>

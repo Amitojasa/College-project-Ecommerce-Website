@@ -1,0 +1,31 @@
+Brand	Acer
+Series	Aspire 3
+Colour	Obsidian Black
+Item Height	21 Millimeters
+Item Width	38.1 Centimeters
+Screen Size	15.6 Inches
+Maximum Display Resolution	1366x768
+Item Weight	2.1 Kg
+Product Dimensions	25.9 x 38.1 x 2.1 cm
+Batteries:	1 Lithium ion batteries required. (included)
+Item model number	A315-33
+Processor Brand	Intel
+Processor Type	Celeron N3060
+RAM Size	4 GB
+Memory Technology	DDR3
+Hard Drive Size	500 GB
+Hard Disk Technology	Mechanical Hard Drive
+Speaker Description	1
+Graphics Coprocessor	Integrated Graphics
+Wireless Type	801.11 AC
+Number of USB 2.0 Ports	2
+Number of USB 3.0 Ports	1
+Number of HDMI Ports	1
+Number of Audio-out Ports	1
+Number of Ethernet Ports	1
+Number of Microphone Ports	1
+Operating System	Windows 10
+Lithium Battery Energy Content	37 Watt Hours
+Number of Lithium Ion Cells	1
+Number of Lithium Metal Cells	37
+Included Components	Laptop, Battery, AC Adapter, User Guide and Manuals
