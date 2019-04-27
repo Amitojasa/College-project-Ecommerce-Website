@@ -14,7 +14,7 @@ function delivered (id){
     }
 </script>
 <div class="container my-3">
-                
+<h3>Dispatched Orders</h3>
                 <div class="qas">
                 <table class="table">
                     <thead>

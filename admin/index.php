@@ -1,2 +1,4 @@
-<?php include 'header.php';?>
-<?php include 'footer.php';?>
+<?php
+header("Location: newOrders.php");
+exit();
+?>

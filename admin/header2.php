@@ -11,13 +11,12 @@
 	if (@$_SESSION['loginadmin']==true){
         $loginadmin=true;
         $uid=$_SESSION['email'];
-        $r=mysqli_query($conn,"select * from adminlogintb where emailid='$uid'") or die(mysqli_error($conn));
+        $r=mysqli_query($conn,"select * from userdetailstb where emailid='$uid'") or die(mysqli_error($conn));
         $userName=mysqli_fetch_assoc($r)['emailid'];
 	}else{
         $loginadmin=false;
         $userName="My Account";
-        header("Location: logout.php");
-        exit();
+
     }
 ?>
 <!DOCTYPE html>
@@ -92,7 +91,7 @@
                 <ul class="navbar-nav collapsenav">
                     <li class="nav-item">
 
-                    <?php if(@$loginadmin){?>
+                    <?php if(@$login){?>
                             <a href="logout.php" class="nav-link"><span class="fa fa-lock"></span> Logout
                         <?php }else{ ?>
                             <a href="login.php" class="nav-link"><span class="fa fa-lock"></span> Login

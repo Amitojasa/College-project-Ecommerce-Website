@@ -2,7 +2,7 @@
 
 <?php include 'header.php';?>
 <div class="container my-3">
-                
+<h3>Delivered Orders</h3>
                 <div class="qas">
                 <table class="table">
                     <thead>
