@@ -285,7 +285,7 @@ function favor(id){
 <table class="table" cellspacing="0" cellpadding="0" border="0">
 <tbody>
     <?php foreach($detailsArray as $i=>$j){?>
-    <tr><td class="bg-light px-2"><?php echo $i;?></td><td class="value px-2"><?php echo $j;?></td></tr>
+    <tr><td class="bg-light px-2" width=40%><?php echo $i;?></td><td class="value px-2" width=60%><?php echo $j;?></td></tr>
     <?php } ?>
      </tbody>
      </table>

@@ -51,13 +51,13 @@
             move_uploaded_file($_FILES['image2']['tmp_name'],$path2);
             rename ($path2, $path22);
         }
-        if(!empty($_FILES['image2']['name'])){
+        if(!empty($_FILES['image3']['name'])){
             $qq=mysqli_query($conn,"select image3 from productdetails");
             $qq=mysqli_fetch_assoc($qq);
             $path11="../images/".$category."/".$qq['image3'];
             if(unlink($path11)){
             }
-            $filename3 =  mysqli_real_escape_string($conn,$_FILES['image2']['name']);
+            $filename3 =  mysqli_real_escape_string($conn,$_FILES['image3   ']['name']);
             $pathinfo = pathinfo($filename3);
             $ex=$pathinfo['extension']; 
             $f3=$id."_3.".$ex;
@@ -84,7 +84,7 @@
     <form method="POST" enctype="multipart/form-data">
         <div class="form-group">
             <label for="title">Title:</label>
-            <input type="text" name="title" class="form-control" id="title" value="<?php echo $q['title'];?>">
+            <textarea rows="1" type="text" name="title" class="form-control" id="title" ><?php echo ($q['title']);?></textarea>
         </div>
         <div class="form-group">
             <label for="image1">Image1:</label>
@@ -134,7 +134,7 @@
         
         <div class="form-group">
             <label for="features">Features:</label>
-            <textarea name="features" id="features" class="form-control" cols="30" rows="7" placeholder="separate with ;" value="<?php echo $q['features'];?>"></textarea>
+            <textarea name="features" id="features" class="form-control" cols="30" rows="7" placeholder="separate with ;" ><?php echo $q['features'];?></textarea>
         </div>
 
         <div class="form-group">
