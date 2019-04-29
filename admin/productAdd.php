@@ -79,7 +79,7 @@
     <form method="POST" enctype="multipart/form-data">
         <div class="form-group">
             <label for="title">Title:</label>
-            <input type="text" name="title" class="form-control" id="title">
+            <textarea name="title" class="form-control" id="title"></textarea>
         </div>
         <div class="form-group">
             <label for="image1">Image1:</label>

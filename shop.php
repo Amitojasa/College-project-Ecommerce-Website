@@ -1,22 +1,37 @@
-
-<?php include 'header.php'; ?>
-
 <?php 
+include "conn.inc.php";
     $cat=@$_GET['category'];
     $order = @$_GET['order'];
-    $sql="select * from productdetails where category = '$cat'";
-    $sqlc="";
-    $s1 = @$_GET['search_text'];
+    
+                $rs=mysqli_query($conn,"select min(newPrice), max(newPrice) from productdetails where category='$cat' ") or die(mysqli_error($conn));
+                $r=mysqli_fetch_assoc($rs);
+                $min=$r['min(newPrice)'];
+                $max=$r['max(newPrice)'];
+                if(isset($_GET['min'])){
+                    $min=$_GET['min'];
+                }
+                if(isset($_GET['max'])){
+                    $max=$_GET['max'];
+                }
+                $sql="select * from productdetails where category = '$cat' and (newPrice between $min and $max))";
+                $sqlc="select count(*) from productdetails where category = '$cat' and (newPrice between $min and $max))";
+        
+    
+    //if(isset($_GET['search_text'])){
+        $s1 = @$_GET['search_text'];
             $s=explode(" ",$s1);
             $sql="";
+            $sqlc="";
             foreach($s as $i){
-                  $sql .= "union SELECT * FROM `productdetails` where ((title like '%{$i}%' or details like '%{$i}%') and category='$cat')";
-                  $sqlc .= "union SELECT count(*) FROM `productdetails` where ((title like '%{$i}%' or details like '%{$i}%') and category='$cat')";
+                  $sql .= "union SELECT * FROM `productdetails` where ((title like '%{$i}%' or details like '%{$i}%') and category='$cat' and (newPrice between $min and $max))";
+                  $sqlc .= "+( SELECT count(*) FROM `productdetails` where ((title like '%{$i}%' or details like '%{$i}%') and category='$cat' and (newPrice between $min and $max)))";
                    
             } 
+    
         $sql=substr($sql,6);
-        $sqlc=substr($sqlc,6);
-        //echo $sqlc;
+        $sqlc=substr($sqlc,1);
+        $sqlc="select (".$sqlc.") as sumcount";
+         //   }    //echo $sqlc;
     $query = $_GET;
     $query1 = $_GET;
     $link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 
@@ -47,6 +62,39 @@
     $sql.=" limit $start_from,$limit";
 ?>
 
+<?php
+                if(isset($_POST['fsub'])){
+                $ss="";
+                if(isset($_POST['dell'])){
+                    $ss.=" dell";
+                } if(isset($_POST['lenovo'])){
+                    $ss.=" lenovo";
+                } if(isset($_POST['acer'])){
+                    $ss.=" acer";
+                } if(isset($_POST['asus'])){
+                    $ss.=" asus";
+                } if(isset($_POST['hp'])){
+                    $ss.=" hp";
+                }
+                if(isset($_POST['all'])){
+                    $ss="";
+                    $query['search_text']=$ss;
+                }
+                if($ss!=""){
+                    $ss=substr($ss,1);
+                $query['search_text']=$ss;}
+                
+                $query['min']=$_POST['minPrice'];
+                $query['page']=1;
+                $query['max']=$_POST['maxPrice'];
+                $query_result = http_build_query($query);
+                header("Location: ".$_SERVER['PHP_SELF']."?".$query_result);
+                exit;
+            }
+            ?>
+
+
+<?php include 'header.php'; ?>
 
 <link rel="stylesheet" href="css/shop.css">
 
@@ -70,13 +118,65 @@ function favor(id){
 <div class="container-fluid m-0 p-0">
     <section class="result-sec row m-0">
         <aside class="aside bg-light col-sm-2">
-            <?php include 'aside.php';?>
+            <h3 class="my-3">Filters</h3>
+            <hr>
+            <?php
+                if(isset($_GET['min'])){
+                    $min=$_GET['min'];
+                }
+                if(isset($_GET['max'])){
+                    $max=$_GET['max'];
+                }
+                
+            ?>
+            <form method="POST">
+            <div class="my-3">
+                <h4>Price</h4>
+                    <input type="number" class="form-control form-control-sm" name="minPrice" placeholder="min price" value="<?php echo $min;?>">
+                    <input type="number" class="form-control form-control-sm my-1" name="maxPrice" placeholder="max price" value="<?php echo $max;?>">
+
+            </div>
+            <div class="my-3">
+            <h4>Company</h4>
+                    <div class="form-check">
+                        <label class="form-check-label" for="check1">
+                            <input type="checkbox" class="form-check-input" id="all" name="all" value="all" checked>All
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <label class="form-check-label" for="check1">
+                            <input type="checkbox" class="form-check-input" id="dell" name="dell" value="dell" <?php if(in_array("dell",$s)) echo "checked"; ?>>Dell
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <label class="form-check-label" for="check2">
+                            <input type="checkbox" class="form-check-input" id="lenovo" name="lenovo" value="lenovo" <?php if(in_array("lenovo",$s)) echo "checked"; ?>>Lenovo
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <label class="form-check-label" for="check1">
+                            <input type="checkbox" class="form-check-input" id="asus" name="asus" value="asus" <?php if(in_array("asus",$s)) echo "checked"; ?>>Asus
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <label class="form-check-label" for="check2">
+                            <input type="checkbox" class="form-check-input" id="acer" name="acer" value="acer" <?php if(in_array("acer",$s)) echo "checked"; ?>>Acer
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <label class="form-check-label" for="check1">
+                            <input type="checkbox" class="form-check-input" id="hp" name="hp" value="hp" <?php if(in_array("hp",$s)) echo "checked"; ?>>HP
+                        </label>
+                    </div>
+                   <input type="submit" value="submit" name="fsub" class="btn btn-primary my-3"> 
+            </div>
+            </form>
         </aside>
 
         <?php 
             $qc = mysqli_query($conn,@$sqlc);
             // $qc = mysqli_query($conn,"select count(*) from productdetails where category = '$cat' ") or die(mysqli_error($conn));
-            $v=mysqli_fetch_array($qc)[0];
+            $v=mysqli_fetch_assoc($qc)['sumcount'];
             $total_records=$v;
         ?>
 
