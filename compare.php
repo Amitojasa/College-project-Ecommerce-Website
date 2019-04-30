@@ -53,8 +53,11 @@
                         foreach($ar as $p){
                             $qp1=mysqli_query($conn,"select * from productdetails where id=$p and category='$cat'");
                             $qp1=mysqli_fetch_assoc($qp1);
+                            if($qp1['category']!=$cat){
+                                continue;
+                            }
                     ?>
-                    <option value="<?php echo $p;?>"<?php if(isset($_COOKIE['prod1'])==$p)echo "selected";?>><?php echo $qp1['title'];?></option>
+                    <option value="<?php echo $p;?>"><?php echo $qp1['title'];?></option>
                     <?php } ?>
                 </select>
             </div>
@@ -69,8 +72,11 @@
                         foreach($ar as $p){
                             $qp2=mysqli_query($conn,"select * from productdetails where id=$p and category='$cat'");
                             $qp2=mysqli_fetch_assoc($qp2);
+                            if($qp2['category']!=$cat){
+                                continue;
+                            }
                     ?>
-                    <option value="<?php echo $p;?>"<?php if(isset($_COOKIE['prod2'])==$p)echo "selected";?>><?php echo $qp2['title'];?></option>
+                    <option value="<?php echo $p;?>"><?php echo $qp2['title'];?></option>
                     <?php } ?>
                 </select>
             </div>

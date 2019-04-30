@@ -21,8 +21,11 @@
 }
 
 .card-img-top{
-    width:100%;
-    height:auto;
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    max-height: 100%;
+    margin: 0 auto;
 }
 
 .m-3 .carousel-control-prev,.m-3 .carousel-control-next{

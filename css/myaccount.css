@@ -12,7 +12,11 @@ section#cart table .product-image{
 #tabfav table .product-image{
     width:200px
 }
+.product-image img{
+    max-height:100%;
+    margin:0 auto;
 
+} 
 
 section#cart table td{
     vertical-align: middle;
@@ -46,3 +50,8 @@ table ul{
     display: flex;
     flex-direction: column;
 }
+.product-image{
+    height:200px;
+    text-align: center;
+}
+

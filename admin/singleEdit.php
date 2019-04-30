@@ -57,7 +57,7 @@
             $path11="../images/".$category."/".$qq['image3'];
             if(unlink($path11)){
             }
-            $filename3 =  mysqli_real_escape_string($conn,$_FILES['image3   ']['name']);
+            $filename3 =  mysqli_real_escape_string($conn,$_FILES['image3']['name']);
             $pathinfo = pathinfo($filename3);
             $ex=$pathinfo['extension']; 
             $f3=$id."_3.".$ex;

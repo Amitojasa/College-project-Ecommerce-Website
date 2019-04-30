@@ -16,3 +16,9 @@
     padding:2px;
     margin:0px;
 }
+.table td{
+    width:40%;
+}
+.table td.value{
+    width:60%;
+}

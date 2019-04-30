@@ -229,7 +229,7 @@ function favor(id){
             <div class="card-body py-2">
                 <div class="row">
 
-                    <div class="img col-3 d-flex">
+                    <div class="img proimg col-3 d-flex">
                         <img class="img-fluid align-self-center" src="<?php echo "images/".$q['category']."/".$q['image1'];?>" alt="">
                     </div>
 

@@ -32,3 +32,13 @@
     color:#A4B0BD;
     font-size: 22px;
 }
+
+.img-fluid{
+    max-height:300px;
+    width:auto;
+    margin:0 auto;
+
+}
+.proimg{
+    
+}

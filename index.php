@@ -83,7 +83,7 @@ include 'header.php';
                             </div>
                             <h6 class="card-text p-0 my-1"><?php echo $q['category'];?></h6>
                             <h5 class="card-price p-0 m-0 mb-2"> &#8377; <?php echo $q['newPrice'];?> <strike class="text-danger"><small class="text-secondary"> &#8377; <?php echo $q['oldPrice'];?></small></strike> </h5>
-                            <a href="#" class="btn btn-primary px-5">View</a>
+                            <a href="<?php echo 'single-product.php?id='.$q['id']; ?>" class="btn btn-primary px-5">View</a>
                         </div>
                     </div>
                 <?php } ?>
@@ -104,7 +104,7 @@ include 'header.php';
                             <h6 class="card-title my-1"><?php echo $q['title'];?></h6>
                             <p class="card-text p-0 my-1"><?php echo $q['category'];?></p>
                             <h5 class="card-title p-0 m-0 mb-2"> &#8377; <?php echo $q['newPrice'];?> <strike class="text-danger"><small class="text-secondary"> &#8377; <?php echo $q['oldPrice'];?></small></strike> </h5>
-                            <a href="#" class="btn btn-primary px-5">View</a>
+                            <a href="<?php echo 'single-product.php?id='.$q['id']; ?>" class="btn btn-primary px-5">View</a>
                         </div>
                     </div>
                 <?php } ?>
@@ -126,7 +126,7 @@ include 'header.php';
 <hr>
 <section class="m-3">
     <h4 class="mb-2">Latest Laptops</h4>
-    <div id="demo1" class="carousel slide" data-ride="carousel">
+    <div id="demo1l" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active">
                 <div class="card-deck">
@@ -148,36 +148,45 @@ include 'header.php';
                             </div>
                             <h6 class="card-text p-0 my-1"><?php echo $q['category'];?></h6>
                             <h5 class="card-price p-0 m-0 mb-2"> &#8377; <?php echo $q['newPrice'];?> <strike class="text-danger"><small class="text-secondary"> &#8377; <?php echo $q['oldPrice'];?></small></strike> </h5>
-                            <a href="#" class="btn btn-primary px-5">View</a>
+                            <a href="<?php echo 'single-product.php?id='.$q['id']; ?>" class="btn btn-primary px-5">View</a>
                         </div>
                     </div>
                 <?php } ?>
                 </div>
             </div>
-            <?php 
-                $qu=mysqli_query($conn,"select * from productdetails where category='laptop'  order by id desc  limit 6,5");
-
-                while($q=mysqli_fetch_assoc($qu)){
-            ?>
+            
             <div class="carousel-item">
                 <div class="card-deck">
+                <?php 
+                    $qu=mysqli_query($conn,"select * from productdetails where category='laptop'  order by id desc  limit 6,5");
+
+                    while($q=mysqli_fetch_assoc($qu)){
+                 ?>
                     <div class="card">
-                        <img class="card-img-top" src="<?php echo "images/".$q['category']."/".$q['image1'];?>" alt="Card image">
+                        <div class="card-img">
+                            <img class="card-img-top" src="<?php echo "images/".$q['category']."/".$q['image1'];?>" alt="Card image">
+                        </div>
                         <div class="card-body pt-2">
-                            <h6 class="card-title my-1"><?php echo $q['title'];?></h6>
-                            <p class="card-text p-0 my-1"><?php echo $q['category'];?></p>
-                            <h5 class="card-title p-0 m-0 mb-2"> &#8377; <?php echo $q['newPrice'];?> <strike class="text-danger"><small class="text-secondary"> &#8377; <?php echo $q['oldPrice'];?></small></strike> </h5>
-                            <a href="#" class="btn btn-primary px-5">View</a>
+                            <div class="card-title-outer">
+                                <p class="card-title my-1" title="<?php echo $q['title'];?>"><?php echo $q['title'];?>
+                                </p>
+                                <span style="background-color:white;color:#49b0c1;position:absolute;bottom:0;right:0;padding-left:10px;">...</span>
+                                
+                            </div>
+                            <h6 class="card-text p-0 my-1"><?php echo $q['category'];?></h6>
+                            <h5 class="card-price p-0 m-0 mb-2"> &#8377; <?php echo $q['newPrice'];?> <strike class="text-danger"><small class="text-secondary"> &#8377; <?php echo $q['oldPrice'];?></small></strike> </h5>
+                            <a href="<?php echo 'single-product.php?id='.$q['id']; ?>" class="btn btn-primary px-5">View</a>
                         </div>
                     </div>
+                    <?php }?>
                 </div>
             </div>
-            <?php }?>
+           
         </div>
-        <a class="carousel-control-prev" href="#demo1" data-slide="prev">
+        <a class="carousel-control-prev" href="#demo1l" data-slide="prev">
             <span class="carousel-control-prev-icon"></span>
         </a>
-        <a class="carousel-control-next" href="#demo1" data-slide="next">
+        <a class="carousel-control-next" href="#demo1l" data-slide="next">
             <span class="carousel-control-next-icon"></span>
         </a>
 
@@ -186,7 +195,7 @@ include 'header.php';
 <hr>
 <section class="m-3">
     <h4 class="mb-2">Latest Mobiles</h4>
-    <div id="demo1" class="carousel slide" data-ride="carousel">
+    <div id="demo1m" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active">
                 <div class="card-deck">
@@ -208,36 +217,45 @@ include 'header.php';
                             </div>
                             <h6 class="card-text p-0 my-1"><?php echo $q['category'];?></h6>
                             <h5 class="card-price p-0 m-0 mb-2"> &#8377; <?php echo $q['newPrice'];?> <strike class="text-danger"><small class="text-secondary"> &#8377; <?php echo $q['oldPrice'];?></small></strike> </h5>
-                            <a href="#" class="btn btn-primary px-5">View</a>
+                            <a href="<?php echo 'single-product.php?id='.$q['id']; ?>" class="btn btn-primary px-5">View</a>
                         </div>
                     </div>
                 <?php } ?>
                 </div>
             </div>
-            <?php 
+           
+            <div class="carousel-item">
+                <div class="card-deck">
+                <?php 
                 $qu=mysqli_query($conn,"select * from productdetails where category='mobile'  order by id desc  limit 6,5");
 
                 while($q=mysqli_fetch_assoc($qu)){
             ?>
-            <div class="carousel-item">
-                <div class="card-deck">
                     <div class="card">
-                        <img class="card-img-top" src="<?php echo "images/".$q['category']."/".$q['image1'];?>" alt="Card image">
+                        <div class="card-img">
+                            <img class="card-img-top" src="<?php echo "images/".$q['category']."/".$q['image1'];?>" alt="Card image">
+                        </div>
                         <div class="card-body pt-2">
-                            <h6 class="card-title my-1"><?php echo $q['title'];?></h6>
-                            <p class="card-text p-0 my-1"><?php echo $q['category'];?></p>
-                            <h5 class="card-title p-0 m-0 mb-2"> &#8377; <?php echo $q['newPrice'];?> <strike class="text-danger"><small class="text-secondary"> &#8377; <?php echo $q['oldPrice'];?></small></strike> </h5>
-                            <a href="#" class="btn btn-primary px-5">View</a>
+                            <div class="card-title-outer">
+                                <p class="card-title my-1" title="<?php echo $q['title'];?>"><?php echo $q['title'];?>
+                                </p>
+                                <span style="background-color:white;color:#49b0c1;position:absolute;bottom:0;right:0;padding-left:10px;">...</span>
+                                
+                            </div>
+                            <h6 class="card-text p-0 my-1"><?php echo $q['category'];?></h6>
+                            <h5 class="card-price p-0 m-0 mb-2"> &#8377; <?php echo $q['newPrice'];?> <strike class="text-danger"><small class="text-secondary"> &#8377; <?php echo $q['oldPrice'];?></small></strike> </h5>
+                            <a href="<?php echo 'single-product.php?id='.$q['id']; ?>" class="btn btn-primary px-5">View</a>
                         </div>
                     </div>
+                    <?php }?>
                 </div>
             </div>
-            <?php }?>
+           
         </div>
-        <a class="carousel-control-prev" href="#demo1" data-slide="prev">
+        <a class="carousel-control-prev" href="#demo1m" data-slide="prev">
             <span class="carousel-control-prev-icon"></span>
         </a>
-        <a class="carousel-control-next" href="#demo1" data-slide="next">
+        <a class="carousel-control-next" href="#demo1m" data-slide="next">
             <span class="carousel-control-next-icon"></span>
         </a>
 
@@ -246,7 +264,7 @@ include 'header.php';
 <hr>
 <section class="m-3">
     <h4 class="mb-2">Latest Camera</h4>
-    <div id="demo1" class="carousel slide" data-ride="carousel">
+    <div id="demo1c" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active">
                 <div class="card-deck">
@@ -268,36 +286,41 @@ include 'header.php';
                             </div>
                             <h6 class="card-text p-0 my-1"><?php echo $q['category'];?></h6>
                             <h5 class="card-price p-0 m-0 mb-2"> &#8377; <?php echo $q['newPrice'];?> <strike class="text-danger"><small class="text-secondary"> &#8377; <?php echo $q['oldPrice'];?></small></strike> </h5>
-                            <a href="#" class="btn btn-primary px-5">View</a>
+                            
+                            <a href="<?php echo 'single-product.php?category=camera&id='.$q['id']; ?>" class="btn btn-primary px-5">View</a>
                         </div>
                     </div>
                 <?php } ?>
                 </div>
             </div>
-            <?php 
+            
+            <div class="carousel-item">
+                <div class="card-deck">
+                <?php 
                 $qu=mysqli_query($conn,"select * from productdetails where category='camera'  order by id desc  limit 6,5");
 
                 while($q=mysqli_fetch_assoc($qu)){
             ?>
-            <div class="carousel-item">
-                <div class="card-deck">
                     <div class="card">
-                        <img class="card-img-top" src="<?php echo "images/".$q['category']."/".$q['image1'];?>" alt="Card image">
+                        <div class="card-img">
+                            <img class="card-img-top" src="<?php echo "images/".$q['category']."/".$q['image1'];?>" alt="Card image">
+                        </div>
                         <div class="card-body pt-2">
                             <h6 class="card-title my-1"><?php echo $q['title'];?></h6>
                             <p class="card-text p-0 my-1"><?php echo $q['category'];?></p>
                             <h5 class="card-title p-0 m-0 mb-2"> &#8377; <?php echo $q['newPrice'];?> <strike class="text-danger"><small class="text-secondary"> &#8377; <?php echo $q['oldPrice'];?></small></strike> </h5>
-                            <a href="#" class="btn btn-primary px-5">View</a>
+                            <a href="<?php echo 'single-product.php?category=camera&id='.$q['id']; ?>" class="btn btn-primary px-5">View</a>
                         </div>
                     </div>
+                    <?php }?>
                 </div>
             </div>
-            <?php }?>
+            
         </div>
-        <a class="carousel-control-prev" href="#demo1" data-slide="prev">
+        <a class="carousel-control-prev" href="#demo1c" data-slide="prev">
             <span class="carousel-control-prev-icon"></span>
         </a>
-        <a class="carousel-control-next" href="#demo1" data-slide="next">
+        <a class="carousel-control-next" href="#demo1c" data-slide="next">
             <span class="carousel-control-next-icon"></span>
         </a>
 
@@ -328,26 +351,34 @@ include 'header.php';
                             </div>
                             <h6 class="card-text p-0 my-1"><?php echo $q['category'];?></h6>
                             <h5 class="card-price p-0 m-0 mb-2"> &#8377; <?php echo $q['newPrice'];?> <strike class="text-danger"><small class="text-secondary"> &#8377; <?php echo $q['oldPrice'];?></small></strike> </h5>
-                            <a href="#" class="btn btn-primary px-5">View</a>
+                            <a href="<?php echo 'single-product.php?id='.$q['id']; ?>" class="btn btn-primary px-5">View</a>
                         </div>
                     </div>
                 <?php } ?>
                 </div>
             </div>
-            <?php 
-                $qu=mysqli_query($conn,"select * from productdetails where category='watches'  order by id desc  limit 6,5");
-
-                while($q=mysqli_fetch_assoc($qu)){
-            ?>
+            
             <div class="carousel-item">
                 <div class="card-deck">
+                    <?php 
+                        $qu=mysqli_query($conn,"select * from productdetails where category='watches'  order by id desc  limit 6,5");
+
+                        while($q=mysqli_fetch_assoc($qu)){
+                    ?>
                     <div class="card">
-                        <img class="card-img-top" src="<?php echo "images/".$q['category']."/".$q['image1'];?>" alt="Card image">
+                        <div class="card-img">
+                            <img class="card-img-top" src="<?php echo "images/".$q['category']."/".$q['image1'];?>" alt="Card image">
+                        </div>
                         <div class="card-body pt-2">
-                            <h6 class="card-title my-1"><?php echo $q['title'];?></h6>
-                            <p class="card-text p-0 my-1"><?php echo $q['category'];?></p>
-                            <h5 class="card-title p-0 m-0 mb-2"> &#8377; <?php echo $q['newPrice'];?> <strike class="text-danger"><small class="text-secondary"> &#8377; <?php echo $q['oldPrice'];?></small></strike> </h5>
-                            <a href="#" class="btn btn-primary px-5">View</a>
+                            <div class="card-title-outer">
+                                <p class="card-title my-1" title="<?php echo $q['title'];?>"><?php echo $q['title'];?>
+                                </p>
+                                <span style="background-color:white;color:#49b0c1;position:absolute;bottom:0;right:0;padding-left:10px;">...</span>
+                                
+                            </div>
+                            <h6 class="card-text p-0 my-1"><?php echo $q['category'];?></h6>
+                            <h5 class="card-price p-0 m-0 mb-2"> &#8377; <?php echo $q['newPrice'];?> <strike class="text-danger"><small class="text-secondary"> &#8377; <?php echo $q['oldPrice'];?></small></strike> </h5>
+                            <a href="<?php echo 'single-product.php?id='.$q['id']; ?>" class="btn btn-primary px-5">View</a>
                         </div>
                     </div>
                 </div>
@@ -388,7 +419,7 @@ include 'header.php';
                             </div>
                             <h6 class="card-text p-0 my-1"><?php echo $q['category'];?></h6>
                             <h5 class="card-price p-0 m-0 mb-2"> &#8377; <?php echo $q['newPrice'];?> <strike class="text-danger"><small class="text-secondary"> &#8377; <?php echo $q['oldPrice'];?></small></strike> </h5>
-                            <a href="#" class="btn btn-primary px-5">View</a>
+                            <a href="<?php echo 'single-product.php?id='.$q['id']; ?>" class="btn btn-primary px-5">View</a>
                         </div>
                     </div>
                 <?php } ?>
@@ -407,7 +438,7 @@ include 'header.php';
                             <h6 class="card-title my-1"><?php echo $q['title'];?></h6>
                             <p class="card-text p-0 my-1"><?php echo $q['category'];?></p>
                             <h5 class="card-title p-0 m-0 mb-2"> &#8377; <?php echo $q['newPrice'];?> <strike class="text-danger"><small class="text-secondary"> &#8377; <?php echo $q['oldPrice'];?></small></strike> </h5>
-                            <a href="#" class="btn btn-primary px-5">View</a>
+                            <a href="<?php echo 'single-product.php?id='.$q['id']; ?>" class="btn btn-primary px-5">View</a>
                         </div>
                     </div>
                 </div>
