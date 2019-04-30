@@ -91,9 +91,11 @@
                 </div>
             </div>
         </div>
+        </div>
     <?php } ?>
     </div>
-    <h4 class="text-dark mx-4"><span class="text-secondary">Total: </span>&#8377; <?php echo $t; ?></h4>  
+    <div class="col-12">
+    <h4 class="text-dark mx-4"><span class="text-secondary">Total: </span>&#8377; <?php echo $t; ?></h4>  </div>
     </div>
     <div class="row">
     <div class="col-12">

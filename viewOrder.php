@@ -28,7 +28,7 @@ function dispatched (id){
     $user=mysqli_fetch_assoc($user);
 ?>
 
-<link rel="stylesheet" href="../css/buyNowCart.css">
+<link rel="stylesheet" href="css/buyNowCart.css">
     <div class="container-fluid my-3">
     <button class=" m-3  btn btn-danger" onclick='dispatched(<?php echo $ido;?>)'> Status </button>
                 <?php 
@@ -90,6 +90,7 @@ function dispatched (id){
                     </div>
                 </div>
             </div>
+        </div>
         </div>
     <?php } ?>
     </div>

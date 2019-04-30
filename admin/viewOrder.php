@@ -91,8 +91,10 @@ function dispatched (id){
                 </div>
             </div>
         </div>
+        </div>
     <?php } ?>
     </div>
+  
     <h4 class="text-dark mx-4"><span class="text-secondary">Total: </span>&#8377; <?php echo $t; ?></h4>  
     </div>
     <div class="row">
