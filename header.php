@@ -88,7 +88,7 @@
                         <option value="" <?php
                                                             if(($cate)==('')){
                                                                 echo  "selected";
-                                                            } ?>>All</option>
+                                                            } ?>>Select category</option>
                         <option value="laptop" <?php
                                                             if(($cate)==('laptop')){
                                                                 echo  "selected";
@@ -106,10 +106,7 @@
                                                             if(($cate)==('watches')){
                                                                 echo  "selected";
                                                             } ?>>Smart watches</option>
-                            <option value="other" <?php
-                                                            if(($cate)==('other')){
-                                                                echo  "selected";
-                                                            } ?>>Other</option>
+                            
                         </select>
                     </div>
                         <input type="text" name="search_text" class="form-control" placeholder="Search">
@@ -140,7 +137,7 @@
                 <li class="nav-item"><a href="<?php echo 'shop.php?category=mobile';?>" class="nav-link">Mobile</a></li>
                 <li class="nav-item"><a href="<?php echo 'shop.php?category=camera';?>" class="nav-link">Camera</a></li>
                 <li class="nav-item"><a href="<?php echo 'shop.php?category=watches';?>" class="nav-link">Smart Watches</a></li>
-                <li class="nav-item"><a href="<?php echo 'shop.php?category=other';?>" class="nav-link">Other</a></li>
+               
             </ul>
 
         </nav>

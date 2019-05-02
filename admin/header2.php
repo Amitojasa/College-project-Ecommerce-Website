@@ -85,6 +85,9 @@
                     <li class="nav-item">
                         <a href="dealsofday.php" class="nav-link">Delas of Day</a>
                     </li>
+                    <li class="nav-item">
+                        <a href="newsletter.php" class="nav-link">NewsLetter</a>
+                    </li>
                 </ul>
             </div>
             <div class="collapse navbar-collapse" id="collapsibleNavbar">

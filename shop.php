@@ -80,12 +80,28 @@ include "conn.inc.php";
                         $ss.=" vivo";
                     } if(isset($_POST['redmi'])){
                         $ss.=" redmi";
-                    } if(isset($_POST['samsung'])){
-                        $ss.=" samsung";
-                    } if(isset($_POST['honor'])){
+                    }
+                    if(isset($_POST['honor'])){
                         $ss.=" honor";
                     } if(isset($_POST['oneplus'])){
                         $ss.=" oneplus";
+                    }
+                    if(isset($_POST['canon'])){
+                        $ss.=" canon";
+                    }
+                    if(isset($_POST['nikon'])){
+                        $ss.=" nikon";
+                    }
+                    if(isset($_POST['sony'])){
+                        $ss.=" sony";
+                    }
+                   
+                    
+                    if(isset($_POST['huawei'])){
+                        $ss.=" huawei";
+                    }
+                    if(isset($_POST['samsung'])){
+                        $ss.=" samsung";
                     }
                 if(isset($_POST['all'])){
                     $ss="";
@@ -211,7 +227,50 @@ function favor(id){
                             <input type="checkbox" class="form-check-input" id="oneplus" name="oneplus" value="oneplus" <?php if(in_array("oneplus",$s)) echo "checked"; ?>>OnePlus
                         </label>
                     </div>
-                <?php } ?>
+                <?php } elseif($cat=='camera'){?>
+                    <div class="form-check">
+                        <label class="form-check-label" for="check1">
+                            <input type="checkbox" class="form-check-input" id="all" name="all" value="all" checked>All
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <label class="form-check-label" for="check1">
+                            <input type="checkbox" class="form-check-input" id="canon" name="canon" value="canon" <?php if(in_array("canon",$s)) echo "checked"; ?>>Canon
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <label class="form-check-label" for="check2">
+                            <input type="checkbox" class="form-check-input" id="sony" name="sony" value="sony" <?php if(in_array("sony",$s)) echo "checked"; ?>>Sony
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <label class="form-check-label" for="check1">
+                            <input type="checkbox" class="form-check-input" id="nikon" name="nikon" value="nikon" <?php if(in_array("nikon",$s)) echo "checked"; ?>>Nikon
+                        </label>
+                    </div>
+                <?php } elseif($cat=='watches'){?>
+                    <div class="form-check">
+                        <label class="form-check-label" for="check1">
+                            <input type="checkbox" class="form-check-input" id="all" name="all" value="all" checked>All
+                        </label>
+                    </div>
+                    
+                    <div class="form-check">
+                        <label class="form-check-label" for="check2">
+                            <input type="checkbox" class="form-check-input" id="samsung" name="samsung" value="samsung" <?php if(in_array("samsung",$s)) echo "checked"; ?>>Samsung
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <label class="form-check-label" for="check1">
+                            <input type="checkbox" class="form-check-input" id="honnor" name="honor" value="honor" <?php if(in_array("honor",$s)) echo "checked"; ?>>Honor
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <label class="form-check-label" for="check1">
+                            <input type="checkbox" class="form-check-input" id="huawei" name="huawei" value="huawei" <?php if(in_array("huawei",$s)) echo "checked"; ?>>Huawei
+                        </label>
+                    </div>
+                <?php }?>
                    <input type="submit" value="submit" name="fsub" class="btn btn-primary my-3"> 
             </div>
             </form>

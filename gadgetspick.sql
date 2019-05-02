@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 30, 2019 at 07:32 PM
+-- Generation Time: May 02, 2019 at 08:58 PM
 -- Server version: 5.6.21
 -- PHP Version: 5.6.3
 
@@ -57,7 +57,7 @@ CREATE TABLE IF NOT EXISTS `banner` (
 --
 
 INSERT INTO `banner` (`image1`, `image2`, `image3`, `image4`) VALUES
-('1_1.jpg', '1_2.jpg', '1_3.jpg', '1_4.jpg');
+('1_1.jpg', '1_2.jpg', '1_3.jpg', '1_4.png');
 
 -- --------------------------------------------------------
 
@@ -75,7 +75,7 @@ CREATE TABLE IF NOT EXISTS `custom` (
 --
 
 INSERT INTO `custom` (`id`, `dealsOfDay`) VALUES
-(1, '["24","31","33"]');
+(1, '["24","31","45","47","54","48","56","61"]');
 
 -- --------------------------------------------------------
 
@@ -108,14 +108,15 @@ INSERT INTO `logintb` (`id`, `emailId`, `password`, `linkUserId`) VALUES
 CREATE TABLE IF NOT EXISTS `newsletter` (
 `id` int(11) NOT NULL,
   `email` varchar(100) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `newsletter`
 --
 
 INSERT INTO `newsletter` (`id`, `email`) VALUES
-(1, 'amitoj@dgfd.cpm');
+(1, 'amitoj@dgfd.cpm'),
+(2, 'sasingh25@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -129,7 +130,7 @@ CREATE TABLE IF NOT EXISTS `orderstatus` (
   `status` varchar(1000) NOT NULL,
   `dispatchdate` date NOT NULL,
   `deliverydate` date NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `orderstatus`
@@ -139,8 +140,8 @@ INSERT INTO `orderstatus` (`id`, `orderId`, `status`, `dispatchdate`, `deliveryd
 (1, 7, 'delivered', '0000-00-00', '0000-00-00'),
 (2, 8, 'dispatched', '0000-00-00', '0000-00-00'),
 (3, 9, 'delivered', '2019-04-24', '2019-04-24'),
-(4, 10, 'delivered', '2019-04-24', '2019-04-24'),
-(5, 11, 'delivered', '2019-04-30', '2019-04-30');
+(5, 11, 'delivered', '2019-04-30', '2019-04-30'),
+(6, 12, 'delivered', '2019-05-02', '2019-05-02');
 
 -- --------------------------------------------------------
 
@@ -157,7 +158,7 @@ CREATE TABLE IF NOT EXISTS `posted` (
 --
 
 INSERT INTO `posted` (`post`) VALUES
-('{"surl":"http://localhost/project/payu/success.php","furl":"http://localhost/project/payu/failure.php","amount":146994,"firstname":"Amitoj","lastname":"singh","email":"amitojvmc@gmail.com","phone":"9417171800","productinfo":"OnePlus 6T (Mirror Black, 6GB RAM, 128GB Storage)","address1":"21500, 6/4","address2":"Power House road","city":"Bathinda","state":"Punjab","country":"India","zipcode":"151001"}');
+('{"surl":"http://localhost/project/payu/success.php","furl":"http://localhost/project/payu/failure.php","amount":99980,"firstname":"Amitoj","lastname":"singh","email":"amitojvmc@gmail.com","phone":"9417171800","productinfo":"ASUS TUF FX505DY-BQ002T 15.6-inch FHD Gaming Laptop (AMD Ryzen 5-3550H/8GB/1TB HDD/Windows 10/Radeon RX 560X 4GB Graphics/2.20 Kg), Black","address1":"21500, 6/4","address2":"Power House road","city":"Bathinda","state":"Punjab","country":"India","zipcode":"151001"}');
 
 -- --------------------------------------------------------
 
@@ -182,7 +183,7 @@ CREATE TABLE IF NOT EXISTS `productdetails` (
   `uploadDate` date NOT NULL,
   `rating` float NOT NULL DEFAULT '0',
   `reviewsNo` int(11) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=64 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `productdetails`
@@ -193,7 +194,7 @@ INSERT INTO `productdetails` (`id`, `title`, `category`, `description`, `newPric
 (31, 'Lenovo Ideapad 330 Intel Core i5 8th Gen 15.6-inch Full HD Laptop (4GB + 16GB Optane/1TB HDD/Windows 10 Home/Onyx Black/ 2.2kg), 81DE021HIN', 'laptop', 'Processor: 8th Gen Intel Core i5-8250U processor, 1.6GHz base processor speed, 3.4GHz Max speed, Quad-cores, 6MB SmartCache\r\nOperating System: Pre-loaded Windows 10 Home with lifetime validity;\r\nDisplay: 15.6-inch Full HD (1920x1080) Laptop | Antiglare display;\r\nMemory & Storage: 4GB DDR4 RAM with Integrated Graphics. 16 GB Intel Optane memory for faster bootup and accelerate frequently used applications. |Storage: 1TB 5400 RPM HDD;\r\nDesign & battery: Laptop weight 2.2kg | Battery Life: Upto 5.5 hours as per MobileMark 2014;\r\nWarranty: This genuine Lenovo laptop comes with 1 year domestic warranty from Lenovo covering manufacturing defects and not covering physical damage. For more details, see Warranty section below;\r\nPre-installed Software: Windows 10 Home | In the Box: Laptop included with battery and charger, user guide;', 75324, 7527, 21, 'Brand:Lenovo;\r\nSeries:Ideapad 330;\r\nColour:Onyx Black;\r\nItem Height:23 Millimeters;\r\nItem Width:26 Centimeters;\r\nScreen Size:15.6 Inches;\r\nMaximum Display Resolution:1920 x 1080 (Full HD);\r\nItem Weight:2.2 Kg;\r\nProduct Dimensions:37.8 x 26 x 2.3 cm;\r\nBatteries:Lithium Polymer batteries required. (included);\r\nItem model number:81DE021HIN;\r\nProcessor Brand:Intel;\r\nProcessor Type:Core i5 8250U;\r\nRAM Size:4 GB;\r\nMemory Technolog:DDR4;\r\nHard Drive Size:1 TB;\r\nHard Disk Technology:Mechanical Hard Drive;\r\nSpeaker Description:2x1.5W; Dolby Audio;\r\nGraphics Coprocessor:Integrated Graphics;\r\nConnectivity Type:WIFI 1X1 AC+BT4.1;\r\nNumber of USB 3.0 Ports:2;\r\nNumber of HDMI Ports:1;\r\nNumber of Audio-out Ports:1;\r\nNumber of Ethernet Ports:1;\r\nNumber of Microphone Ports:1;\r\nOptical Drive Type:None;\r\nOperating System:Windows 10;\r\nLithium Battery Energy Content:30 Watt Hours;\r\nNumber of Lithium Ion Cells:2;\r\nIncluded Components:Laptop, Adapter and Manual;', '1 year manufacturer warranty on the device and 6 months manufacturer warranty on included accessories from the date of purchase', '31_1.jpeg', '31_2.jpeg', '', 'AMD Radeon Vega 3 Graphics Card for Improved Graphics Performance;\r\nAMD Ryzen 3 Dual Core Processor;\r\n4 GB DDR4 RAM;\r\n64 bit Windows 10 Operating System;\r\n1 TB HDD;\r\n39.62 cm (15.6 inch) Display;\r\n1 Year Onsite Warranty;', '0000-00-00', 0, 0),
 (32, 'Lenovo Ideapad 330 Intel Core i5 8th Gen 15.6-inch Full HD Laptop (4GB + 16GB Optane/1TB HDD/Windows 10 Home/Onyx Black/ 2.2kg), 81DE021HIN', 'laptop', 'Processor: 8th Gen Intel Core i5-8250U processor, 1.6GHz base processor speed, 3.4GHz Max speed, Quad-cores, 6MB SmartCache\r\nOperating System: Pre-loaded Windows 10 Home with lifetime validity;\r\nDisplay: 15.6-inch Full HD (1920x1080) Laptop | Antiglare display;\r\nMemory & Storage: 4GB DDR4 RAM with Integrated Graphics. 16 GB Intel Optane memory for faster bootup and accelerate frequently used applications. |Storage: 1TB 5400 RPM HDD;\r\nDesign & battery: Laptop weight 2.2kg | Battery Life: Upto 5.5 hours as per MobileMark 2014;\r\nWarranty: This genuine Lenovo laptop comes with 1 year domestic warranty from Lenovo covering manufacturing defects and not covering physical damage. For more details, see Warranty section below;\r\nPre-installed Software: Windows 10 Home | In the Box: Laptop included with battery and charger, user guide;', 75324, 7527, 10, 'Brand:Lenovo;Series:Ideapad 330;Colour:Onyx Black;Item Height:23 Millimeters;Item Width:26 Centimeters;Screen Size:15.6 Inches;Maximum Display Resolution:1920 x 1080 (Full HD);Item Weight:2.2 Kg;Product Dimensions:37.8 x 26 x 2.3 cm;Batteries:Lithium Polymer batteries required. (included);Item model number:81DE021HIN;Processor Brand:Intel;Processor Type:Core i5 8250U;RAM Size:4 GB;Memory Technolog:DDR4;Hard Drive Size:1 TB;Hard Disk Technology:Mechanical Hard Drive;Speaker Description:2x1.5W; Dolby Audio;Graphics Coprocessor:Integrated Graphics;Connectivity Type:WIFI 1X1 AC+BT4.1;Number of USB 3.0 Ports:2;Number of HDMI Ports:1;Number of Audio-out Ports:1;Number of Ethernet Ports:1;Number of Microphone Ports:1;Optical Drive Type:None;Operating System:Windows 10;Lithium Battery Energy Content:30 Watt Hours;Number of Lithium Ion Cells:2;Included Components:Laptop, Adapter and Manual;', '1 year manufacturer warranty on the device and 6 months manufacturer warranty on included accessories from the date of purchase', '32_1.jpeg', '32_2.jpeg', '32_3.jpg', 'AMD Radeon Vega 3 Graphics Card for Improved Graphics Performance;\r\nAMD Ryzen 3 Dual Core Processor;\r\n4 GB DDR4 RAM;\r\n64 bit Windows 10 Operating System;\r\n1 TB HDD;\r\n39.62 cm (15.6 inch) Display;\r\n1 Year Onsite Warranty;', '0000-00-00', 3.6, 16),
 (34, 'Acer Nitro 5 AN515-42 Ryzen 5 15.6-inch Gaming FHD Laptop (8GB/1TB HDD/Windows 10/4GB Graphics/Black/2.7 Kg)', 'laptop', 'Processor: AMD Ryzen 5 2500U Processor, 2.0 GHz Turbo boost upto 3.60 GHz;Operating System: Preloaded Windows 10 Home 64 bit with lifetime validity;Display: 15.6" display with IPS (In-Plane Switching) technology, Full HD 1920 x1080, high-brightness (300 nits) Acer Comfy ViewTM LED-backlit TFT LCD;Memory and Storage: 8GB DDR4 RAM upgradeable upto 32GB RAM with | AMD Radeon RX 560X 4 GB GDDR5 VRAM Graphics | Storage: 1TB HDD 5400RPM;Design and battery: Laptop weight 2.7kg | Lithium battery 4Cell | Battery Life upto 7 hours;Warranty: This Laptop Comes with 1 Year Domestic onsite and (ITW) International Traveler Warranty from Acer Covering Manufacturing Defects and not Covering Physical Damage;Preinstalled Software: Windows 10 Home | In the Box: Laptop with included battery, charger, user guide and manuals;Ports and CD drive: 2 USB 2.0 | 1 USB 3.0 | 1 Type C Gen 1 (USB 3.1) | 1 HDMI | 4-in-1 card reader (SD,SDHC,SDXC,MMC) | Combo audio and microphone jack | With Gigabyte LAN port | Without CD-drive', 53817, 79999, 100, 'Brand:Acer;Series:Nitro;Colour:Black;Item Height:27 Millimeters;Item Width:38.9 Centimeters;Screen Size:15.6 Inches;Maximum Display Resolution:1920x1080;Item Weight:2.7 Kg;Product Dimensions:26.5 x 38.9 x 2.7 cm;Batteries::1 Lithium ion batteries required. (included);Item model number:AN515-42;Processor Brand:Intel;Processor Type:R Series;RAM Size:8 GB;Memory Technology:DDR4;Hard Drive Size:1 TB;Hard Disk Technology:Mechanical Hard Drive;Speaker Description:1;Graphics Coprocessor:AMD RadeonTM RX 560X with 4 GB of dedicated GDDR5 VRAM;Graphics Card Ram Size:4 GB;Wireless Type:801.11 AC;Number of USB 2.0 Ports:2;Number of USB 3.0 Ports:1;Number of HDMI Ports:1;Number of Audio-out Ports:1;Number of Ethernet Ports:1;Number of Microphone Ports:1;Operating System:win10;Lithium Battery Energy Content:37 Watt Hours;Number of Lithium Ion Cells:1;Number of Lithium Metal Cells:37;Included Components:Laptop, Battery, AC Adapter, User Guide, Manuals;Date First Available:29 August 2018', '1 year limited onsite domestic warranty from Acer covering manufacturing defects and not covering physical damage. Register on brand website to activate warranty.For FAQs on warranty, link to check and update your warranty start date, see Warranty FAQ PDF under Technical Specifications. Reach Acer customer care at contact_us on: [1-800-11-6677 ]. This product is eligible for 10 Days Replacement in case of any product damage, defects or different product being shipped.â€¦', '34_1.jpg', '34_2.jpg', '34_3.jpg', 'Processor: AMD Ryzen 5 2500U Processor, 2.0 GHz Turbo boost upto 3.60 GHz;Operating System: Preloaded Windows 10 Home 64 bit with lifetime validity;Display: 15.6" display with IPS (In-Plane Switching) technology, Full HD 1920 x1080, high-brightness (300 nits) Acer Comfy ViewTM LED-backlit TFT LCD;Memory and Storage: 8GB DDR4 RAM upgradeable upto 32GB RAM with | AMD Radeon RX 560X 4 GB GDDR5 VRAM Graphics | Storage: 1TB HDD 5400RPM;Design and battery: Laptop weight 2.7kg | Lithium battery 4Cell | Battery Life upto 7 hours;', '0000-00-00', 0, 0),
-(35, 'ASUS TUF FX505DY-BQ002T 15.6-inch FHD Gaming Laptop (AMD Ryzen 5-3550H/8GB/1TB HDD/Windows 10/Radeon RX 560X 4GB Graphics/2.20 Kg), Black', 'laptop', 'Processor : AMD Ryzen 5 3550H processor;Memory & Storage : 8GB DDR4 RAM with AMD RADEON RX560X GDDR5 4GB Graphics | Storage : 1TB 5400RPM 2.5â€™ HDD;Display : 15.6" (16:9) LED-backlit FHD (1920x1080) 60Hz Anti-Glare IPS-level Panel with 45% NTSC;OS : Windows 10 operating system | Weight : 2.20kg laptop;Hypercool Technology : Anti-Dust Cooling | Powerful Dual Fan Design | Fan Overboost Technology | Patented Trapezoid-cut Lid;Keyboard : Highlighted WASD keys | RED-Backlit Keyboard | 20 Million Key Presses |1.8mm Key Travel | Overstroke Technology;Audio : DTS Headphone:X | Authentic 7.1-Channel Surround Sound | Audophile-grade Equalizer Sound Options | Optimized Game/ Movie/ Sports Audio Profile.', 49990, 69990, 75, 'Brand:Asus;Series:TUF;Colour:Black;Item Height:26 Millimeters;Item Width:36 Centimeters;Screen Size:15.6 Inches;Maximum Display Resolution:1920x1080;Item Weight:2.2 Kg;Product Dimensions:26.2 x 36 x 2.6 cm;Batteries::1 Lithium Polymer batteries required. (included);Item model number:FX505DY-BQ002T;Processor Brand:Ryzen 5 3550H;RAM Size:8 GB;Memory Technology:DDR4 2400;Maximum Memory Supported:32 GB;Hard Drive Size:1 TB;Hard Disk Technology:Mechanical Hard Drive;Speaker Description:2x2W speaker with DTS software;Graphics Coprocessor:AMD RADEON RX560X;Graphics Card Ram Size:4 GB;Connectivity Type:802.11ac (1*1), Bluetooth;Number of USB 2.0 Ports:1;Number of USB 3.0 Ports:2;Number of HDMI Ports:1;Number of Audio-out Ports:1;Number of Ethernet Ports:1;Number of Microphone Ports:1;Optical Drive Type:None;Operating System:Windows 10;Lithium Battery Energy Content:48 Watt Hours;Number of Lithium Ion Cells:3;Included Components:Laptop, Battery, AC Adapter, User Guide, Manuals;Date First Available:7 January 2019', '1 year manufacturer warranty on the device', '35_1.jpg', '35_2.jpg', '35_3.jpg', 'Processor : AMD Ryzen 5 3550H processor;Memory & Storage : 8GB DDR4 RAM with AMD RADEON RX560X GDDR5 4GB Graphics | Storage : 1TB 5400RPM 2.5â€™ HDD;Display : 15.6" (16:9) LED-backlit FHD (1920x1080) 60Hz Anti-Glare IPS-level Panel with 45% NTSC;OS : Windows 10 operating system | Weight : 2.20kg laptop;Hypercool Technology : Anti-Dust Cooling | Powerful Dual Fan Design | Fan Overboost Technology | Patented Trapezoid-cut Lid', '0000-00-00', 0, 0),
+(35, 'ASUS TUF FX505DY-BQ002T 15.6-inch FHD Gaming Laptop (AMD Ryzen 5-3550H/8GB/1TB HDD/Windows 10/Radeon RX 560X 4GB Graphics/2.20 Kg), Black', 'laptop', 'Processor : AMD Ryzen 5 3550H processor;Memory & Storage : 8GB DDR4 RAM with AMD RADEON RX560X GDDR5 4GB Graphics | Storage : 1TB 5400RPM 2.5â€™ HDD;Display : 15.6" (16:9) LED-backlit FHD (1920x1080) 60Hz Anti-Glare IPS-level Panel with 45% NTSC;OS : Windows 10 operating system | Weight : 2.20kg laptop;Hypercool Technology : Anti-Dust Cooling | Powerful Dual Fan Design | Fan Overboost Technology | Patented Trapezoid-cut Lid;Keyboard : Highlighted WASD keys | RED-Backlit Keyboard | 20 Million Key Presses |1.8mm Key Travel | Overstroke Technology;Audio : DTS Headphone:X | Authentic 7.1-Channel Surround Sound | Audophile-grade Equalizer Sound Options | Optimized Game/ Movie/ Sports Audio Profile.', 49990, 69990, 73, 'Brand:Asus;Series:TUF;Colour:Black;Item Height:26 Millimeters;Item Width:36 Centimeters;Screen Size:15.6 Inches;Maximum Display Resolution:1920x1080;Item Weight:2.2 Kg;Product Dimensions:26.2 x 36 x 2.6 cm;Batteries::1 Lithium Polymer batteries required. (included);Item model number:FX505DY-BQ002T;Processor Brand:Ryzen 5 3550H;RAM Size:8 GB;Memory Technology:DDR4 2400;Maximum Memory Supported:32 GB;Hard Drive Size:1 TB;Hard Disk Technology:Mechanical Hard Drive;Speaker Description:2x2W speaker with DTS software;Graphics Coprocessor:AMD RADEON RX560X;Graphics Card Ram Size:4 GB;Connectivity Type:802.11ac (1*1), Bluetooth;Number of USB 2.0 Ports:1;Number of USB 3.0 Ports:2;Number of HDMI Ports:1;Number of Audio-out Ports:1;Number of Ethernet Ports:1;Number of Microphone Ports:1;Optical Drive Type:None;Operating System:Windows 10;Lithium Battery Energy Content:48 Watt Hours;Number of Lithium Ion Cells:3;Included Components:Laptop, Battery, AC Adapter, User Guide, Manuals;Date First Available:7 January 2019', '1 year manufacturer warranty on the device', '35_1.jpg', '35_2.jpg', '35_3.jpg', 'Processor : AMD Ryzen 5 3550H processor;Memory & Storage : 8GB DDR4 RAM with AMD RADEON RX560X GDDR5 4GB Graphics | Storage : 1TB 5400RPM 2.5â€™ HDD;Display : 15.6" (16:9) LED-backlit FHD (1920x1080) 60Hz Anti-Glare IPS-level Panel with 45% NTSC;OS : Windows 10 operating system | Weight : 2.20kg laptop;Hypercool Technology : Anti-Dust Cooling | Powerful Dual Fan Design | Fan Overboost Technology | Patented Trapezoid-cut Lid', '0000-00-00', 5, 1),
 (36, 'HP 15 Intel Core i5 (8GB DDR4/1TB HDD/Win 10/MS Office/Integrated Graphics/2.04 kg), Full HD Laptop (15.6-inch, Sparkling Black) 15q-ds0029TU', 'laptop', '7th Gen Intel i5-7200U (2.5 GHz base processor speed, 3 MB SmartCache, 2 cores), Max Boost Clock Up to 3.1 GHz;Windows 10 Home with lifetime validity;Microsoft Office Home & Student 2016 Lifetime edition;8GB DDR4-2400 RAM;Expandable to 16 GB, 1TB 5400 RPM HDD', 45990, 51810, 100, 'Brand:HP;Series:15q;Colour:Sparkling Black;Item Height:23 Millimeters;Item Width:24.6 Centimeters;Screen Size:15.6 Inches;Notebook Display Technology:LED;Screen Resolution:1920 x 1080 Full HD (1080p);Maximum Display Resolution:1920 x 1080 (Full HD);Item Weight:2.04 Kg;Product Dimensions:37.6 x 24.6 x 2.3 cm;Batteries::1 Lithium ion batteries required. (included);Item model number:ds0029TU;Processor Brand:Intel;Processor Type:Core i5 7200U;Processor Speed:3.40 GHz;Processor Count:8520;RAM Size:8 GB;Memory Technology:DDR4;Computer Memory Type:DDR4 SDRAM;Maximum Memory Supported:16 GB;Hard Drive Size:1 TB;Hard Disk Technology:Mechanical Hard Drive;Hard Drive Interface:Serial ATA;Speaker Description:Dual Speaker;Graphics Coprocessor:Intel Integrated Graphics;Number of USB 2.0 Ports:1;Number of USB 3.0 Ports:2;Number of HDMI Ports:1;Number of Audio-out Ports:1;Number of Ethernet Ports:1;Number of Microphone Ports:1;Optical Drive Type:DVD+RW;Hardware Platform:Windows;Operating System:Windows 10 Home;Lithium Battery Energy Content:41 Watt Hours;Lithium battery Weight:0.85 Grams;Number of Lithium Ion Cells:3;Included Components:Laptop, Battery, AC Adapter, User Guide and Manuals;Date First Available:18 December 2018', '1 year manufacturer warranty on the device', '36_1.jpg', '36_2.jpg', '36_3.jpg', '7th Gen Intel i5-7200U (2.5 GHz base processor speed, 3 MB SmartCache, 2 cores), Max Boost Clock Up to 3.1 GHz;Windows 10 Home with lifetime validity;Microsoft Office Home & Student 2016 Lifetime edition;8GB DDR4-2400 RAM;Expandable to 16 GB, 1TB 5400 RPM HDD', '0000-00-00', 0, 0),
 (37, 'ASUS Vivobook S15 ( Core i5-8th Gen /8 GB/ 1TB HDD / 15.6" FHD/ Windows 10/ NVIDIA GeForce MX150 2GB ) S510UN-BQ217T ( Gold /1.70 kg)', 'laptop', 'Processor: 8th Gen Intel core i5 processor, 1.60GHz base processor speed;Operating System: Preloaded Windows 10 Home with lifetime validity;Display: 15.6-inch Full HD (1920x1080) IPS 7.8mm nano edge bezel display;Memory & Storage: 8GB DDR4 RAM with Nvidia MX150 graphics | Storage: 1TB HDD;Design & battery: Laptop weight: 1.7 kg | Average battery life = 8 hours | Fast Charging battery;Warranty: This genuine Asus laptop comes with 1 year onsite domestic warranty from Asus covering manufacturing defects and not covering physical damage. For more details, see Warranty section;Preinstalled Software: Windows 10 Home | In the box: Laptop, Battery, AC Adapter, Sleeve + USB3.0 to RJ45 cable + Micro HDMI to HDMI cable', 57990, 74990, 50, 'Brand:Asus;Colour:Gold;Item Height:18 Millimeters;Item Width:24.3 Centimeters;Screen Size:15.6 Inches;Notebook Display Technology:178Â° wide-viewing angle display FHD with 72% NTSC;Screen Resolution:1920 x 1080;Maximum Display Resolution:1920x1080;Item Weight:1.7 Kg;Product Dimensions:36.1 x 24.3 x 1.8 cm;Batteries::1 Lithium Polymer batteries required. (included);Item model number:S510UN-BQ217T;Processor Brand:Intel;Processor Type:Core i5;Processor Speed:1.60 GHz;Processor Count:4;RAM Size:8 GB;Memory Technology:DDR4;Computer Memory Type:GDDR5;Maximum Memory Supported:16 GB;Hard Drive Size:1 TB;Hard Disk Technology:HDD 5400 rpm;Hard Drive Interface:eSATA;Graphics Coprocessor:NVIDIA GeForce MX150 (N17S-G1);Graphics Card Ram Size:2 GB;Wireless Type:802.11.a, 802.11.b, 802.11.g;Number of USB 2.0 Ports:2;Number of USB 3.0 Ports:1;Voltage:19 Volts;Wattage:240 Watts;Hardware Platform:Windows;Operating System:Windows 10 (64bit);Lithium Battery Energy Content:42 Watt Hours;Lithium battery Weight:200 Grams;Number of Lithium Ion Cells:3;Included Components:Laptop, Battery, AC Adapter, User Guide, Manuals,Sleeve + USB3.0 to RJ45 cable + Micro HDMI to HDMI cable;Date First Available:9 November 2017', ' 1 year manufacturer warranty from ASUS covering manufacturing defects & not covering physical damage. Register on brand website to activate warranty. This product is eligible for 10 Days Replacement in case of any product damage, defects or different product being shipped.', '37_1.jpg', '37_2.jpg', '37_3.jpg', 'Processor: 8th Gen Intel core i5 processor, 1.60GHz base processor speed;Operating System: Preloaded Windows 10 Home with lifetime validity;Display: 15.6-inch Full HD (1920x1080) IPS 7.8mm nano edge bezel display;Memory & Storage: 8GB DDR4 RAM with Nvidia MX150 graphics | Storage: 1TB HDD;Design & battery: Laptop weight: 1.7 kg | Average battery life = 8 hours | Fast Charging battery;', '0000-00-00', 0, 0),
 (38, 'Dell Vostro 3568 Intel Core i3 6th Gen 15.6-inch Laptop (4GB/1TB HDD/Windows 10 Home/MS Office/ Black/ 2.18 kg) (8X6J5)', 'laptop', 'Processor: 6th Gen Intel Corei3-6006U processor, 2GHz base processor speed;Operating System: Pre-loaded Windows 10 Home with lifetime validity;Display: 15.6-inch HD (1366x768) display | Anti-glare technology;Memory & Storage: 4GB DDR4 RAM with Intel HD 520 Graphics| Storage: 1TB HDD;Design & battery: Laptop weight 2.18kg |Lithium battery;Warranty: This genuine Dell laptop comes with 1 year domestic warranty from Dell covering manufacturing defects and physical damage. For more details, see Warranty section below.;Pre-installed Software: Windows 10 Home, MS Office Home & Student 2016 | In the Box: Laptop with included battery and charger;Ports & CD drive: 1 USB 2.0, 2 USB 3.0, 1 HDMI, 1 Audio out| With CD-drive -Other: Comes with 1 year accidental damage protection from the date of purchase', 32420, 45872, 25, 'Brand:Dell;Series:Vostro;Colour:Black;Item Height:24 Millimeters;Item Width:26 Centimeters;Screen Size:15.6 Inches;Maximum Display Resolution:1366x768;Item Weight:2.18 Kg;Product Dimensions:38 x 26 x 2.4 cm;Batteries::1 Lithium Polymer batteries required. (included);Item model number:8X6J5;Processor Brand:Intel Core i3-6006U 6th Gen processor;Processor Type:Core i3;Processor Speed:2 GHz;Processor Count:2;RAM Size:4 GB;Memory Technology:DDR4;Computer Memory Type:DDR3 SDRAM;Hard Drive Size:1 TB;Hard Disk Technology:Mechanical_hard_drive;Hard Drive Interface:eSATA;Speaker Description:WaveMaxx Audio;Graphics Coprocessor:Intel HD 520 Graphics;Wireless Type:802.11.b;Number of USB 2.0 Ports:1;Number of USB 3.0 Ports:2;Number of HDMI Ports:1;Number of Audio-out Ports:2;Number of Ethernet Ports:1;Number of Microphone Ports:1;Voltage:14.8 Volts;Wattage:2 Watts;Hardware Platform:Windows;Operating System:Windows;Lithium Battery Energy Content:40 Watt Hours;Lithium battery Weight:0.85 Grams;Number of Lithium Ion Cells:4;Included Components:Laptop, Battery, AC Adapter, User Guide and Manuals;Date First Available:5 July 2018', '1 year onsite domestic warranty from Dell covering manufacturing defects and not covering physical damage.Register on brand website to activate warranty.Reach Dell India customer care at contact_us on [ 1800-425-2067 ]. This product is eligible for 10 Days Replacement in case of any product damage, defects or different product being shipped.', '38_1.jpg', '38_2.jpg', '38_3.jpg', 'Processor: 6th Gen Intel Corei3-6006U processor, 2GHz base processor speed;Operating System: Pre-loaded Windows 10 Home with lifetime validity;Display: 15.6-inch HD (1366x768) display | Anti-glare technology;Memory & Storage: 4GB DDR4 RAM with Intel HD 520 Graphics| Storage: 1TB HDD;Design & battery: Laptop weight 2.18kg |Lithium battery', '0000-00-00', 0, 0),
@@ -214,7 +215,11 @@ INSERT INTO `productdetails` (`id`, `title`, `category`, `description`, `newPric
 (57, 'Nikon Coolpix L330 Digital Camera (Black)', 'camera', 'RAM Size:1 GB;Memory Storage Capacity:43 MB;Included Memory Card Size:120 GB;Digital Storage Capacity:0.043 GB;Removable Memory:Secure Digital Card;Hardware Interface:AV Port;Screen Size:3 Inches;Image Stabilization:Yes;Has Image Stabilization:Yes;Optical Zoom:26 X;Digital Zoom:4 X;Max Resolution:20.20 Megapixels;', 35539, 35539, 15, 'Model:FBA_L330;Model Year:2014;Item Weight:431 g;Product Dimensions:11.1 x 8.3 x 7.6 cm;Batteries::4 AA batteries required. (included);Item model number:FBA_L330;RAM Size:1 GB;Memory Storage Capacity:43 MB;Included Memory Card Size:120 GB;Digital Storage Capacity:0.043 GB;Removable Memory:Secure Digital Card;Hardware Interface:AV Port;Screen Size:3 Inches;Image Stabilization:Yes;Has Image Stabilization:Yes;Optical Zoom:26 X;Digital Zoom:4 X;Max Resolution:20.20 Megapixels;Horizontal Resolution:1280 Pixels;Optical Sensor Resolution:20.2 Megapixels;Max Vertical Resolution:720 Pixels;Min Shutter Speed:1/1500 - 1 seconds;Min Aperture:3.1;Min Focal Length:22 Millimeters;Noise Level:85 dB;Batteries Included:Yes;Batteries Required:Yes;Viewfinder Type:digital;Has Auto Focus:Yes;Includes Rechargable Battery:No;Includes AC Adapter:No;Includes Remote:No;Includes External Memory:No;Date First Available:8 June 2016', ' 2 years Manufacturer warranty', '57_1.jpg', '57_2.jpg', '57_3.jpg', 'RAM Size:1 GB;Memory Storage Capacity:43 MB;Included Memory Card Size:120 GB;Digital Storage Capacity:0.043 GB;Removable Memory:Secure Digital Card;Hardware Interface:AV Port;Screen Size:3 Inches;', '0000-00-00', 0, 0);
 INSERT INTO `productdetails` (`id`, `title`, `category`, `description`, `newPrice`, `oldPrice`, `stock`, `details`, `warranty`, `image1`, `image2`, `image3`, `features`, `uploadDate`, `rating`, `reviewsNo`) VALUES
 (58, 'Canon EOS 200D 24.2MP Digital SLR Camera + EF-S 18-55 mm f4 is STM Lens, Free Camera Case and 16GB Card Inside', 'camera', 'Sensor: APS-C CMOS Sensor with 24.2 MP (high resolution for large prints and image cropping);ISO: 100-12800 sensitivity range (critical for obtaining grain-free pictures, especially in low light);Image Processor: DIGIC 7 with 9 autofocus points (important for speed and accuracy of autofocus and burst photography);Video Resolution: Full HD video with fully manual control and selectable frame rates (great for precision and high-quality video work);Connectivity: WiFi, NFC and Bluetooth built-in (useful for remotely controlling your camera and transferring pictures wirelessly as you shoot);Lens Mount: EF-S mount compatible with all EF and EF-S lenses (crop-sensor mount versatile and compact, especially when used with EF-S lenses)', 43495, 47495, 25, 'Brand:Canon;Model:EOS 200D;Item Weight:458 g;Product Dimensions:15 x 23 x 16.8 cm;Batteries::1 Lithium ion batteries required. (included);Item model number:EOS 200D;Resolution:24.2;Included Components:EOS 200D Body, EF-S18-55 IS STM, Battery Pack, Lens Cap, Battery Charger, Eye Cup;Screen Size:3 Inches;Display Type:LCD Monitor, TFT color, liquid-crystal monitor;Optical Zoom:24.2;Aspect Ratio:1.50:1;Optical Sensor Resolution:24.2 Megapixels;Min Focal Length:18 Millimeters;Batteries Included:Yes;Batteries Required:Yes;Battery Cell Composition:Lithium Ion;Includes Rechargable Battery:Yes;Has Self Timer:Yes;Includes AC Adapter:Yes;Date First Available:27 July 2017', '2 years Manufacturer warranty', '58_1.jpg', '58_2.jpg', '58_3.jpg', 'Sensor: APS-C CMOS Sensor with 24.2 MP (high resolution for large prints and image cropping);ISO: 100-12800 sensitivity range (critical for obtaining grain-free pictures, especially in low light);Image Processor: DIGIC 7 with 9 autofocus points (important for speed and accuracy of autofocus and burst photography)', '0000-00-00', 0, 0),
-(59, 'Canon EOS 1300D 18MP Digital SLR Camera (Black) with 18-55mm ISII Lens, 16GB Card and Carry Case', 'camera', 'Sensor: APS-C CMOS Sensor with 18 MP (sufficient resolution for large prints and image cropping);ISO: 100-6400 sensitivity range (critical for obtaining grain-free pictures, especially in low light);Image Processor: DIGIC 4+ with 9 autofocus points (important for speed and accuracy of autofocus and burst photography);Video Resolution: Full HD video with fully manual control and selectable frame rates (great for precision and high-quality video work);Connectivity: WiFi, NFC and Bluetooth built-in (useful for remotely controlling your camera and transferring pictures wirelessly as you shoot);Lens Mount: EF-S mount compatible with all EF and EF-S lenses (crop-sensor mount versatile and compact, especially when used with EF-S lenses)', 24999, 31995, 20, 'Brand:Canon;Model:EOS 1300D;Item Weight:485 g;Product Dimensions:7.8 x 12.9 x 10.1 cm;Batteries::1 Lithium ion batteries required.;Item model number:EOS 1300D;Resolution:18;Additional Features:Optical Zoom;Included Components:Camera, 18-55mm ISII Lens , 16GB Memory Card, Carry Case;Screen Size:3 Inches;Optical Zoom:18;Optical Sensor Resolution:18 Megapixels;Min Shutter Speed:1/4000;Voltage:7.4 Volts;Batteries Included:No;Batteries Required:Yes;Battery Cell Composition:Lithium Ion;Date First Available:1 January 2017', '2 years Manufacturer warranty', '59_1.jpg', '59_2.jpg', '59_3.jpg', 'Sensor: APS-C CMOS Sensor with 18 MP (sufficient resolution for large prints and image cropping);ISO: 100-6400 sensitivity range (critical for obtaining grain-free pictures, especially in low light);Image Processor: DIGIC 4+ with 9 autofocus points (important for speed and accuracy of autofocus and burst photography)', '0000-00-00', 0, 0);
+(59, 'Canon EOS 1300D 18MP Digital SLR Camera (Black) with 18-55mm ISII Lens, 16GB Card and Carry Case', 'camera', 'Sensor: APS-C CMOS Sensor with 18 MP (sufficient resolution for large prints and image cropping);ISO: 100-6400 sensitivity range (critical for obtaining grain-free pictures, especially in low light);Image Processor: DIGIC 4+ with 9 autofocus points (important for speed and accuracy of autofocus and burst photography);Video Resolution: Full HD video with fully manual control and selectable frame rates (great for precision and high-quality video work);Connectivity: WiFi, NFC and Bluetooth built-in (useful for remotely controlling your camera and transferring pictures wirelessly as you shoot);Lens Mount: EF-S mount compatible with all EF and EF-S lenses (crop-sensor mount versatile and compact, especially when used with EF-S lenses)', 24999, 31995, 20, 'Brand:Canon;Model:EOS 1300D;Item Weight:485 g;Product Dimensions:7.8 x 12.9 x 10.1 cm;Batteries::1 Lithium ion batteries required.;Item model number:EOS 1300D;Resolution:18;Additional Features:Optical Zoom;Included Components:Camera, 18-55mm ISII Lens , 16GB Memory Card, Carry Case;Screen Size:3 Inches;Optical Zoom:18;Optical Sensor Resolution:18 Megapixels;Min Shutter Speed:1/4000;Voltage:7.4 Volts;Batteries Included:No;Batteries Required:Yes;Battery Cell Composition:Lithium Ion;Date First Available:1 January 2017', '2 years Manufacturer warranty', '59_1.jpg', '59_2.jpg', '59_3.jpg', 'Sensor: APS-C CMOS Sensor with 18 MP (sufficient resolution for large prints and image cropping);ISO: 100-6400 sensitivity range (critical for obtaining grain-free pictures, especially in low light);Image Processor: DIGIC 4+ with 9 autofocus points (important for speed and accuracy of autofocus and burst photography)', '0000-00-00', 0, 0),
+(60, 'Mi Band - HRX Edition (Black)', 'watches', 'Contact_us on: [ 18001036286 ] for product related assistance;HRX Engraved Band â€“ Limited Edition;Call & Notification Alerts from applications such as UBER and WhatsApp;IP67- Water resistant upto 30mins under 1m water;Total length: 235mm, Adjustable length: 155-210mm ,Material: Thermoplastic elastomer, aluminum alloy;0.42" OLED display Bluetooth 4.0 BLE;Standby time: 23 days', 1290, 1799, 30, 'Brand:Mi;Series:Band 2i;Colour:black;Screen Size:0.42 Inches;Item Weight:9.07 g;Package Dimensions:17 x 7.6 x 2.4 cm;Batteries::1 Lithium Polymer batteries required. (included);Item model number:Mi Band HRX;Wireless Type:Bluetooth;Voltage:5 Volts;Average Battery Life (in hours):23 Hours;Lithium Battery Energy Content:0.26 Watt Hours;Lithium battery Weight:0.25 Grams;Number of Lithium Ion Cells:1;Included Components:1 Mi Band Sensor, 1 Strap, 1 Charging cable, 1 User Guide;Date First Available:19 September 2017', '6 months', '60_1.jpg', '60_2.jpg', '60_3.jpg', 'IP67- Water resistant upto 30mins under 1m water;Total length: 235mm, Adjustable length: 155-210mm ,Material: Thermoplastic elastomer, aluminum alloy;0.42" OLED display Bluetooth 4.0 BLE;Standby time: 23 days', '0000-00-00', 0, 0),
+(61, 'SAMSUNG Gear S3 Frontier Smartwatch', 'watches', '1.3-inch 360x360 super AMOLED capacitive touchscreen display;Corning gorilla glass SR+;Compatibility: Samsung Android, other Android, iOS (Bluetooth) and iOS (Stand alone);Certified IP68 and MIL-STD-810G (temperatures and shock resistant);Tizen based wearable OS;Specifications: Dual-core 1GHz CPU, 768MB RAM, 4GB internal memory;Connectivity: Bluetooth V4.2, Wi-Fi b/g/n, NFC, MST, GPS/Glonass\r\n', 19990, 28500, 20, 'Brand:Samsung;Series:Gear S3 Frontier;Colour:Stainless Steel;Item Height:13 Millimeters;Item Width:5 Millimeters;Item Weight:63.5 g;Product Dimensions:0.5 x 0.5 x 1.3 cm;Batteries::1 Lithium ion batteries required. (included);Item model number:Gear S3 Frontier;Processor Count:2;Wireless Type:802.11bgn;Lithium Battery Energy Content:15 Watt Hours;Lithium battery Weight:5 Grams;Included Components:Watch, Charger Cable, Manual;Date First Available:1 January 2017', ' 1 year warranty provided by the manufacturer from date of purchase', '61_1.jpg', '61_2.jpg', '61_3.jpg', '1.3-inch 360x360 super AMOLED capacitive touchscreen display;Corning gorilla glass SR+;Compatibility: Samsung Android, other Android, iOS (Bluetooth) and iOS (Stand alone);Certified IP68 and MIL-STD-810G (temperatures and shock resistant);', '0000-00-00', 0, 0),
+(62, 'Honor Band 3 NYX-B10HN Activity Tracker (Black)', 'watches', 'Water resistant up to 50m;Advanced sleep tracking;Long battery life: Up to 30 days;Smart notifications;Heart rate monitoring\r\n', 2999, 1799, 20, 'Brand:Honor;Series:Band 3;Colour:Black;Item Height:11 Millimeters;Item Width:17 Millimeters;Item Weight:18.1 g;Product Dimensions:22.5 x 1.7 x 1.1 cm;Batteries::1 Lithium ion batteries required. (included);Item model number:NYX-B10HN;Lithium Battery Energy Content:2330 Watt Hours;Lithium battery Voltage:230 Volts;Lithium battery Weight:1 Grams;Number of Lithium Ion Cells:1;Included Components:Band, Charging Cradle, Charging Cable, Quick Start Guide, Safety Information and Warranty Card;Date First Available:5 July 2017;\r\n', '1 year warranty provided by the manufacturer from date of purchase\r\n', '62_1.jpg', '62_2.jpg', '62_3.jpg', 'Water resistant up to 50m;Advanced sleep tracking;Long battery life: Up to 30 days;Smart notifications;Heart rate monitoring\r\n', '0000-00-00', 0, 0),
+(63, 'Huawei ERS-B19 Band 2 Classic Activity Tracker (Black)', 'watches', 'Tracking and monitoring of daily activity information, including step count, calories burned and distance covered;Support for running and swimming;Support for breathing exercises;Sleep status monitoring and sleep data collection;Alarm notifications, including smart alarms and event alarms;Notifications supported include incoming calls, SMS messages, emails, calendar events, WhatsApp and other social media apps;For further queries, contact us at 18002096555/18002109999 from Mon to Sun,9AMâ€“9PM\r\n', 2499, 4999, 20, 'Brand:Huawei;Series:Band 2;Colour:Black;Item Weight:18.1 g;Package Dimensions:15.2 x 9 x 3.2 cm;Batteries::1 Lithium Polymer batteries required. (included);Item model number:ERS-B19;Average Battery Life (in hours):504 Hours;Lithium Battery Energy Content:0.38 Watt Hours;Lithium battery Voltage:3.82 Volts;Lithium battery Weight:1 Grams;Number of Lithium Ion Cells:1;Included Components:Band, Charging Cable, Cradle, User Guide, Warranty Card and Safety information;Date First Available:1 September 2017;\r\n', ' 1 year warranty provided by the manufacturer from date of purchase', '63_1.jpg', '63_2.jpg', '63_3.jpg', 'Tracking and monitoring of daily activity information, including step count, calories burned and distance covered;Support for running and swimming;Support for breathing exercises;Sleep status monitoring and sleep data collection;Alarm notifications, including smart alarms and event alarms;\r\n', '0000-00-00', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -226,7 +231,7 @@ CREATE TABLE IF NOT EXISTS `productsale` (
 `id` int(11) NOT NULL,
   `productId` int(255) NOT NULL,
   `sold` int(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `productsale`
@@ -235,7 +240,7 @@ CREATE TABLE IF NOT EXISTS `productsale` (
 INSERT INTO `productsale` (`id`, `productId`, `sold`) VALUES
 (2, 24, 6),
 (4, 34, 0),
-(5, 35, 0),
+(5, 35, 2),
 (6, 36, 0),
 (7, 37, 0),
 (8, 38, 0),
@@ -255,7 +260,11 @@ INSERT INTO `productsale` (`id`, `productId`, `sold`) VALUES
 (26, 56, 0),
 (27, 57, 0),
 (28, 58, 0),
-(29, 59, 0);
+(29, 59, 0),
+(30, 60, 0),
+(31, 61, 0),
+(32, 62, 0),
+(33, 63, 0);
 
 -- --------------------------------------------------------
 
@@ -270,7 +279,7 @@ CREATE TABLE IF NOT EXISTS `qatb` (
   `productId` int(255) NOT NULL,
   `answer` varchar(1000) NOT NULL DEFAULT 'Not yet Answered...',
   `answerStatus` tinyint(1) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `qatb`
@@ -284,7 +293,8 @@ INSERT INTO `qatb` (`id`, `question`, `date`, `productId`, `answer`, `answerStat
 (7, 'khasgdhsgdhagdhasgdhgasd', '2019-04-06', 30, 'herkfjjkjad', 1),
 (8, 'is it compatible', '2019-04-08', 32, 'no, because', 1),
 (9, 'jhgfds', '2019-04-09', 32, 'k,jhgfv', 1),
-(10, 'hgrtyertytr', '2019-04-19', 32, 'wsrdtfhrsdfvgnk', 1);
+(10, 'hgrtyertytr', '2019-04-19', 32, 'wsrdtfhrsdfvgnk', 1),
+(11, 'can i have ubuntu on it?', '2019-05-02', 35, 'You can dual boot.', 1);
 
 -- --------------------------------------------------------
 
@@ -299,7 +309,7 @@ CREATE TABLE IF NOT EXISTS `reviews` (
   `reviewDetails` varchar(500) NOT NULL,
   `date` date NOT NULL,
   `productid` int(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=89 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=90 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `reviews`
@@ -393,7 +403,8 @@ INSERT INTO `reviews` (`id`, `userid`, `rating`, `reviewDetails`, `date`, `produ
 (85, 18, 1, 'sajfasdjfhasjdfh', '2019-04-01', 32),
 (86, 19, 5, 'adjfhadjfhasjfkajfkjaklfj', '2019-04-08', 24),
 (87, 19, 5, 'u7ytrew', '2019-04-09', 32),
-(88, 19, 5, 'szdazdsghujijgtr3ws', '2019-04-19', 32);
+(88, 19, 5, 'szdazdsghujijgtr3ws', '2019-04-19', 32),
+(89, 19, 5, 'Nice product', '2019-05-02', 35);
 
 -- --------------------------------------------------------
 
@@ -463,7 +474,7 @@ CREATE TABLE IF NOT EXISTS `transactions` (
   `amount` int(255) NOT NULL,
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `date` date NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `transactions`
@@ -473,8 +484,9 @@ INSERT INTO `transactions` (`id`, `txnId`, `uid`, `products`, `amount`, `status`
 (7, '3218a57a97a85722f776', 19, '{"24":"1","32":"1"}', 75824, 1, '0000-00-00'),
 (8, 'f03945434af77a698695', 19, '{"24":"1"}', 500, 1, '0000-00-00'),
 (9, '2e1ce23f5dd2df308f25', 19, '{"31":"2","24":"1"}', 151148, 1, '0000-00-00'),
-(10, '397af3f592fe31293d85', 19, '{"31":"1"}', 75324, 1, '2019-04-24'),
-(11, 'edab53d2bf1757e05797', 19, '{"44":3,"45":"3"}', 146994, 1, '2019-04-30');
+(10, '397af3f592fe31293d85', 19, '{"31":"1"}', 75324, 0, '2019-04-24'),
+(11, 'edab53d2bf1757e05797', 19, '{"44":3,"45":"3"}', 146994, 1, '2019-04-30'),
+(12, '7699bffcefe8907be2a8', 19, '{"35":"2"}', 99980, 1, '2019-05-02');
 
 -- --------------------------------------------------------
 
@@ -507,7 +519,7 @@ CREATE TABLE IF NOT EXISTS `userdetailstb` (
 
 INSERT INTO `userdetailstb` (`id`, `firstName`, `lastName`, `emailAddress`, `contactNo1`, `contactNo2`, `shipaddr1`, `shipaddr2`, `shiplandmark`, `country`, `state`, `city`, `postalcode`, `cart`, `favourite`, `compare`) VALUES
 (18, 'sarbjeet', 'singh', 'sasingh25@gmail.com', '9417171800', '1452367894', '21500, 6/4', 'power house road', 'adjacent to overseas bank', 'India', 'Punjab', 'Bathinda', '151001', '{"24":4}', '["24","32"]', '[]'),
-(19, 'Amitoj', 'singh', 'amitojvmc@gmail.com', '9417171800', '', '21500, 6/4', 'Power House road', 'opposite cake square', 'India', 'Punjab', 'Bathinda', '151001', '[]', '[]', '["24","31","32","34","35","45","49"]'),
+(19, 'Amitoj', 'singh', 'amitojvmc@gmail.com', '9417171800', '', '21500, 6/4', 'Power House road', 'opposite cake square', 'India', 'Punjab', 'Bathinda', '151001', '{"35":"1"}', '["35"]', '["24","31","32","34","45","49","35"]'),
 (20, 'Harmanjot', 'Singh', 'harmanjot147@gmail.com', '7009737844', '', '59H', 'Near MBD', 'near mBD', 'India', 'Punjab', 'Ludhiana', '141214', '[]', '[]', '[]');
 
 --
@@ -603,37 +615,37 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
 -- AUTO_INCREMENT for table `newsletter`
 --
 ALTER TABLE `newsletter`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `orderstatus`
 --
 ALTER TABLE `orderstatus`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `productdetails`
 --
 ALTER TABLE `productdetails`
-MODIFY `id` int(255) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=60;
+MODIFY `id` int(255) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=64;
 --
 -- AUTO_INCREMENT for table `productsale`
 --
 ALTER TABLE `productsale`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=30;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=34;
 --
 -- AUTO_INCREMENT for table `qatb`
 --
 ALTER TABLE `qatb`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `reviews`
 --
 ALTER TABLE `reviews`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=89;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=90;
 --
 -- AUTO_INCREMENT for table `transactions`
 --
 ALTER TABLE `transactions`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `userdetailstb`
 --

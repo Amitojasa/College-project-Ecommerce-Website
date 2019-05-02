@@ -14,7 +14,7 @@
     <section class=" card-deck mx-0 mb-5 mt-4 justify-content-between">
         <div class="card shadow email">
             <div class="card-head text-center"><i class="fa fa-envelope icon"></i></div><hr>    
-            <div class="card-body">info@gadgetspick.com</div>
+            <div class="card-body">gadgetspick@gmail.com</div>
         </div>
         <div class="card shadow phone text-center">
             <div class="card-head"><i class="fa fa-phone icon"></i></div>  <hr>
@@ -35,7 +35,7 @@ Sangrur, Punjab 148106</div>
         <div class="row mx-5">
         <div class="col-md-12">
         <h2 class="text-secondary bg-light text-center py-2 mb-3">Message Us!</h2>
-        <form action="">
+        <form action="mailto.php"  method="POST">
             <div class="form-group">
                 <label for="name">Name</label>
                 <input type="text" name="name" id="name" class="form-control" placeholder="Name">

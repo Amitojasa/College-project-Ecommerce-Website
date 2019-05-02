@@ -100,7 +100,7 @@
                 <option value="mobile">Mobile</option>
                 <option value="camera">Camera</option>
                 <option value="watches">Smart watches</option>
-                <option value="other">Other</option>
+                
             </select>
         </div>
         <div class="form-group">

@@ -121,10 +121,7 @@
                                                 if(($q['category'])==('watches')){
                                                     echo  "selected";
                                                 } ?>>Smart watches</option>
-                <option value="other" <?php
-                                                if(($q['category'])==('other')){
-                                                    echo  "selected";
-                                                } ?>>Other</option>
+                
             </select>
         </div>
         <div class="form-group">

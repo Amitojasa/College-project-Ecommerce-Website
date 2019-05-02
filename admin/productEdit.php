@@ -29,7 +29,7 @@ $cate="";
                         <option value="" <?php
                                                             if(($cate)==('')){
                                                                 echo  "selected";
-                                                            } ?>>All</option>
+                                                            } ?>>Select category</option>
                         <option value="laptop" <?php
                                                             if(($cate)==('laptop')){
                                                                 echo  "selected";
@@ -47,10 +47,7 @@ $cate="";
                                                             if(($cate)==('watches')){
                                                                 echo  "selected";
                                                             } ?>>Smart watches</option>
-                            <option value="other" <?php
-                                                            if(($cate)==('other')){
-                                                                echo  "selected";
-                                                            } ?>>Other</option>
+                           
                         </select>
                     </div>
                 </div>
