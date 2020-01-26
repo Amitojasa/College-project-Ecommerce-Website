@@ -1,5 +1,5 @@
 <h1>Ecommerce Website (GadgetsPick)</h1>
-This is Ecommerce webiste built for my college project .<br>
+This is Ecommerce webiste built for my college project . Particularly Ecommerce webisite for selling gadgets <br>
 This is made in <b>Php/Mysql/HTML/CSS/Bootstrap/Javascript/Jquery/Ajax</b>.<br><br>
 <b>It has Features like:</b>
   <ul>
